@@ -82,6 +82,7 @@ const UserManagement = () => {
   const [tempRole, setTempRole] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState('all');
+  const [showFilterOptions, setShowFilterOptions] = useState(false);
 
   const getSubscriptionStatusColor = (status) => {
     switch (status) {
@@ -313,7 +314,7 @@ const UserManagement = () => {
             }}
             PaperProps={{
               sx: {
-                width: '320px',
+                width: '185px',
                 mt: '4px',
                 boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)',
                 borderRadius: '12px',
@@ -356,48 +357,84 @@ const UserManagement = () => {
             </Box>
 
             <Box sx={{ p: '8px' }}>
-              <Select
-                fullWidth
-                size="small"
-                value={selectedFilter}
-                onChange={(e) => setSelectedFilter(e.target.value)}
-                IconComponent={KeyboardArrowDownIcon}
-                sx={{
+              <Box
+                onClick={() => setShowFilterOptions(!showFilterOptions)}
+                sx={{ 
                   height: '40px',
                   backgroundColor: '#F9FAFB',
-                  '& .MuiSelect-select': {
-                    padding: '8px 12px',
-                    fontSize: '14px',
-                    lineHeight: '20px',
-                  },
-                  '& .MuiSelect-icon': {
-                    right: '8px',
-                    color: '#6B7280',
-                  },
-                  '& .MuiOutlinedInput-notchedOutline': {
+                  border: '1px solid #E5E7EB',
+                  borderRadius: '6px',
+                  padding: '8px 12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  cursor: 'pointer',
+                  '&:hover': {
                     borderColor: '#E5E7EB',
-                  },
-                }}
-                MenuProps={{
-                  PaperProps: {
-                    sx: {
-                      mt: '4px',
-                      boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)',
-                      '& .MuiMenuItem-root': {
-                        fontSize: '14px',
-                        lineHeight: '20px',
-                        color: '#6B7280',
-                        padding: '8px 12px',
-                      }
-                    }
                   }
                 }}
               >
-                <MenuItem value="all">All Users</MenuItem>
-                <MenuItem value="active">Active Users</MenuItem>
-                <MenuItem value="trial">Trial Users</MenuItem>
-                <MenuItem value="expired">Expired Users</MenuItem>
-              </Select>
+                <Typography
+                  sx={{
+                    fontSize: '14px',
+                    lineHeight: '20px',
+                    color: '#6B7280',
+                  }}
+                >
+                  {selectedFilter === 'all' ? 'All Users' : 
+                   selectedFilter === 'active' ? 'Active Users' :
+                   selectedFilter === 'trial' ? 'Trial Users' : 'Expired Users'}
+                </Typography>
+                <KeyboardArrowDownIcon 
+                  sx={{ 
+                    width: '20px',
+                    height: '20px',
+                    color: '#6B7280',
+                    transform: showFilterOptions ? 'rotate(180deg)' : 'none',
+                    transition: 'transform 0.2s'
+                  }} 
+                />
+              </Box>
+
+              {showFilterOptions && (
+                <Box
+                  sx={{
+                    mt: '4px',
+                    backgroundColor: '#fff',
+                    borderRadius: '6px',
+                    boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)',
+                    zIndex: 1,
+                  }}
+                >
+                  {[
+                    { value: 'all', label: 'All Users' },
+                    { value: 'active', label: 'Active Users' },
+                    { value: 'trial', label: 'Trial Users' },
+                    { value: 'expired', label: 'Expired Users' }
+                  ].map((option) => (
+                    <Box
+                      key={option.value}
+                      onClick={() => {
+                        setSelectedFilter(option.value);
+                        setShowFilterOptions(false);
+                      }}
+                      sx={{
+                        padding: '8px 12px',
+                        fontSize: '14px',
+                        lineHeight: '20px',
+                        color: '#6B7280',
+                        cursor: 'pointer',
+                        backgroundColor: selectedFilter === option.value ? '#F3F4F6' : 'transparent',
+                        '&:hover': {
+                          backgroundColor: selectedFilter === option.value ? '#F3F4F6' : '#F9FAFB',
+                        }
+                      }}
+                    >
+                      {option.label}
+                    </Box>
+                  ))}
+                </Box>
+              )}
             </Box>
           </Popover>
         </Box>
