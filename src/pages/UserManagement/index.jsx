@@ -422,11 +422,11 @@ const UserManagement = () => {
                         padding: '8px 12px',
                         fontSize: '14px',
                         lineHeight: '20px',
-                        color: '#6B7280',
                         cursor: 'pointer',
-                        backgroundColor: selectedFilter === option.value ? '#F3F4F6' : 'transparent',
+                        color: selectedFilter === option.value ? '#9CA3AF' : '#111827',
+                        backgroundColor: 'transparent',
                         '&:hover': {
-                          backgroundColor: selectedFilter === option.value ? '#F3F4F6' : '#F9FAFB',
+                          backgroundColor: '#F9FAFB',
                         }
                       }}
                     >
