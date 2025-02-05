@@ -77,6 +77,7 @@ const UserManagement = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
+  const [tempRole, setTempRole] = useState(null);
 
   const getSubscriptionStatusColor = (status) => {
     switch (status) {
@@ -94,25 +95,30 @@ const UserManagement = () => {
   };
 
   const handleRoleChange = (userId, newRole) => {
-    setUsers(prevUsers => 
-      prevUsers.map(user => 
-        user.id === userId 
-          ? { ...user, role: newRole }
-          : user
-      )
-    );
+    setTempRole(newRole);
+    setSelectedUser(users.find(user => user.id === userId));
+    setOpenDialog(true);
   };
 
   const handleActAsUser = (user) => {
-    // setSelectedUser(user);
-    // setOpenDialog(true);
+    dispatch(setShowAlert(`You are acting as ${user.name} (${user.email})`));
   };
 
-  const handleConfirmImpersonation = () => {
+  const handleConfirmRoleChange = () => {
+    setUsers(prevUsers => 
+      prevUsers.map(user => 
+        user.id === selectedUser.id 
+          ? { ...user, role: tempRole }
+          : user
+      )
+    );
     setOpenDialog(false);
-    dispatch(setShowAlert(`You are acting as ${selectedUser?.name} (${selectedUser?.email})`));
   };
 
+  const handleCancelRoleChange = () => {
+    setOpenDialog(false);
+    setTempRole(null);
+  };
 
   return (
     <Box sx={{ p: 3, minWidth: '1040px' }}>
@@ -346,11 +352,7 @@ const UserManagement = () => {
                   <Select
                     size="small"
                     value={user.role}
-                    onChange={(e) => {
-                      setSelectedUser(user);
-                      setOpenDialog(true);
-                      handleRoleChange(user.id, e.target.value);
-                    }}
+                    onChange={(e) => handleRoleChange(user.id, e.target.value)}
                     IconComponent={KeyboardArrowDownIcon}
                     MenuProps={{
                       PaperProps: {
@@ -412,7 +414,7 @@ const UserManagement = () => {
                   <Button
                     variant="outlined"
                     size="small"
-                    // onClick={() => handleActAsUser(user)}
+                    onClick={() => handleActAsUser(user)}
                     sx={{ 
                       height: '31px',
                       width: '95px',
@@ -583,7 +585,7 @@ const UserManagement = () => {
             </Box>
             {' '}to{' '}
             <Box component="span" sx={{ fontWeight: 700 }}>
-              {selectedUser?.role}
+              {tempRole}
             </Box>
             . This action will update their access permissions immediately. Are you sure you want to proceed?
           </Typography>
@@ -596,7 +598,7 @@ const UserManagement = () => {
           }}
         >
           <Button 
-            onClick={() => setOpenDialog(false)}
+            onClick={handleCancelRoleChange}
             variant="outlined"
             sx={{
               fontSize: '14px',
@@ -614,7 +616,7 @@ const UserManagement = () => {
             Cancel
           </Button>
           <Button 
-            onClick={handleConfirmImpersonation}
+            onClick={handleConfirmRoleChange}
             variant="contained"
             sx={{
               fontSize: '14px',
