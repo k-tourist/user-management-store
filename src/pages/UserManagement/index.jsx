@@ -17,12 +17,15 @@ import {
   DialogActions,
   useTheme,
   IconButton,
+  TextField,
+  InputAdornment,
 } from '@mui/material';
 import { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
 import { showAlert } from '../../redux/slices/alertSlice';
+import SearchIcon from '@mui/icons-material/Search';
 
 // Mock data for the table
 const mockUsers = [
@@ -145,6 +148,52 @@ const UserManagement = () => {
       >
         Manage roles, subscriptions and access with ease. Track logins, assign roles and securely impersonate users for support.
       </Typography>
+
+      {/* Add Search Bar */}
+      <TextField
+        placeholder="Search"
+        fullWidth
+        sx={{
+          maxWidth: {
+            xs: '100%',
+            sm: '417px'
+          },
+          mb: '20px',
+          '& .MuiOutlinedInput-root': {
+            height: '40px',
+            backgroundColor: '#F9FAFB',
+            '& fieldset': {
+              borderColor: '#E5E7EB',
+            },
+            '&:hover fieldset': {
+              borderColor: '#E5E7EB',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#E5E7EB',
+              borderWidth: '1px',
+            },
+            '&.Mui-focused': {
+              backgroundColor: '#F9FAFB',
+            }
+          },
+          '& .MuiOutlinedInput-input': {
+            padding: '8px 12px',
+            fontSize: '14px',
+            lineHeight: '20px',
+            '&::placeholder': {
+              color: '#6B7280',
+              opacity: 1,
+            },
+          },
+        }}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start" sx={{ ml: 1 }}>
+              <SearchIcon sx={{ color: '#6B7280' }} />
+            </InputAdornment>
+          ),
+        }}
+      />
 
       <TableContainer 
         sx={{
