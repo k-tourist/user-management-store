@@ -21,6 +21,8 @@ import {
 import { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
+import { useDispatch } from 'react-redux';
+import { showAlert } from '../../redux/slices/alertSlice';
 
 // Mock data for the table
 const mockUsers = [
@@ -69,6 +71,7 @@ const UserManagement = () => {
   const [users, setUsers] = useState(mockUsers);
   const [selectedUser, setSelectedUser] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
+  const dispatch = useDispatch();
 
   const getSubscriptionStatusColor = (status) => {
     switch (status) {
@@ -101,9 +104,8 @@ const UserManagement = () => {
   };
 
   const handleConfirmImpersonation = () => {
-    // Handle user impersonation logic here
-    console.log(`Impersonating user: ${selectedUser.name}`);
     setOpenDialog(false);
+    dispatch(showAlert(`Role successfully changed to ${selectedUser?.role}`));
   };
 
   return (

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import MainLayout from './components/layout/MainLayout';
+import Alert from './components/Alert';
 import theme from './theme'; // We'll create this next
 import UserManagement from './pages/UserManagement';
 
@@ -14,14 +15,17 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <MainLayout>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/settings" component={Settings} />
-            <Route path="/user-management" component={UserManagement} />
-          </Switch>
-        </MainLayout>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Alert />
+          <MainLayout>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/settings" component={Settings} />
+              <Route path="/user-management" component={UserManagement} />
+            </Switch>
+          </MainLayout>
+        </Box>
       </Router>
     </ThemeProvider>
   );
