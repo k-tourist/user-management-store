@@ -400,16 +400,16 @@ const UserManagement = () => {
               }}
               {...item}
               sx={{
-                height: '47px',
-                minWidth: item.type === 'page' ? '47px' : 'auto',
-                padding: item.type === 'page' ? '0' : '0 16px',
+                height: { xs: '36px', sm: '47px' },
+                minWidth: item.type === 'page' ? { xs: '36px', sm: '47px' } : 'auto',
+                padding: item.type === 'page' ? '0' : { xs: '0 12px', sm: '0 16px' },
                 border: '1px solid #E5E7EB',
                 borderRadius: '8px',
                 margin: '0',
                 marginRight: '-1px',
                 color: '#6B7280',
-                fontSize: '14px',
-                lineHeight: '20px',
+                fontSize: { xs: '12px', sm: '14px' },
+                lineHeight: { xs: '16px', sm: '20px' },
                 '&.Mui-selected': {
                   backgroundColor: '#F9FAFB',
                   color: '#204464',

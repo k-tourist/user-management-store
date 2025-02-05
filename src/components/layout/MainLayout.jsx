@@ -49,7 +49,6 @@ const MainLayout = ({ children }) => {
             sx={{
               flexGrow: 1,
               p: { xs: 2, sm: 3 },
-              mt: `${HEADER_HEIGHT}px`,
             }}
           >
             {children}
