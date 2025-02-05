@@ -121,7 +121,7 @@ const UserManagement = () => {
   };
 
   return (
-    <Box sx={{ p: 3, minWidth: '1040px' }}>
+    <Box sx={{ p: 3, width: '100%' }}>
       <Typography 
         variant="h4" 
         sx={{ 
@@ -266,7 +266,6 @@ const UserManagement = () => {
           maxWidth: '1040px',
           overflowX: 'auto',
           '& .MuiTable-root': {
-            minWidth: '1040px',
             borderCollapse: 'separate',
             borderSpacing: 0,
             border: '1px solid #E5E7EB',
