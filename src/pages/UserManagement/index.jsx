@@ -20,6 +20,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import CloseIcon from '@mui/icons-material/Close';
 
 // Mock data for the table
 const mockUsers = [
@@ -270,20 +271,39 @@ const UserManagement = () => {
             width: '685px',
             minHeight: '252px',
             borderRadius: '12px',
-            p: 3, // Add padding to the dialog
+            p: 3,
           }
         }}
       >
-        <DialogTitle 
-          sx={{ 
-            fontSize: '32px',
-            lineHeight: '36px',
-            p: 0, // Remove default padding
-            mb: '24px' // Gap between title and description
-          }}
-        >
-          Confirm Role Change
-        </DialogTitle>
+        <Box sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'flex-start',
+          mb: '24px'
+        }}>
+          <DialogTitle 
+            sx={{ 
+              fontSize: '32px',
+              lineHeight: '36px',
+              p: 0,
+              m: 0
+            }}
+          >
+            Confirm Role Change
+          </DialogTitle>
+          <IconButton
+            onClick={() => setOpenDialog(false)}
+            sx={{
+              p: 0,
+              '& .MuiSvgIcon-root': {
+                width: '24px',
+                height: '24px'
+              }
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
         <DialogContent sx={{ p: 0 }}> {/* Remove default padding */}
           <Typography
             sx={{
