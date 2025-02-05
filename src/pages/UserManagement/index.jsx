@@ -28,6 +28,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
 import { setShowAlert } from '../../redux/slices/alertSlice';
 import SearchIcon from '@mui/icons-material/Search';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import Popover from '@mui/material/Popover';
 
 const mockUsers = [
   {
@@ -78,6 +80,8 @@ const UserManagement = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [tempRole, setTempRole] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState('all');
 
   const getSubscriptionStatusColor = (status) => {
     switch (status) {
@@ -118,6 +122,14 @@ const UserManagement = () => {
   const handleCancelRoleChange = () => {
     setOpenDialog(false);
     setTempRole(null);
+  };
+
+  const handleFilterClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleFilterClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -214,55 +226,181 @@ const UserManagement = () => {
           }}
         />
 
-        <Select
-          size="small"
-          defaultValue="recent"
-          IconComponent={KeyboardArrowDownIcon}
-          sx={{ 
-            width: '97px',
-            height: { xs: '36px', sm: '40px' },
-            backgroundColor: '#F9FAFB',
-            '& .MuiSelect-select': {
-              padding: { xs: '6px 12px', sm: '8px 12px' },
-              fontSize: { xs: '12px', sm: '14px' },
-              lineHeight: { xs: '16px', sm: '20px' },
-              display: 'flex',
-              alignItems: 'center',
-            },
-            '& .MuiSelect-icon': {
-              width: { xs: '16px', sm: '20px' },
-              height: { xs: '16px', sm: '20px' },
-              right: { xs: '6px', sm: '8px' },
-              color: '#6B7280'
-            },
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#E5E7EB',
-            },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#E5E7EB',
-            },
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: '#E5E7EB',
-              borderWidth: '1px',
-            }
-          }}
-          MenuProps={{
-            PaperProps: {
-              sx: {
-                '& .MuiMenuItem-root': {
-                  fontSize: '14px',
-                  lineHeight: '20px',
-                  color: '#6B7280',
-                  padding: '8px 12px',
+        <Box sx={{ display: 'flex', gap: '12px' }}>
+          <Select
+            size="small"
+            defaultValue="recent"
+            IconComponent={KeyboardArrowDownIcon}
+            sx={{ 
+              width: '97px',
+              height: { xs: '36px', sm: '40px' },
+              backgroundColor: '#F9FAFB',
+              '& .MuiSelect-select': {
+                padding: { xs: '6px 12px', sm: '8px 12px' },
+                fontSize: { xs: '12px', sm: '14px' },
+                lineHeight: { xs: '16px', sm: '20px' },
+                display: 'flex',
+                alignItems: 'center',
+              },
+              '& .MuiSelect-icon': {
+                width: { xs: '16px', sm: '20px' },
+                height: { xs: '16px', sm: '20px' },
+                right: { xs: '6px', sm: '8px' },
+                color: '#6B7280'
+              },
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#E5E7EB',
+              },
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#E5E7EB',
+              },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#E5E7EB',
+                borderWidth: '1px',
+              }
+            }}
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  '& .MuiMenuItem-root': {
+                    fontSize: '14px',
+                    lineHeight: '20px',
+                    color: '#6B7280',
+                    padding: '8px 12px',
+                  }
                 }
               }
-            }
-          }}
-        >
-          <MenuItem value="recent">Recent</MenuItem>
-          <MenuItem value="name">Name</MenuItem>
-          <MenuItem value="email">Email</MenuItem>
-        </Select>
+            }}
+          >
+            <MenuItem value="recent">Recent</MenuItem>
+            <MenuItem value="name">Name</MenuItem>
+            <MenuItem value="email">Email</MenuItem>
+          </Select>
+          
+          <Button
+            variant="outlined"
+            startIcon={<FilterListIcon />}
+            onClick={handleFilterClick}
+            sx={{
+              height: { xs: '36px', sm: '40px' },
+              minWidth: '97px',
+              padding: '8px 12px',
+              backgroundColor: '#F9FAFB',
+              border: '1px solid #E5E7EB',
+              color: '#6B7280',
+              fontSize: { xs: '12px', sm: '14px' },
+              lineHeight: { xs: '16px', sm: '20px' },
+              '&:hover': {
+                backgroundColor: '#F9FAFB',
+                border: '1px solid #E5E7EB',
+              }
+            }}
+          >
+            Filters
+          </Button>
+
+          <Popover
+            open={Boolean(anchorEl)}
+            anchorEl={anchorEl}
+            onClose={handleFilterClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            PaperProps={{
+              sx: {
+                width: '320px',
+                mt: '4px',
+                boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)',
+                borderRadius: '12px',
+              }
+            }}
+          >
+            <Box
+              sx={{
+                height: '44px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                px: '16px',
+                borderBottom: '1px solid #E5E7EB',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  fontWeight: 600,
+                  color: '#111827',
+                }}
+              >
+                Filters
+              </Typography>
+              <IconButton
+                onClick={handleFilterClose}
+                sx={{
+                  p: 0,
+                  color: '#6B7280',
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                    color: '#111827',
+                  }
+                }}
+              >
+                <CloseIcon sx={{ fontSize: '20px' }} />
+              </IconButton>
+            </Box>
+
+            <Box sx={{ p: '8px' }}>
+              <Select
+                fullWidth
+                size="small"
+                value={selectedFilter}
+                onChange={(e) => setSelectedFilter(e.target.value)}
+                IconComponent={KeyboardArrowDownIcon}
+                sx={{
+                  height: '40px',
+                  backgroundColor: '#F9FAFB',
+                  '& .MuiSelect-select': {
+                    padding: '8px 12px',
+                    fontSize: '14px',
+                    lineHeight: '20px',
+                  },
+                  '& .MuiSelect-icon': {
+                    right: '8px',
+                    color: '#6B7280',
+                  },
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#E5E7EB',
+                  },
+                }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      mt: '4px',
+                      boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)',
+                      '& .MuiMenuItem-root': {
+                        fontSize: '14px',
+                        lineHeight: '20px',
+                        color: '#6B7280',
+                        padding: '8px 12px',
+                      }
+                    }
+                  }
+                }}
+              >
+                <MenuItem value="all">All Users</MenuItem>
+                <MenuItem value="active">Active Users</MenuItem>
+                <MenuItem value="trial">Trial Users</MenuItem>
+                <MenuItem value="expired">Expired Users</MenuItem>
+              </Select>
+            </Box>
+          </Popover>
+        </Box>
       </Box>
 
       <TableContainer 
