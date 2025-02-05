@@ -65,6 +65,7 @@ const roles = ['User', 'Admin', 'Super Admin'];
 
 const UserManagement = () => {
   const theme = useTheme();
+  const [users, setUsers] = useState(mockUsers);
   const [selectedUser, setSelectedUser] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -84,8 +85,13 @@ const UserManagement = () => {
   };
 
   const handleRoleChange = (userId, newRole) => {
-    // Handle role change logic here
-    console.log(`Changed role for user ${userId} to ${newRole}`);
+    setUsers(prevUsers => 
+      prevUsers.map(user => 
+        user.id === userId 
+          ? { ...user, role: newRole }
+          : user
+      )
+    );
   };
 
   const handleActAsUser = (user) => {
@@ -101,11 +107,27 @@ const UserManagement = () => {
 
   return (
     <Box sx={{ p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography 
+        variant="h4" 
+        sx={{ 
+          fontSize: '32px',
+          lineHeight: '36px',
+          mb: '12px' // 12px gap between title and description
+        }}
+      >
         User Management
       </Typography>
       
-      <Typography variant="body1" color="text.secondary" paragraph>
+      <Typography 
+        variant="body1" 
+        color="text.secondary" 
+        sx={{ 
+          fontSize: '20px',
+          lineHeight: '22px',
+          maxWidth: '710px',
+          mb: '48px' // 48px gap between description and table
+        }}
+      >
         Manage roles, subscriptions and access with ease. Track logins, assign roles and securely impersonate users for support.
       </Typography>
 
@@ -115,7 +137,7 @@ const UserManagement = () => {
           maxWidth: '1040px',
           overflowX: 'auto',
           '& .MuiTable-root': {
-            minWidth: '1040px', // Ensures table maintains width on smaller screens
+            minWidth: '1040px',
           }
         }}
       >
@@ -140,7 +162,7 @@ const UserManagement = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {mockUsers.map((user) => (
+            {users.map((user) => (
               <TableRow 
                 key={user.id}
                 sx={{
@@ -240,16 +262,80 @@ const UserManagement = () => {
       </TableContainer>
 
       {/* Confirmation Dialog */}
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-        <DialogTitle>Confirm User Impersonation</DialogTitle>
-        <DialogContent>
-          <Typography>
-            Are you sure you want to impersonate {selectedUser?.name}? You will be logged in as this user.
+      <Dialog 
+        open={openDialog} 
+        onClose={() => setOpenDialog(false)}
+        PaperProps={{
+          sx: {
+            width: '685px',
+            minHeight: '252px',
+            borderRadius: '12px',
+            p: 3, // Add padding to the dialog
+          }
+        }}
+      >
+        <DialogTitle 
+          sx={{ 
+            fontSize: '32px',
+            lineHeight: '36px',
+            p: 0, // Remove default padding
+            mb: '24px' // Gap between title and description
+          }}
+        >
+          Confirm Role Change
+        </DialogTitle>
+        <DialogContent sx={{ p: 0 }}> {/* Remove default padding */}
+          <Typography
+            sx={{
+              fontSize: '18px',
+              lineHeight: '24px',
+            }}
+          >
+            You are about to change the role of{' '}
+            <Box component="span" sx={{ fontWeight: 700 }}>
+              {selectedUser?.name}
+            </Box>
+            {' '}to{' '}
+            <Box component="span" sx={{ fontWeight: 700 }}>
+              {selectedUser?.role}
+            </Box>
+            . This action will update their access permissions immediately. Are you sure you want to proceed?
           </Typography>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-          <Button onClick={handleConfirmImpersonation} variant="contained">
+        <DialogActions 
+          sx={{ 
+            p: 0,
+            mt: 3,
+            gap: '12px' // Updated gap to 12px
+          }}
+        >
+          <Button 
+            onClick={() => setOpenDialog(false)}
+            variant="outlined"
+            sx={{
+              fontSize: '14px',
+              lineHeight: '20px',
+              height: '40px',
+              width: '100px', // Fixed width
+              border: 'none', // Remove border
+              '&:hover': {
+                border: 'none', // Remove border on hover
+                backgroundColor: 'rgba(0, 0, 0, 0.04)' // Optional: light hover effect
+              }
+            }}
+          >
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleConfirmImpersonation}
+            variant="contained"
+            sx={{
+              fontSize: '14px',
+              lineHeight: '20px',
+              height: '40px',
+              width: '100px' // Fixed width
+            }}
+          >
             Confirm
           </Button>
         </DialogActions>
