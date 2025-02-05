@@ -16,8 +16,10 @@ import {
   DialogContent,
   DialogActions,
   useTheme,
+  IconButton,
 } from '@mui/material';
 import { useState } from 'react';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 // Mock data for the table
 const mockUsers = [
@@ -107,26 +109,62 @@ const UserManagement = () => {
         Manage roles, subscriptions and access with ease. Track logins, assign roles and securely impersonate users for support.
       </Typography>
 
-      <TableContainer component={Paper}>
+      <TableContainer 
+        component={Paper}
+        sx={{
+          maxWidth: '1040px',
+          overflowX: 'auto',
+          '& .MuiTable-root': {
+            minWidth: '1040px', // Ensures table maintains width on smaller screens
+          }
+        }}
+      >
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Subscription Status</TableCell>
-              <TableCell>Date Registered</TableCell>
-              <TableCell>Last Login</TableCell>
-              <TableCell>Actions</TableCell>
+            <TableRow
+              sx={{
+                height: '48px',
+                '& .MuiTableCell-head': {
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap',
+                  padding: '0 16px',
+                }
+              }}
+            >
+              <TableCell width="180px">Name</TableCell>
+              <TableCell width="220px">Email</TableCell>
+              <TableCell width="200px">Subscription Status</TableCell>
+              <TableCell width="140px">Date Registered</TableCell>
+              <TableCell width="140px">Last Login</TableCell>
+              <TableCell width="160px">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {mockUsers.map((user) => (
-              <TableRow key={user.id}>
+              <TableRow 
+                key={user.id}
+                sx={{
+                  height: '63px',
+                  '& .MuiTableCell-body': {
+                    padding: '0 16px',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    fontSize: '12px',
+                    lineHeight: '14.5px'
+                  }
+                }}
+              >
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>
                   <Typography
-                    sx={{ color: getSubscriptionStatusColor(user.subscriptionStatus) }}
+                    sx={{ 
+                      color: getSubscriptionStatusColor(user.subscriptionStatus),
+                      whiteSpace: 'nowrap',
+                      fontSize: '12px',
+                      lineHeight: '14.5px'
+                    }}
                   >
                     {user.subscriptionStatus}
                   </Typography>
@@ -134,12 +172,43 @@ const UserManagement = () => {
                 <TableCell>{user.dateRegistered}</TableCell>
                 <TableCell>{user.lastLogin}</TableCell>
                 <TableCell>
-                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                  <Box sx={{ 
+                    display: 'flex', 
+                    gap: '16px', 
+                    alignItems: 'center',
+                    height: '31px'
+                  }}>
                     <Select
                       size="small"
                       value={user.role}
                       onChange={(e) => handleRoleChange(user.id, e.target.value)}
-                      sx={{ minWidth: 120 }}
+                      IconComponent={KeyboardArrowDownIcon}
+                      MenuProps={{
+                        PaperProps: {
+                          sx: {
+                            '& .MuiMenuItem-root': {
+                              fontSize: '12px',
+                              lineHeight: '14.5px',
+                              minHeight: 'auto',
+                              padding: '8px'
+                            }
+                          }
+                        }
+                      }}
+                      sx={{ 
+                        width: '120px',
+                        height: '31px',
+                        '& .MuiSelect-select': {
+                          padding: '4px 8px',
+                          fontSize: '12px',
+                          lineHeight: '14.5px'
+                        },
+                        '& .MuiSelect-icon': {
+                          width: '20px',
+                          height: '20px',
+                          right: '4px',
+                        }
+                      }}
                     >
                       {roles.map((role) => (
                         <MenuItem key={role} value={role}>
@@ -151,6 +220,14 @@ const UserManagement = () => {
                       variant="outlined"
                       size="small"
                       onClick={() => handleActAsUser(user)}
+                      sx={{ 
+                        height: '31px',
+                        width: '95px',
+                        padding: '4px 8px',
+                        whiteSpace: 'nowrap',
+                        fontSize: '12px',
+                        lineHeight: '14.5px'
+                      }}
                     >
                       Act as User
                     </Button>
