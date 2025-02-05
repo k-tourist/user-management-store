@@ -81,7 +81,7 @@ const UserManagement = () => {
   const [page, setPage] = useState(1);
   const [tempRole, setTempRole] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [selectedFilter, setSelectedFilter] = useState('active');
   const [showFilterOptions, setShowFilterOptions] = useState(false);
 
   const getSubscriptionStatusColor = (status) => {
@@ -381,9 +381,10 @@ const UserManagement = () => {
                     color: '#6B7280',
                   }}
                 >
-                  {selectedFilter === 'all' ? 'All Users' : 
-                   selectedFilter === 'active' ? 'Active Users' :
-                   selectedFilter === 'trial' ? 'Trial Users' : 'Expired Users'}
+                  {selectedFilter === 'active' ? 'Active' : 
+                   selectedFilter === 'no_subscription' ? 'No Subscription' :
+                   selectedFilter === 'trial_expiring' ? 'Trial Expiring' : 
+                   'Cancelling'}
                 </Typography>
                 <KeyboardArrowDownIcon 
                   sx={{ 
@@ -407,10 +408,10 @@ const UserManagement = () => {
                   }}
                 >
                   {[
-                    { value: 'all', label: 'All Users' },
-                    { value: 'active', label: 'Active Users' },
-                    { value: 'trial', label: 'Trial Users' },
-                    { value: 'expired', label: 'Expired Users' }
+                    { value: 'active', label: 'Active' },
+                    { value: 'no_subscription', label: 'No Subscription' },
+                    { value: 'trial_expiring', label: 'Trial Expiring' },
+                    { value: 'cancelling', label: 'Cancelling' }
                   ].map((option) => (
                     <Box
                       key={option.value}
