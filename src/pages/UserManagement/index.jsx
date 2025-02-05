@@ -28,7 +28,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
 import { setShowAlert } from '../../redux/slices/alertSlice';
 import SearchIcon from '@mui/icons-material/Search';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import Popover from '@mui/material/Popover';
 
 const mockUsers = [
@@ -72,6 +71,14 @@ const mockUsers = [
 
 const roles = ['User', 'Admin', 'Super Admin'];
 
+const FilterIcon = () => (
+  <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2.5002 0.75H13.5002C13.9418 0.751319 14.365 0.927337 14.6773 1.23961C14.9895 1.55189 15.1655 1.97504 15.1669 2.41667V4.25C15.1184 4.96587 14.824 5.643 14.3335 6.16667L10.7502 9.33333C10.4914 9.58183 10.2846 9.87919 10.1415 10.2082C9.99848 10.5372 9.92212 10.8913 9.91686 11.25V14.8333C9.90568 15.1105 9.8325 15.3817 9.7027 15.6268C9.57291 15.872 9.38981 16.0849 9.16686 16.25L8.0002 17C7.74511 17.1558 7.45341 17.2416 7.15458 17.2485C6.85575 17.2555 6.56036 17.1835 6.29827 17.0398C6.03618 16.8961 5.81666 16.6857 5.6619 16.43C5.50714 16.1742 5.42261 15.8822 5.41687 15.5833V11.1667C5.37287 10.5302 5.14084 9.9211 4.7502 9.41667L1.58353 6.08333C1.15167 5.62896 0.887193 5.04123 0.833532 4.41667V2.5C0.825748 2.27508 0.862924 2.05086 0.942883 1.84048C1.02284 1.63011 1.14397 1.4378 1.29919 1.27483C1.4544 1.11186 1.64057 0.981493 1.8468 0.891373C2.05303 0.801254 2.27516 0.753191 2.5002 0.75V0.75Z" stroke="white" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M7.10833 0.75L3 7.33333" stroke="white" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+
+);
+
 const UserManagement = () => {
   const theme = useTheme();
   const [users, setUsers] = useState(mockUsers);
@@ -110,9 +117,9 @@ const UserManagement = () => {
   };
 
   const handleConfirmRoleChange = () => {
-    setUsers(prevUsers => 
-      prevUsers.map(user => 
-        user.id === selectedUser.id 
+    setUsers(prevUsers =>
+      prevUsers.map(user =>
+        user.id === selectedUser.id
           ? { ...user, role: tempRole }
           : user
       )
@@ -135,9 +142,9 @@ const UserManagement = () => {
 
   return (
     <Box sx={{ p: 3, width: '100%' }}>
-      <Typography 
-        variant="h4" 
-        sx={{ 
+      <Typography
+        variant="h4"
+        sx={{
           fontSize: {
             xs: '24px',
             sm: '32px'
@@ -151,11 +158,11 @@ const UserManagement = () => {
       >
         User Management
       </Typography>
-      
-      <Typography 
-        variant="body1" 
-        color="text.secondary" 
-        sx={{ 
+
+      <Typography
+        variant="body1"
+        color="text.secondary"
+        sx={{
           fontSize: {
             xs: '16px',
             sm: '20px'
@@ -171,9 +178,9 @@ const UserManagement = () => {
         Manage roles, subscriptions and access with ease. Track logins, assign roles and securely impersonate users for support.
       </Typography>
 
-      <Box 
-        sx={{ 
-          display: 'flex', 
+      <Box
+        sx={{
+          display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           maxWidth: '1040px',
@@ -218,7 +225,7 @@ const UserManagement = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start" sx={{ ml: { xs: 0.5, sm: 1 } }}>
-                <SearchIcon sx={{ 
+                <SearchIcon sx={{
                   color: '#6B7280',
                   fontSize: { xs: '18px', sm: '24px' }
                 }} />
@@ -232,7 +239,7 @@ const UserManagement = () => {
             size="small"
             defaultValue="recent"
             IconComponent={KeyboardArrowDownIcon}
-            sx={{ 
+            sx={{
               width: '97px',
               height: { xs: '36px', sm: '40px' },
               backgroundColor: '#F9FAFB',
@@ -277,27 +284,34 @@ const UserManagement = () => {
             <MenuItem value="name">Name</MenuItem>
             <MenuItem value="email">Email</MenuItem>
           </Select>
-          
+
           <Button
             variant="outlined"
-            startIcon={<FilterListIcon />}
+            endIcon={<FilterIcon />}
             onClick={handleFilterClick}
             sx={{
               height: { xs: '36px', sm: '40px' },
-              minWidth: '97px',
-              padding: '8px 12px',
-              backgroundColor: '#F9FAFB',
-              border: '1px solid #E5E7EB',
-              color: '#6B7280',
-              fontSize: { xs: '12px', sm: '14px' },
-              lineHeight: { xs: '16px', sm: '20px' },
+              minWidth: { xs: '36px', sm: '97px' },
+              padding: { xs: '6px', sm: '8px 12px' },
+              backgroundColor: '#204464',
+              border: '1px solid #204464',
+              color: '#FFFFFF',
+              fontSize: '14px',
+              lineHeight: '20px',
+              textTransform: 'none',
+              '& .MuiButton-endIcon': {
+                margin: { xs: 0, sm: '-4px -4px -4px 8px' },
+              },
+              '& .MuiButton-endIcon > *:nth-of-type(1)': {
+                fontSize: { xs: '20px', sm: '24px' },
+              },
               '&:hover': {
-                backgroundColor: '#F9FAFB',
-                border: '1px solid #E5E7EB',
+                backgroundColor: '#1a3850',
+                border: '1px solid #1a3850',
               }
             }}
           >
-            Filters
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>Filters</Box>
           </Button>
 
           <Popover
@@ -359,7 +373,7 @@ const UserManagement = () => {
             <Box sx={{ p: '8px' }}>
               <Box
                 onClick={() => setShowFilterOptions(!showFilterOptions)}
-                sx={{ 
+                sx={{
                   height: '40px',
                   backgroundColor: '#F9FAFB',
                   border: '1px solid #E5E7EB',
@@ -381,19 +395,19 @@ const UserManagement = () => {
                     color: '#6B7280',
                   }}
                 >
-                  {selectedFilter === 'active' ? 'Active' : 
-                   selectedFilter === 'no_subscription' ? 'No Subscription' :
-                   selectedFilter === 'trial_expiring' ? 'Trial Expiring' : 
-                   'Cancelling'}
+                  {selectedFilter === 'active' ? 'Active' :
+                    selectedFilter === 'no_subscription' ? 'No Subscription' :
+                      selectedFilter === 'trial_expiring' ? 'Trial Expiring' :
+                        'Cancelling'}
                 </Typography>
-                <KeyboardArrowDownIcon 
-                  sx={{ 
+                <KeyboardArrowDownIcon
+                  sx={{
                     width: '20px',
                     height: '20px',
                     color: '#6B7280',
                     transform: showFilterOptions ? 'rotate(180deg)' : 'none',
                     transition: 'transform 0.2s'
-                  }} 
+                  }}
                 />
               </Box>
 
@@ -441,7 +455,7 @@ const UserManagement = () => {
         </Box>
       </Box>
 
-      <TableContainer 
+      <TableContainer
         sx={{
           maxWidth: '1040px',
           overflowX: 'auto',
@@ -486,7 +500,7 @@ const UserManagement = () => {
           </TableHead>
           <TableBody>
             {users.map((user) => (
-              <TableRow 
+              <TableRow
                 key={user.id}
                 sx={{
                   height: '63px',
@@ -506,7 +520,7 @@ const UserManagement = () => {
                   <Button
                     variant="outlined"
                     size="small"
-                    sx={{ 
+                    sx={{
                       height: '31px',
                       width: '200px',
                       padding: '4px 8px',
@@ -546,7 +560,7 @@ const UserManagement = () => {
                         }
                       }
                     }}
-                    sx={{ 
+                    sx={{
                       width: '120px',
                       height: '31px',
                       color: '#204464',
@@ -594,7 +608,7 @@ const UserManagement = () => {
                     variant="outlined"
                     size="small"
                     onClick={() => handleActAsUser(user)}
-                    sx={{ 
+                    sx={{
                       height: '31px',
                       width: '95px',
                       padding: '4px 8px',
@@ -689,8 +703,8 @@ const UserManagement = () => {
         />
       </Box>
 
-      <Dialog 
-        open={openDialog} 
+      <Dialog
+        open={openDialog}
         onClose={() => setOpenDialog(false)}
         PaperProps={{
           sx: {
@@ -706,14 +720,14 @@ const UserManagement = () => {
           }
         }}
       >
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
           alignItems: 'flex-start',
           mb: '24px'
         }}>
-          <DialogTitle 
-            sx={{ 
+          <DialogTitle
+            sx={{
               fontSize: {
                 xs: '24px',
                 sm: '32px'
@@ -772,14 +786,14 @@ const UserManagement = () => {
             . This action will update their access permissions immediately. Are you sure you want to proceed?
           </Typography>
         </DialogContent>
-        <DialogActions 
-          sx={{ 
+        <DialogActions
+          sx={{
             p: 0,
             mt: '32px',
             gap: '12px'
           }}
         >
-          <Button 
+          <Button
             onClick={handleCancelRoleChange}
             variant="outlined"
             sx={{
@@ -797,7 +811,7 @@ const UserManagement = () => {
           >
             Cancel
           </Button>
-          <Button 
+          <Button
             onClick={handleConfirmRoleChange}
             variant="contained"
             sx={{
