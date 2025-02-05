@@ -29,7 +29,6 @@ import { useDispatch } from 'react-redux';
 import { showAlert } from '../../redux/slices/alertSlice';
 import SearchIcon from '@mui/icons-material/Search';
 
-// Mock data for the table
 const mockUsers = [
   {
     id: 1,
@@ -82,13 +81,13 @@ const UserManagement = () => {
   const getSubscriptionStatusColor = (status) => {
     switch (status) {
       case 'No Subscription':
-        return '#B31F0D';  // Red
+        return '#B31F0D';
       case 'Active':
-        return '#058205';  // Green
+        return '#058205';
       case 'Trial Expiring in 28 days':
-        return '#204464';  // Blue
+        return '#204464';
       case 'Cancelling in 14 days':
-        return '#EF6C00';  // Orange/Yellow
+        return '#EF6C00';
       default:
         return theme.palette.text.primary;
     }
@@ -120,12 +119,12 @@ const UserManagement = () => {
         variant="h4" 
         sx={{ 
           fontSize: {
-            xs: '24px', // Mobile
-            sm: '32px'  // Desktop
+            xs: '24px',
+            sm: '32px'
           },
           lineHeight: {
-            xs: '28px', // Mobile
-            sm: '36px'  // Desktop
+            xs: '28px',
+            sm: '36px'
           },
           mb: '12px'
         }}
@@ -138,12 +137,12 @@ const UserManagement = () => {
         color="text.secondary" 
         sx={{ 
           fontSize: {
-            xs: '16px', // Mobile
-            sm: '20px'  // Desktop
+            xs: '16px',
+            sm: '20px'
           },
           lineHeight: {
-            xs: '20px', // Mobile
-            sm: '22px'  // Desktop
+            xs: '20px',
+            sm: '22px'
           },
           maxWidth: '710px',
           mb: '48px'
@@ -152,7 +151,6 @@ const UserManagement = () => {
         Manage roles, subscriptions and access with ease. Track logins, assign roles and securely impersonate users for support.
       </Typography>
 
-      {/* Add Search Bar */}
       <TextField
         placeholder="Search"
         fullWidth
@@ -352,11 +350,11 @@ const UserManagement = () => {
                         fontSize: '12px',
                         lineHeight: '14.5px',
                         color: '#EF6C00',
-                        backgroundColor: 'rgba(239, 108, 0, 0.05)', // #EF6C00 with 5% opacity
-                        border: '1px solid #EF6C00', // Added border with same color
+                        backgroundColor: 'rgba(239, 108, 0, 0.05)',
+                        border: '1px solid #EF6C00',
                         '&:hover': {
-                          backgroundColor: 'rgba(239, 108, 0, 0.1)', // Slightly darker on hover
-                          border: '1px solid #EF6C00' // Maintain border on hover
+                          backgroundColor: 'rgba(239, 108, 0, 0.1)',
+                          border: '1px solid #EF6C00'
                         }
                       }}
                     >
@@ -437,21 +435,20 @@ const UserManagement = () => {
         />
       </Box>
 
-      {/* Confirmation Dialog */}
       <Dialog 
         open={openDialog} 
         onClose={() => setOpenDialog(false)}
         PaperProps={{
           sx: {
             width: {
-              xs: '100%',    // Full width on mobile
-              sm: '685px'    // Fixed width on desktop
+              xs: '100%',
+              sm: '685px'
             },
             maxWidth: '685px',
             minHeight: '252px',
             borderRadius: '12px',
-            p: { xs: 2, sm: 3 }, // Smaller padding on mobile
-            m: { xs: 2, sm: 0 }  // Add margin on mobile
+            p: { xs: 2, sm: 3 },
+            m: { xs: 2, sm: 0 }
           }
         }}
       >
@@ -464,13 +461,15 @@ const UserManagement = () => {
           <DialogTitle 
             sx={{ 
               fontSize: {
-                xs: '24px', // Mobile
-                sm: '32px'  // Desktop
+                xs: '24px',
+                sm: '32px'
               },
+
               lineHeight: {
-                xs: '28px', // Mobile
-                sm: '36px'  // Desktop
+                xs: '28px',
+                sm: '36px'
               },
+
               p: 0,
               m: 0
             }}
@@ -501,12 +500,12 @@ const UserManagement = () => {
           <Typography
             sx={{
               fontSize: {
-                xs: '14px', // Mobile
-                sm: '18px'  // Desktop
+                xs: '14px',
+                sm: '18px'
               },
               lineHeight: {
-                xs: '20px', // Mobile
-                sm: '24px'  // Desktop
+                xs: '20px',
+                sm: '24px'
               },
             }}
           >
@@ -556,7 +555,7 @@ const UserManagement = () => {
               width: '100px',
               backgroundColor: '#204464',
               '&:hover': {
-                backgroundColor: '#1a3850' // Slightly darker shade for hover
+                backgroundColor: '#1a3850'
               }
             }}
           >

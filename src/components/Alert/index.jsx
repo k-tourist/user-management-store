@@ -18,7 +18,7 @@ const Alert = () => {
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        zIndex: 1300, // Above the header
+        zIndex: 1300,
       }}
     >
       <Typography

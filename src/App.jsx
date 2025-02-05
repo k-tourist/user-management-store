@@ -2,10 +2,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import MainLayout from './components/layout/MainLayout';
 import Alert from './components/Alert';
-import theme from './theme'; // We'll create this next
+import theme from './theme';
 import UserManagement from './pages/UserManagement';
 
-// Placeholder pages
 const Home = () => <div>Home Page</div>;
 const Profile = () => <div>Profile Page</div>;
 const Settings = () => <div>Settings Page</div>;
