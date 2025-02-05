@@ -73,13 +73,13 @@ const UserManagement = () => {
   const getSubscriptionStatusColor = (status) => {
     switch (status) {
       case 'No Subscription':
-        return theme.palette.error.main;
+        return '#B31F0D';  // Red
       case 'Active':
-        return theme.palette.success.main;
+        return '#058205';  // Green
       case 'Trial Expiring in 28 days':
-        return theme.palette.info.main;
+        return '#204464';  // Blue
       case 'Cancelling in 14 days':
-        return theme.palette.warning.main;
+        return '#EF6C00';  // Orange/Yellow
       default:
         return theme.palette.text.primary;
     }
@@ -111,9 +111,15 @@ const UserManagement = () => {
       <Typography 
         variant="h4" 
         sx={{ 
-          fontSize: '32px',
-          lineHeight: '36px',
-          mb: '12px' // 12px gap between title and description
+          fontSize: {
+            xs: '24px', // Mobile
+            sm: '32px'  // Desktop
+          },
+          lineHeight: {
+            xs: '28px', // Mobile
+            sm: '36px'  // Desktop
+          },
+          mb: '12px'
         }}
       >
         User Management
@@ -123,22 +129,39 @@ const UserManagement = () => {
         variant="body1" 
         color="text.secondary" 
         sx={{ 
-          fontSize: '20px',
-          lineHeight: '22px',
+          fontSize: {
+            xs: '16px', // Mobile
+            sm: '20px'  // Desktop
+          },
+          lineHeight: {
+            xs: '20px', // Mobile
+            sm: '22px'  // Desktop
+          },
           maxWidth: '710px',
-          mb: '48px' // 48px gap between description and table
+          mb: '48px'
         }}
       >
         Manage roles, subscriptions and access with ease. Track logins, assign roles and securely impersonate users for support.
       </Typography>
 
       <TableContainer 
-        component={Paper}
         sx={{
           maxWidth: '1040px',
           overflowX: 'auto',
           '& .MuiTable-root': {
             minWidth: '1040px',
+            borderCollapse: 'separate',
+            borderSpacing: 0,
+            border: '1px solid #E5E7EB',
+            borderRadius: '12px',
+            overflow: 'hidden',
+          },
+          '& .MuiTableCell-root': {
+            borderBottom: '1px solid #E5E7EB',
+            borderRight: 'none',
+          },
+          '& .MuiTableRow-root:last-child .MuiTableCell-root': {
+            borderBottom: 'none',
           }
         }}
       >
@@ -147,10 +170,12 @@ const UserManagement = () => {
             <TableRow
               sx={{
                 height: '48px',
+                backgroundColor: '#F9FAFB',
                 '& .MuiTableCell-head': {
                   fontWeight: 600,
                   whiteSpace: 'nowrap',
                   padding: '0 16px',
+                  backgroundColor: '#F9FAFB',
                 }
               }}
             >
@@ -213,7 +238,8 @@ const UserManagement = () => {
                               fontSize: '12px',
                               lineHeight: '14.5px',
                               minHeight: 'auto',
-                              padding: '8px'
+                              padding: '8px',
+                              color: '#204464'
                             }
                           }
                         }
@@ -221,6 +247,8 @@ const UserManagement = () => {
                       sx={{ 
                         width: '120px',
                         height: '31px',
+                        color: '#204464',
+                        backgroundColor: 'rgba(32, 68, 100, 0.05)',
                         '& .MuiSelect-select': {
                           padding: '4px 8px',
                           fontSize: '12px',
@@ -230,6 +258,22 @@ const UserManagement = () => {
                           width: '20px',
                           height: '20px',
                           right: '4px',
+                          color: '#204464'
+                        },
+                        '&:hover': {
+                          backgroundColor: 'rgba(32, 68, 100, 0.1)',
+                        },
+                        '& .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #204464',
+                          borderWidth: '1px !important'
+                        },
+                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #204464',
+                          borderWidth: '1px !important'
+                        },
+                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                          border: '1px solid #204464',
+                          borderWidth: '1px !important'
                         }
                       }}
                     >
@@ -249,7 +293,14 @@ const UserManagement = () => {
                         padding: '4px 8px',
                         whiteSpace: 'nowrap',
                         fontSize: '12px',
-                        lineHeight: '14.5px'
+                        lineHeight: '14.5px',
+                        color: '#EF6C00',
+                        backgroundColor: 'rgba(239, 108, 0, 0.05)', // #EF6C00 with 5% opacity
+                        border: '1px solid #EF6C00', // Added border with same color
+                        '&:hover': {
+                          backgroundColor: 'rgba(239, 108, 0, 0.1)', // Slightly darker on hover
+                          border: '1px solid #EF6C00' // Maintain border on hover
+                        }
                       }}
                     >
                       Act as User
@@ -268,10 +319,15 @@ const UserManagement = () => {
         onClose={() => setOpenDialog(false)}
         PaperProps={{
           sx: {
-            width: '685px',
+            width: {
+              xs: '100%',    // Full width on mobile
+              sm: '685px'    // Fixed width on desktop
+            },
+            maxWidth: '685px',
             minHeight: '252px',
             borderRadius: '12px',
-            p: 3,
+            p: { xs: 2, sm: 3 }, // Smaller padding on mobile
+            m: { xs: 2, sm: 0 }  // Add margin on mobile
           }
         }}
       >
@@ -283,8 +339,14 @@ const UserManagement = () => {
         }}>
           <DialogTitle 
             sx={{ 
-              fontSize: '32px',
-              lineHeight: '36px',
+              fontSize: {
+                xs: '24px', // Mobile
+                sm: '32px'  // Desktop
+              },
+              lineHeight: {
+                xs: '28px', // Mobile
+                sm: '36px'  // Desktop
+              },
               p: 0,
               m: 0
             }}
@@ -295,20 +357,33 @@ const UserManagement = () => {
             onClick={() => setOpenDialog(false)}
             sx={{
               p: 0,
+              color: '#204464',
               '& .MuiSvgIcon-root': {
-                width: '24px',
-                height: '24px'
+                width: {
+                  xs: '20px',
+                  sm: '24px'
+                },
+                height: {
+                  xs: '20px',
+                  sm: '24px'
+                }
               }
             }}
           >
             <CloseIcon />
           </IconButton>
         </Box>
-        <DialogContent sx={{ p: 0 }}> {/* Remove default padding */}
+        <DialogContent sx={{ p: 0 }}>
           <Typography
             sx={{
-              fontSize: '18px',
-              lineHeight: '24px',
+              fontSize: {
+                xs: '14px', // Mobile
+                sm: '18px'  // Desktop
+              },
+              lineHeight: {
+                xs: '20px', // Mobile
+                sm: '24px'  // Desktop
+              },
             }}
           >
             You are about to change the role of{' '}
@@ -325,8 +400,8 @@ const UserManagement = () => {
         <DialogActions 
           sx={{ 
             p: 0,
-            mt: 3,
-            gap: '12px' // Updated gap to 12px
+            mt: '32px',
+            gap: '12px'
           }}
         >
           <Button 
@@ -336,11 +411,12 @@ const UserManagement = () => {
               fontSize: '14px',
               lineHeight: '20px',
               height: '40px',
-              width: '100px', // Fixed width
-              border: 'none', // Remove border
+              width: '100px',
+              color: '#204464',
+              border: 'none',
               '&:hover': {
-                border: 'none', // Remove border on hover
-                backgroundColor: 'rgba(0, 0, 0, 0.04)' // Optional: light hover effect
+                border: 'none',
+                backgroundColor: 'rgba(0, 0, 0, 0.04)'
               }
             }}
           >
@@ -353,7 +429,11 @@ const UserManagement = () => {
               fontSize: '14px',
               lineHeight: '20px',
               height: '40px',
-              width: '100px' // Fixed width
+              width: '100px',
+              backgroundColor: '#204464',
+              '&:hover': {
+                backgroundColor: '#1a3850' // Slightly darker shade for hover
+              }
             }}
           >
             Confirm
