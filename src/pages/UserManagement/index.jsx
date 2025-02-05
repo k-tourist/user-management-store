@@ -164,18 +164,19 @@ const UserManagement = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
           maxWidth: '1040px',
-          mb: '20px'
+          mb: '20px',
+          gap: '12px'
         }}
       >
         <TextField
           placeholder="Search"
           sx={{
             maxWidth: {
-              xs: '100%',
+              xs: 'calc(100% - 109px)',
               sm: '417px'
             },
             '& .MuiOutlinedInput-root': {
-              height: '40px',
+              height: { xs: '36px', sm: '40px' },
               backgroundColor: '#F9FAFB',
               '& fieldset': {
                 borderColor: '#E5E7EB',
@@ -192,9 +193,9 @@ const UserManagement = () => {
               }
             },
             '& .MuiOutlinedInput-input': {
-              padding: '8px 12px',
-              fontSize: '14px',
-              lineHeight: '20px',
+              padding: { xs: '6px 12px', sm: '8px 12px' },
+              fontSize: { xs: '12px', sm: '14px' },
+              lineHeight: { xs: '16px', sm: '20px' },
               '&::placeholder': {
                 color: '#6B7280',
                 opacity: 1,
@@ -203,8 +204,11 @@ const UserManagement = () => {
           }}
           InputProps={{
             startAdornment: (
-              <InputAdornment position="start" sx={{ ml: 1 }}>
-                <SearchIcon sx={{ color: '#6B7280' }} />
+              <InputAdornment position="start" sx={{ ml: { xs: 0.5, sm: 1 } }}>
+                <SearchIcon sx={{ 
+                  color: '#6B7280',
+                  fontSize: { xs: '18px', sm: '24px' }
+                }} />
               </InputAdornment>
             ),
           }}
@@ -216,19 +220,19 @@ const UserManagement = () => {
           IconComponent={KeyboardArrowDownIcon}
           sx={{ 
             width: '97px',
-            height: '40px',
+            height: { xs: '36px', sm: '40px' },
             backgroundColor: '#F9FAFB',
             '& .MuiSelect-select': {
-              padding: '8px 12px',
-              fontSize: '14px',
-              lineHeight: '20px',
+              padding: { xs: '6px 12px', sm: '8px 12px' },
+              fontSize: { xs: '12px', sm: '14px' },
+              lineHeight: { xs: '16px', sm: '20px' },
               display: 'flex',
               alignItems: 'center',
             },
             '& .MuiSelect-icon': {
-              width: '20px',
-              height: '20px',
-              right: '8px',
+              width: { xs: '16px', sm: '20px' },
+              height: { xs: '16px', sm: '20px' },
+              right: { xs: '6px', sm: '8px' },
               color: '#6B7280'
             },
             '& .MuiOutlinedInput-notchedOutline': {
@@ -445,6 +449,9 @@ const UserManagement = () => {
           display: 'flex',
           justifyContent: 'flex-end',
           maxWidth: '1040px',
+          '& .MuiPagination-ul': {
+            gap: { xs: '4px', sm: '0' }
+          }
         }}
       >
         <Pagination
@@ -459,9 +466,9 @@ const UserManagement = () => {
               }}
               {...item}
               sx={{
-                height: { xs: '36px', sm: '47px' },
-                minWidth: item.type === 'page' ? { xs: '36px', sm: '47px' } : 'auto',
-                padding: item.type === 'page' ? '0' : { xs: '0 12px', sm: '0 16px' },
+                height: { xs: '32px', sm: '47px' },
+                minWidth: item.type === 'page' ? { xs: '32px', sm: '47px' } : 'auto',
+                padding: item.type === 'page' ? '0' : { xs: '0 8px', sm: '0 16px' },
                 border: '1px solid #E5E7EB',
                 borderRadius: '8px',
                 margin: '0',
