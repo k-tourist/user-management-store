@@ -12,18 +12,20 @@ const Alert = () => {
     <Box
       sx={{
         width: '100%',
-        height: '56px',
+        height: { xs: '48px', sm: '56px' },
         backgroundColor: '#204464',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        position: 'relative',
       }}
     >
       <Typography
         sx={{
           color: '#ffffff',
-          fontSize: '20px',
-          lineHeight: '24px',
+          fontSize: { xs: '16px', sm: '20px' },
+          lineHeight: { xs: '20px', sm: '24px' },
+          px: { xs: '48px', sm: '64px' },
         }}
       >
         {message}
@@ -32,13 +34,13 @@ const Alert = () => {
         onClick={() => dispatch(hideAlert())}
         sx={{
           position: 'absolute',
-          right: '16px',
-          width: '54px',
-          height: '27px',
+          right: { xs: '8px', sm: '16px' },
+          width: { xs: '44px', sm: '54px' },
+          height: { xs: '24px', sm: '27px' },
           backgroundColor: '#E5E7EB',
           color: '#000000',
-          fontSize: '12px',
-          lineHeight: '14.5px',
+          fontSize: { xs: '11px', sm: '12px' },
+          lineHeight: { xs: '13px', sm: '14.5px' },
           textTransform: 'none',
           '&:hover': {
             backgroundColor: '#D1D5DB',
