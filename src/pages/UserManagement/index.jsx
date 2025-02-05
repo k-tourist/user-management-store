@@ -303,7 +303,10 @@ const UserManagement = () => {
                         '& .MuiSelect-select': {
                           padding: '4px 8px',
                           fontSize: '12px',
-                          lineHeight: '14.5px'
+                          lineHeight: '14.5px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          height: '100%'
                         },
                         '& .MuiSelect-icon': {
                           width: '20px',
