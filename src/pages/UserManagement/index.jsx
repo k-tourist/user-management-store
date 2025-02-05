@@ -450,7 +450,7 @@ const UserManagement = () => {
           justifyContent: 'flex-end',
           maxWidth: '1040px',
           '& .MuiPagination-ul': {
-            gap: { xs: '4px', sm: '0' }
+            gap: 0
           }
         }}
       >
