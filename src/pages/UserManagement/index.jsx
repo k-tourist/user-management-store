@@ -237,7 +237,8 @@ const UserManagement = () => {
               <TableCell width="200px">Subscription Status</TableCell>
               <TableCell width="140px">Date Registered</TableCell>
               <TableCell width="140px">Last Login</TableCell>
-              <TableCell width="160px">Actions</TableCell>
+              <TableCell width="120px">Roles</TableCell>
+              <TableCell width="120px"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -259,109 +260,119 @@ const UserManagement = () => {
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>
-                  <Typography
+                  <Button
+                    variant="outlined"
+                    size="small"
                     sx={{ 
-                      color: getSubscriptionStatusColor(user.subscriptionStatus),
+                      height: '31px',
+                      width: '200px',
+                      padding: '4px 8px',
                       whiteSpace: 'nowrap',
                       fontSize: '12px',
-                      lineHeight: '14.5px'
+                      lineHeight: '14.5px',
+                      color: getSubscriptionStatusColor(user.subscriptionStatus),
+                      backgroundColor: `${getSubscriptionStatusColor(user.subscriptionStatus)}0D`,
+                      border: `1px solid ${getSubscriptionStatusColor(user.subscriptionStatus)}`,
+                      '&:hover': {
+                        backgroundColor: `${getSubscriptionStatusColor(user.subscriptionStatus)}1A`,
+                        border: `1px solid ${getSubscriptionStatusColor(user.subscriptionStatus)}`
+                      }
                     }}
                   >
                     {user.subscriptionStatus}
-                  </Typography>
+                  </Button>
                 </TableCell>
                 <TableCell>{user.dateRegistered}</TableCell>
                 <TableCell>{user.lastLogin}</TableCell>
                 <TableCell>
-                  <Box sx={{ 
-                    display: 'flex', 
-                    gap: '16px', 
-                    alignItems: 'center',
-                    height: '31px'
-                  }}>
-                    <Select
-                      size="small"
-                      value={user.role}
-                      onChange={(e) => handleRoleChange(user.id, e.target.value)}
-                      IconComponent={KeyboardArrowDownIcon}
-                      MenuProps={{
-                        PaperProps: {
-                          sx: {
-                            '& .MuiMenuItem-root': {
-                              fontSize: '12px',
-                              lineHeight: '14.5px',
-                              minHeight: 'auto',
-                              padding: '8px',
-                              color: '#204464'
-                            }
+                  <Select
+                    size="small"
+                    value={user.role}
+                    onChange={(e) => {
+                      setSelectedUser(user);
+                      setOpenDialog(true);
+                      handleRoleChange(user.id, e.target.value);
+                    }}
+                    IconComponent={KeyboardArrowDownIcon}
+                    MenuProps={{
+                      PaperProps: {
+                        sx: {
+                          '& .MuiMenuItem-root': {
+                            fontSize: '12px',
+                            lineHeight: '14.5px',
+                            minHeight: 'auto',
+                            padding: '8px',
+                            color: '#204464'
                           }
                         }
-                      }}
-                      sx={{ 
-                        width: '120px',
-                        height: '31px',
-                        color: '#204464',
-                        backgroundColor: 'rgba(32, 68, 100, 0.05)',
-                        '& .MuiSelect-select': {
-                          padding: '4px 8px',
-                          fontSize: '12px',
-                          lineHeight: '14.5px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          height: '100%'
-                        },
-                        '& .MuiSelect-icon': {
-                          width: '20px',
-                          height: '20px',
-                          right: '4px',
-                          color: '#204464'
-                        },
-                        '&:hover': {
-                          backgroundColor: 'rgba(32, 68, 100, 0.1)',
-                        },
-                        '& .MuiOutlinedInput-notchedOutline': {
-                          border: '1px solid #204464',
-                          borderWidth: '1px !important'
-                        },
-                        '&:hover .MuiOutlinedInput-notchedOutline': {
-                          border: '1px solid #204464',
-                          borderWidth: '1px !important'
-                        },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                          border: '1px solid #204464',
-                          borderWidth: '1px !important'
-                        }
-                      }}
-                    >
-                      {roles.map((role) => (
-                        <MenuItem key={role} value={role}>
-                          {role}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      onClick={() => handleActAsUser(user)}
-                      sx={{ 
-                        height: '31px',
-                        width: '95px',
+                      }
+                    }}
+                    sx={{ 
+                      width: '120px',
+                      height: '31px',
+                      color: '#204464',
+                      backgroundColor: 'rgba(32, 68, 100, 0.05)',
+                      '& .MuiSelect-select': {
                         padding: '4px 8px',
-                        whiteSpace: 'nowrap',
                         fontSize: '12px',
                         lineHeight: '14.5px',
-                        color: '#EF6C00',
-                        backgroundColor: 'rgba(239, 108, 0, 0.05)',
-                        border: '1px solid #EF6C00',
-                        '&:hover': {
-                          backgroundColor: 'rgba(239, 108, 0, 0.1)',
-                          border: '1px solid #EF6C00'
-                        }
-                      }}
-                    >
-                      Act as User
-                    </Button>
-                  </Box>
+                        display: 'flex',
+                        alignItems: 'center',
+                        height: '100%'
+                      },
+                      '& .MuiSelect-icon': {
+                        width: '20px',
+                        height: '20px',
+                        right: '4px',
+                        color: '#204464'
+                      },
+                      '&:hover': {
+                        backgroundColor: 'rgba(32, 68, 100, 0.1)',
+                      },
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        border: '1px solid #204464',
+                        borderWidth: '1px !important'
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        border: '1px solid #204464',
+                        borderWidth: '1px !important'
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        border: '1px solid #204464',
+                        borderWidth: '1px !important'
+                      }
+                    }}
+                  >
+                    {roles.map((role) => (
+                      <MenuItem key={role} value={role}>
+                        {role}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    onClick={() => handleActAsUser(user)}
+                    sx={{ 
+                      height: '31px',
+                      width: '95px',
+                      padding: '4px 8px',
+                      whiteSpace: 'nowrap',
+                      fontSize: '12px',
+                      lineHeight: '14.5px',
+                      color: '#EF6C00',
+                      backgroundColor: 'rgba(239, 108, 0, 0.05)',
+                      border: '1px solid #EF6C00',
+                      '&:hover': {
+                        backgroundColor: 'rgba(239, 108, 0, 0.1)',
+                        border: '1px solid #EF6C00'
+                      }
+                    }}
+                  >
+                    Act as User
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -465,12 +476,10 @@ const UserManagement = () => {
                 xs: '24px',
                 sm: '32px'
               },
-
               lineHeight: {
                 xs: '28px',
                 sm: '36px'
               },
-
               p: 0,
               m: 0
             }}
