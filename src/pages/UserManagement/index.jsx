@@ -152,50 +152,108 @@ const UserManagement = () => {
         Manage roles, subscriptions and access with ease. Track logins, assign roles and securely impersonate users for support.
       </Typography>
 
-      <TextField
-        placeholder="Search"
-        fullWidth
-        sx={{
-          maxWidth: {
-            xs: '100%',
-            sm: '417px'
-          },
-          mb: '20px',
-          '& .MuiOutlinedInput-root': {
+      <Box 
+        sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          maxWidth: '1040px',
+          mb: '20px'
+        }}
+      >
+        <TextField
+          placeholder="Search"
+          sx={{
+            maxWidth: {
+              xs: '100%',
+              sm: '417px'
+            },
+            '& .MuiOutlinedInput-root': {
+              height: '40px',
+              backgroundColor: '#F9FAFB',
+              '& fieldset': {
+                borderColor: '#E5E7EB',
+              },
+              '&:hover fieldset': {
+                borderColor: '#E5E7EB',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#E5E7EB',
+                borderWidth: '1px',
+              },
+              '&.Mui-focused': {
+                backgroundColor: '#F9FAFB',
+              }
+            },
+            '& .MuiOutlinedInput-input': {
+              padding: '8px 12px',
+              fontSize: '14px',
+              lineHeight: '20px',
+              '&::placeholder': {
+                color: '#6B7280',
+                opacity: 1,
+              },
+            },
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start" sx={{ ml: 1 }}>
+                <SearchIcon sx={{ color: '#6B7280' }} />
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        <Select
+          size="small"
+          defaultValue="recent"
+          IconComponent={KeyboardArrowDownIcon}
+          sx={{ 
+            width: '97px',
             height: '40px',
             backgroundColor: '#F9FAFB',
-            '& fieldset': {
+            '& .MuiSelect-select': {
+              padding: '8px 12px',
+              fontSize: '14px',
+              lineHeight: '20px',
+              display: 'flex',
+              alignItems: 'center',
+            },
+            '& .MuiSelect-icon': {
+              width: '20px',
+              height: '20px',
+              right: '8px',
+              color: '#6B7280'
+            },
+            '& .MuiOutlinedInput-notchedOutline': {
               borderColor: '#E5E7EB',
             },
-            '&:hover fieldset': {
+            '&:hover .MuiOutlinedInput-notchedOutline': {
               borderColor: '#E5E7EB',
             },
-            '&.Mui-focused fieldset': {
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
               borderColor: '#E5E7EB',
               borderWidth: '1px',
-            },
-            '&.Mui-focused': {
-              backgroundColor: '#F9FAFB',
             }
-          },
-          '& .MuiOutlinedInput-input': {
-            padding: '8px 12px',
-            fontSize: '14px',
-            lineHeight: '20px',
-            '&::placeholder': {
-              color: '#6B7280',
-              opacity: 1,
-            },
-          },
-        }}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start" sx={{ ml: 1 }}>
-              <SearchIcon sx={{ color: '#6B7280' }} />
-            </InputAdornment>
-          ),
-        }}
-      />
+          }}
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                '& .MuiMenuItem-root': {
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                  color: '#6B7280',
+                  padding: '8px 12px',
+                }
+              }
+            }
+          }}
+        >
+          <MenuItem value="recent">Recent</MenuItem>
+          <MenuItem value="name">Name</MenuItem>
+          <MenuItem value="email">Email</MenuItem>
+        </Select>
+      </Box>
 
       <TableContainer 
         sx={{
