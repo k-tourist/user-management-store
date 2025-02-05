@@ -104,8 +104,8 @@ const UserManagement = () => {
   };
 
   const handleActAsUser = (user) => {
-    setSelectedUser(user);
-    setOpenDialog(true);
+    // setSelectedUser(user);
+    // setOpenDialog(true);
   };
 
   const handleConfirmImpersonation = () => {
@@ -157,8 +157,7 @@ const UserManagement = () => {
           display: 'flex', 
           justifyContent: 'space-between',
           alignItems: 'center',
-          width: '100%',
-          minWidth: '1040px',
+          maxWidth: '1040px',
           mb: '20px'
         }}
       >
@@ -258,11 +257,9 @@ const UserManagement = () => {
 
       <TableContainer 
         sx={{
-          width: '100%',
-          minWidth: '1040px',
+          maxWidth: '1040px',
           overflowX: 'auto',
           '& .MuiTable-root': {
-            width: '100%',
             minWidth: '1040px',
             borderCollapse: 'separate',
             borderSpacing: 0,
@@ -415,7 +412,7 @@ const UserManagement = () => {
                   <Button
                     variant="outlined"
                     size="small"
-                    onClick={() => handleActAsUser(user)}
+                    // onClick={() => handleActAsUser(user)}
                     sx={{ 
                       height: '31px',
                       width: '95px',
@@ -446,8 +443,7 @@ const UserManagement = () => {
           mt: '32px',
           display: 'flex',
           justifyContent: 'flex-end',
-          width: '100%',
-          minWidth: '1040px'
+          maxWidth: '1040px',
         }}
       >
         <Pagination
