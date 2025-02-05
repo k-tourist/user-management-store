@@ -115,7 +115,7 @@ const UserManagement = () => {
 
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 3, minWidth: '1040px' }}>
       <Typography 
         variant="h4" 
         sx={{ 
@@ -157,7 +157,8 @@ const UserManagement = () => {
           display: 'flex', 
           justifyContent: 'space-between',
           alignItems: 'center',
-          maxWidth: '1040px',
+          width: '100%',
+          minWidth: '1040px',
           mb: '20px'
         }}
       >
@@ -257,9 +258,11 @@ const UserManagement = () => {
 
       <TableContainer 
         sx={{
-          maxWidth: '1040px',
+          width: '100%',
+          minWidth: '1040px',
           overflowX: 'auto',
           '& .MuiTable-root': {
+            width: '100%',
             minWidth: '1040px',
             borderCollapse: 'separate',
             borderSpacing: 0,
@@ -443,7 +446,8 @@ const UserManagement = () => {
           mt: '32px',
           display: 'flex',
           justifyContent: 'flex-end',
-          maxWidth: '1040px'
+          width: '100%',
+          minWidth: '1040px'
         }}
       >
         <Pagination
