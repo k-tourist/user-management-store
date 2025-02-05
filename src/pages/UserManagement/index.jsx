@@ -19,6 +19,8 @@ import {
   IconButton,
   TextField,
   InputAdornment,
+  Pagination,
+  PaginationItem,
 } from '@mui/material';
 import { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -75,6 +77,7 @@ const UserManagement = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
 
   const getSubscriptionStatusColor = (status) => {
     switch (status) {
@@ -366,6 +369,73 @@ const UserManagement = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Box
+        sx={{
+          mt: '32px',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          maxWidth: '1040px'
+        }}
+      >
+        <Pagination
+          count={10}
+          page={page}
+          onChange={(event, value) => setPage(value)}
+          renderItem={(item) => (
+            <PaginationItem
+              slots={{
+                previous: () => 'Previous',
+                next: () => 'Next',
+              }}
+              {...item}
+              sx={{
+                height: '47px',
+                minWidth: item.type === 'page' ? '47px' : 'auto',
+                padding: item.type === 'page' ? '0' : '0 16px',
+                border: '1px solid #E5E7EB',
+                borderRadius: '8px',
+                margin: '0',
+                marginRight: '-1px',
+                color: '#6B7280',
+                fontSize: '14px',
+                lineHeight: '20px',
+                '&.Mui-selected': {
+                  backgroundColor: '#F9FAFB',
+                  color: '#204464',
+                  border: '1px solid #204464',
+                  zIndex: 1,
+                  '&:hover': {
+                    backgroundColor: '#F9FAFB',
+                  }
+                },
+                '&:hover': {
+                  backgroundColor: 'transparent',
+                },
+                '&.MuiPaginationItem-previousNext': {
+                  border: '1px solid #E5E7EB',
+                  borderRadius: '8px',
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                    color: '#204464',
+                  }
+                },
+                '&:first-of-type': {
+                  borderTopRightRadius: 0,
+                  borderBottomRightRadius: 0,
+                },
+                '&:last-of-type': {
+                  borderTopLeftRadius: 0,
+                  borderBottomLeftRadius: 0,
+                },
+                '&:not(:first-of-type):not(:last-of-type)': {
+                  borderRadius: 0,
+                }
+              }}
+            />
+          )}
+        />
+      </Box>
 
       {/* Confirmation Dialog */}
       <Dialog 
