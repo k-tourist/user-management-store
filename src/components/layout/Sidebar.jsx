@@ -37,7 +37,6 @@ const Sidebar = ({ width, open, onClose, variant }) => {
 
   const drawerContent = (
     <>
-      {/* Logo Area */}
       <Box
         sx={{
           height: 80,
@@ -50,7 +49,6 @@ const Sidebar = ({ width, open, onClose, variant }) => {
         Logo
       </Box>
 
-      {/* Menu Items */}
       <List>
         {menuItems.map((item) => (
           <ListItem key={item.text} disablePadding>
@@ -96,6 +94,7 @@ const Sidebar = ({ width, open, onClose, variant }) => {
           width: width,
           boxSizing: 'border-box',
           borderRight: '1px solid rgba(0, 0, 0, 0.12)',
+          position: 'relative',
         },
       }}
     >

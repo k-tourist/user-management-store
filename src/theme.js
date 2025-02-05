@@ -27,7 +27,7 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          zIndex: 1200, // Ensure header is above drawer
+          zIndex: 1200,
         },
       },
     },

@@ -26,7 +26,7 @@ import { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
-import { showAlert } from '../../redux/slices/alertSlice';
+import { setShowAlert } from '../../redux/slices/alertSlice';
 import SearchIcon from '@mui/icons-material/Search';
 
 const mockUsers = [
@@ -110,8 +110,9 @@ const UserManagement = () => {
 
   const handleConfirmImpersonation = () => {
     setOpenDialog(false);
-    dispatch(showAlert(`Role successfully changed to ${selectedUser?.role}`));
+    dispatch(setShowAlert(`You are acting as ${selectedUser?.name} (${selectedUser?.email})`));
   };
+
 
   return (
     <Box sx={{ p: 3 }}>

@@ -17,8 +17,6 @@ const Alert = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'relative',
-        zIndex: 1300,
       }}
     >
       <Typography

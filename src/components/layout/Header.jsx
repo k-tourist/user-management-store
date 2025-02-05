@@ -22,6 +22,7 @@ const Header = ({ height, onMenuClick, showMenuIcon }) => {
         color: 'text.primary',
         boxShadow: 1,
         width: { xs: '100%', md: `calc(100%)` },
+        position: 'relative',
       }}
     >
       <Toolbar sx={{ height: '100%' }}>
