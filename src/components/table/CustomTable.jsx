@@ -5,9 +5,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Tooltip,
 } from '@mui/material';
 
-export const CustomTable = ({ columns, data, renderCell }) => {
+export const CustomTable = ({ columns, data, renderCell, currentUserId }) => {
   return (
     <TableContainer
       sx={{
@@ -68,7 +69,7 @@ export const CustomTable = ({ columns, data, renderCell }) => {
             >
               {columns.map((column) => (
                 <TableCell key={`${row.id}-${column.id}`}>
-                  {renderCell ? renderCell(row, column) : row[column.id]}
+                  {renderCell ? renderCell(row, column, row.id === currentUserId) : row[column.id]}
                 </TableCell>
               ))}
             </TableRow>

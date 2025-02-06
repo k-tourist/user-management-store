@@ -21,6 +21,7 @@ import {
   InputAdornment,
   Pagination,
   PaginationItem,
+  Tooltip,
 } from '@mui/material';
 import { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -29,6 +30,9 @@ import { useDispatch } from 'react-redux';
 import { setShowAlert } from '../../redux/slices/alertSlice';
 import SearchIcon from '@mui/icons-material/Search';
 import Popover from '@mui/material/Popover';
+import { CustomTable } from '../../components/table/CustomTable';
+import { CustomButton } from '../../components/buttons/CustomButton';
+import { CustomSelect } from '../../components/inputs/CustomSelect';
 
 const mockUsers = [
   {
@@ -70,6 +74,8 @@ const mockUsers = [
 ];
 
 const roles = ['User', 'Admin', 'Super Admin'];
+
+const CURRENT_USER_ID = 2; // Making the second user as current user
 
 const FilterIcon = () => (
   <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -138,6 +144,82 @@ const UserManagement = () => {
 
   const handleFilterClose = () => {
     setAnchorEl(null);
+  };
+
+  const renderCell = (row, column, isCurrentUser) => {
+    switch (column.id) {
+      case 'role':
+        return (
+          <CustomSelect
+            value={row.role}
+            onChange={(e) => handleRoleChange(row.id, e.target.value)}
+            options={roles.map(role => ({ value: role, label: role }))}
+            size="small"
+            color="primary"
+            disabled={isCurrentUser}
+            sx={{ width: '120px' }}
+          />
+        );
+      case 'actions':
+        return (
+          <Tooltip 
+            title={isCurrentUser ? "You cannot demote yourself from Super Admin" : ""}
+            placement="bottom"
+            arrow
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  bgcolor: '#181D27',
+                  width: '147px',
+                  height: '64px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '12px',
+                  lineHeight: '16px',
+                  padding: '12px 8px',
+                  textAlign: 'center',
+                  '& .MuiTooltip-arrow': {
+                    color: '#181D27'
+                  }
+                }
+              }
+            }}
+          >
+            <span>
+              <CustomButton
+                size="small"
+                color="warning"
+                onClick={() => handleActAsUser(row)}
+                disabled={isCurrentUser}
+                sx={{ width: '95px' }}
+              >
+                Act as User
+              </CustomButton>
+            </span>
+          </Tooltip>
+        );
+      case 'subscriptionStatus':
+        return (
+          <CustomButton
+            size="small"
+            sx={{
+              width: '200px',
+              color: getSubscriptionStatusColor(row.subscriptionStatus),
+              backgroundColor: `${getSubscriptionStatusColor(row.subscriptionStatus)}0D`,
+              border: `1px solid ${getSubscriptionStatusColor(row.subscriptionStatus)}`,
+              '&:hover': {
+                backgroundColor: `${getSubscriptionStatusColor(row.subscriptionStatus)}1A`,
+                border: `1px solid ${getSubscriptionStatusColor(row.subscriptionStatus)}`
+              }
+            }}
+          >
+            {row.subscriptionStatus}
+          </CustomButton>
+        );
+      default:
+        return row[column.id];
+    }
   };
 
   return (
@@ -455,183 +537,20 @@ const UserManagement = () => {
         </Box>
       </Box>
 
-      <TableContainer
-        sx={{
-          maxWidth: '1040px',
-          overflowX: 'auto',
-          '& .MuiTable-root': {
-            borderCollapse: 'separate',
-            borderSpacing: 0,
-            border: '1px solid #E5E7EB',
-            borderRadius: '12px',
-            overflow: 'hidden',
-          },
-          '& .MuiTableCell-root': {
-            borderBottom: '1px solid #E5E7EB',
-            borderRight: 'none',
-          },
-          '& .MuiTableRow-root:last-child .MuiTableCell-root': {
-            borderBottom: 'none',
-          }
-        }}
-      >
-        <Table>
-          <TableHead>
-            <TableRow
-              sx={{
-                height: '48px',
-                backgroundColor: '#F9FAFB',
-                '& .MuiTableCell-head': {
-                  fontWeight: 600,
-                  whiteSpace: 'nowrap',
-                  padding: '0 16px',
-                  backgroundColor: '#F9FAFB',
-                }
-              }}
-            >
-              <TableCell width="180px">Name</TableCell>
-              <TableCell width="220px">Email</TableCell>
-              <TableCell width="200px">Subscription Status</TableCell>
-              <TableCell width="140px">Date Registered</TableCell>
-              <TableCell width="140px">Last Login</TableCell>
-              <TableCell width="120px">Roles</TableCell>
-              <TableCell width="120px"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users.map((user) => (
-              <TableRow
-                key={user.id}
-                sx={{
-                  height: '63px',
-                  '& .MuiTableCell-body': {
-                    padding: '0 16px',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    fontSize: '12px',
-                    lineHeight: '14.5px'
-                  }
-                }}
-              >
-                <TableCell>{user.name}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    sx={{
-                      height: '31px',
-                      width: '200px',
-                      padding: '4px 8px',
-                      whiteSpace: 'nowrap',
-                      fontSize: '12px',
-                      lineHeight: '14.5px',
-                      color: getSubscriptionStatusColor(user.subscriptionStatus),
-                      backgroundColor: `${getSubscriptionStatusColor(user.subscriptionStatus)}0D`,
-                      border: `1px solid ${getSubscriptionStatusColor(user.subscriptionStatus)}`,
-                      '&:hover': {
-                        backgroundColor: `${getSubscriptionStatusColor(user.subscriptionStatus)}1A`,
-                        border: `1px solid ${getSubscriptionStatusColor(user.subscriptionStatus)}`
-                      }
-                    }}
-                  >
-                    {user.subscriptionStatus}
-                  </Button>
-                </TableCell>
-                <TableCell>{user.dateRegistered}</TableCell>
-                <TableCell>{user.lastLogin}</TableCell>
-                <TableCell>
-                  <Select
-                    size="small"
-                    value={user.role}
-                    onChange={(e) => handleRoleChange(user.id, e.target.value)}
-                    IconComponent={KeyboardArrowDownIcon}
-                    MenuProps={{
-                      PaperProps: {
-                        sx: {
-                          '& .MuiMenuItem-root': {
-                            fontSize: '12px',
-                            lineHeight: '14.5px',
-                            minHeight: 'auto',
-                            padding: '8px',
-                            color: '#204464'
-                          }
-                        }
-                      }
-                    }}
-                    sx={{
-                      width: '120px',
-                      height: '31px',
-                      color: '#204464',
-                      backgroundColor: 'rgba(32, 68, 100, 0.05)',
-                      '& .MuiSelect-select': {
-                        padding: '4px 8px',
-                        fontSize: '12px',
-                        lineHeight: '14.5px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        height: '100%'
-                      },
-                      '& .MuiSelect-icon': {
-                        width: '20px',
-                        height: '20px',
-                        right: '4px',
-                        color: '#204464'
-                      },
-                      '&:hover': {
-                        backgroundColor: 'rgba(32, 68, 100, 0.1)',
-                      },
-                      '& .MuiOutlinedInput-notchedOutline': {
-                        border: '1px solid #204464',
-                        borderWidth: '1px !important'
-                      },
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        border: '1px solid #204464',
-                        borderWidth: '1px !important'
-                      },
-                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        border: '1px solid #204464',
-                        borderWidth: '1px !important'
-                      }
-                    }}
-                  >
-                    {roles.map((role) => (
-                      <MenuItem key={role} value={role}>
-                        {role}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={() => handleActAsUser(user)}
-                    sx={{
-                      height: '31px',
-                      width: '95px',
-                      padding: '4px 8px',
-                      whiteSpace: 'nowrap',
-                      fontSize: '12px',
-                      lineHeight: '14.5px',
-                      color: '#EF6C00',
-                      backgroundColor: 'rgba(239, 108, 0, 0.05)',
-                      border: '1px solid #EF6C00',
-                      '&:hover': {
-                        backgroundColor: 'rgba(239, 108, 0, 0.1)',
-                        border: '1px solid #EF6C00'
-                      }
-                    }}
-                  >
-                    Act as User
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <CustomTable
+        columns={[
+          { id: 'name', label: 'Name', width: '180px' },
+          { id: 'email', label: 'Email', width: '220px' },
+          { id: 'subscriptionStatus', label: 'Subscription Status', width: '200px' },
+          { id: 'dateRegistered', label: 'Date Registered', width: '140px' },
+          { id: 'lastLogin', label: 'Last Login', width: '140px' },
+          { id: 'role', label: 'Roles', width: '120px' },
+          { id: 'actions', label: '', width: '120px' },
+        ]}
+        data={users}
+        renderCell={renderCell}
+        currentUserId={CURRENT_USER_ID}
+      />
 
       <Box
         sx={{
