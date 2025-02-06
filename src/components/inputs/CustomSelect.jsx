@@ -7,6 +7,7 @@ export const CustomSelect = ({
   options,
   size = 'medium',
   color = 'default',
+  disabled = false,
   sx = {},
   ...props
 }) => {
@@ -24,7 +25,7 @@ export const CustomSelect = ({
       width: { xs: '16px', sm: '20px' },
       height: { xs: '16px', sm: '20px' },
       right: { xs: '6px', sm: '8px' },
-      color: '#6B7280'
+      color: disabled ? '#9CA3AF' : '#6B7280'
     },
     '& .MuiOutlinedInput-notchedOutline': {
       borderColor: '#E5E7EB',
@@ -33,7 +34,7 @@ export const CustomSelect = ({
       color: '#204464',
       backgroundColor: 'rgba(32, 68, 100, 0.05)',
       '& .MuiSelect-icon': {
-        color: '#204464'
+        color: disabled ? '#9CA3AF' : '#204464'
       },
       '& .MuiOutlinedInput-notchedOutline': {
         border: '1px solid #204464',
@@ -54,6 +55,7 @@ export const CustomSelect = ({
       value={value}
       onChange={onChange}
       size={size}
+      disabled={disabled}
       IconComponent={KeyboardArrowDownIcon}
       sx={{ ...baseStyles, ...sx }}
       MenuProps={{

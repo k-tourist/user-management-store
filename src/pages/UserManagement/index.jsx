@@ -51,7 +51,7 @@ const mockUsers = [
     subscriptionStatus: 'Active',
     dateRegistered: '2024-02-01',
     lastLogin: '2024-03-15',
-    role: 'Admin',
+    role: 'Super Admin',
   },
   {
     id: 3,
