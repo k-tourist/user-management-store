@@ -3,9 +3,9 @@ import { ThemeProvider, CssBaseline } from '@mui/material';
 import MainLayout from './components/layout/MainLayout';
 import theme from './theme';
 import UserManagement from './pages/UserManagement';
+import Profile from './pages/Profile';
 
 const Home = () => <div>Home Page</div>;
-const Profile = () => <div>Profile Page</div>;
 const Settings = () => <div>Settings Page</div>;
 
 function App() {
