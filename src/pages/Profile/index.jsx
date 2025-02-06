@@ -77,16 +77,18 @@ const Profile = () => {
             />
           </Box>
 
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             <CustomAuthList
               title="Authenticator App Codes"
               description="Verify one-time codes generated in your preferred third-party authenticator app."
             />
+            <Box sx={{ borderBottom: '1px solid #E5E7EB' }} />
             
             <CustomAuthList
               title="Email Verification"
               description="Verify one-time codes sent to your registered email address."
             />
+            <Box sx={{ borderBottom: '1px solid #E5E7EB' }} />
             
             <CustomAuthList
               title="Phone Verification"
