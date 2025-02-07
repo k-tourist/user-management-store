@@ -4,37 +4,37 @@ export const styles = {
     flexDirection: 'column'
   },
   description: {
-    fontSize: '18px',
-    lineHeight: '22px',
+    fontSize: { xs: '16px', sm: '18px' },
+    lineHeight: { xs: '20px', sm: '22px' },
     color: '#6B7280',
     marginTop: '16px',
-    marginBottom: '26px'
+    marginBottom: { xs: '20px', sm: '26px' }
   },
   stepContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: { xs: '6px', sm: '8px' },
     '& + &': {
-      marginTop: '16px'
+      marginTop: { xs: '12px', sm: '16px' }
     }
   },
   stepHeader: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px'
+    gap: { xs: '6px', sm: '8px' }
   },
   stepTag: {
     backgroundColor: 'rgba(32, 68, 100, 0.1)',
     border: '1px solid #204464',
     borderRadius: '16px',
-    padding: '4px 12px',
-    fontSize: '14px',
-    lineHeight: '20px',
+    padding: { xs: '2px 8px', sm: '4px 12px' },
+    fontSize: { xs: '12px', sm: '14px' },
+    lineHeight: { xs: '16px', sm: '20px' },
     color: '#204464'
   },
   stepTitle: {
-    fontSize: '20px',
-    lineHeight: '24px',
+    fontSize: { xs: '18px', sm: '20px' },
+    lineHeight: { xs: '22px', sm: '24px' },
     color: '#111827',
     fontWeight: 500
   },
@@ -45,8 +45,8 @@ export const styles = {
     marginBottom: '12px'
   },
   stepDescription: {
-    fontSize: '18px',
-    lineHeight: '22px',
+    fontSize: { xs: '16px', sm: '18px' },
+    lineHeight: { xs: '20px', sm: '22px' },
     color: '#6B7280'
   },
   requiredText: {
@@ -56,50 +56,52 @@ export const styles = {
     textDecoration: 'underline'
   },
   qrContainer: {
-    width: '194px',
-    height: '194px',
+    width: { xs: '160px', sm: '194px' },
+    height: { xs: '160px', sm: '194px' },
     backgroundColor: '#FFFFFF',
     border: '1px solid #E5E7EB',
     borderRadius: '8px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexShrink: 0
+    flexShrink: 0,
+    alignSelf: { xs: 'center', sm: 'flex-start' }
   },
   qrSection: {
     display: 'flex',
-    gap: '24px',
+    flexDirection: { xs: 'column', sm: 'row' },
+    gap: { xs: '16px', sm: '24px' },
     backgroundColor: '#F9FAFB',
-    padding: '10px',
+    padding: { xs: '8px', sm: '10px' },
     borderRadius: '8px'
   },
   secretKeyContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: { xs: '6px', sm: '8px' },
     flex: 1,
     justifyContent: 'center'
   },
   cantSeeText: {
-    fontSize: '16px',
-    lineHeight: '24px',
+    fontSize: { xs: '14px', sm: '16px' },
+    lineHeight: { xs: '20px', sm: '24px' },
     fontWeight: 500,
     color: '#111827'
   },
   enterKeyText: {
-    fontSize: '14px',
-    lineHeight: '20px',
+    fontSize: { xs: '12px', sm: '14px' },
+    lineHeight: { xs: '16px', sm: '20px' },
     color: '#6B7280'
   },
   secretKey: {
-    fontSize: '14px',
-    lineHeight: '20px',
+    fontSize: { xs: '12px', sm: '14px' },
+    lineHeight: { xs: '16px', sm: '20px' },
     color: '#111827',
     fontFamily: 'monospace',
     letterSpacing: '0.1em',
     border: '1px solid #E5E7EB',
     borderRadius: '6px',
-    padding: '8px 12px',
+    padding: { xs: '6px 10px', sm: '8px 12px' },
     backgroundColor: 'transparent'
   },
   copyButton: {
@@ -119,7 +121,7 @@ export const styles = {
   verificationSection: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '12px'
+    gap: { xs: '8px', sm: '12px' }
   },
   verificationLabel: {
     fontSize: '18px',
@@ -128,15 +130,15 @@ export const styles = {
   },
   codeInputContainer: {
     display: 'flex',
-    gap: '8px'
+    gap: { xs: '6px', sm: '8px' }
   },
   codeInput: {
-    width: '40px',
-    height: '40px',
+    width: { xs: '32px', sm: '40px' },
+    height: { xs: '32px', sm: '40px' },
     borderRadius: '8px',
     border: '1px solid #E5E7EB',
     textAlign: 'center',
-    fontSize: '18px',
+    fontSize: { xs: '16px', sm: '18px' },
     '&:focus': {
       outline: 'none',
       borderColor: '#204464'
@@ -145,14 +147,14 @@ export const styles = {
   labelSection: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '16px'
+    gap: { xs: '12px', sm: '16px' }
   },
   labelInput: {
     '& .MuiOutlinedInput-root': {
-      height: '48px',
-      width: '480px',
-      fontSize: '18px',
-      lineHeight: '44px',
+      height: { xs: '40px', sm: '48px' },
+      width: { xs: '100%', sm: '480px' },
+      fontSize: { xs: '16px', sm: '18px' },
+      lineHeight: { xs: '36px', sm: '44px' },
       '& fieldset': {
         borderColor: '#E5E7EB'
       },
@@ -172,8 +174,8 @@ export const styles = {
   },
   checkboxLabel: {
     '& .MuiTypography-root': {
-      fontSize: '14px',
-      lineHeight: '20px',
+      fontSize: { xs: '12px', sm: '14px' },
+      lineHeight: { xs: '16px', sm: '20px' },
       color: '#6B7280'
     }
   },
