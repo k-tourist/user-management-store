@@ -1,10 +1,12 @@
 import { Box, Typography, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
-import { CustomDialog } from '../../../../components/dialog/CustomDialog';
+import { AddAppVerificationModal } from '../modals/AddAppVerificationModal';
+import { AddEmailVerificationModal } from '../modals/AddEmailVerificationModal';
+import { AddPhoneVerificationModal } from '../modals/AddPhoneVerificationModal';
 import { styles } from './styles';
 
-const CustomAuthList = ({ title, description }) => {
+const CustomAuthList = ({ title, description, type }) => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleOpenDialog = () => {
@@ -13,6 +15,19 @@ const CustomAuthList = ({ title, description }) => {
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
+  };
+
+  const renderModal = () => {
+    switch (type) {
+      case 'app':
+        return <AddAppVerificationModal open={openDialog} onClose={handleCloseDialog} />;
+      case 'email':
+        return <AddEmailVerificationModal open={openDialog} onClose={handleCloseDialog} />;
+      case 'phone':
+        return <AddPhoneVerificationModal open={openDialog} onClose={handleCloseDialog} />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -36,27 +51,7 @@ const CustomAuthList = ({ title, description }) => {
         </Button>
       </Box>
 
-      <CustomDialog
-        open={openDialog}
-        onClose={handleCloseDialog}
-        title="Setup Authenticator App"
-        content={
-          <Box>
-            {/* Add your setup authenticator app content here */}
-            <Typography>
-              Setup instructions and QR code will go here...
-            </Typography>
-          </Box>
-        }
-        actions={
-          <>
-            <Button onClick={handleCloseDialog}>Cancel</Button>
-            <Button variant="contained" onClick={handleCloseDialog}>
-              Confirm
-            </Button>
-          </>
-        }
-      />
+      {renderModal()}
     </Box>
   );
 };
