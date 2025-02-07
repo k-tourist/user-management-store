@@ -1,9 +1,13 @@
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, TextField, Checkbox, FormControlLabel } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { useState } from 'react';
 import { CustomDialog } from '../../../../../components/dialog/CustomDialog';
 import { styles } from './styles';
 
 export const AddAppVerificationModal = ({ open, onClose }) => {
+  const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', '']);
+  const [isDefault, setIsDefault] = useState(false);
+
   const steps = [
     {
       number: 1,
@@ -58,42 +62,90 @@ export const AddAppVerificationModal = ({ open, onClose }) => {
                   </Typography>
                 )}
               </Box>
+              
+              {/* QR Code section under Step 1 */}
+              {step.number === 1 && (
+                <Box sx={styles.qrSection}>
+                  <Box sx={styles.qrContainer}>
+                    {/* QR Code will go here */}
+                  </Box>
+
+                  <Box sx={styles.secretKeyContainer}>
+                    <Typography sx={styles.cantSeeText}>
+                      Can't See QR Code?
+                    </Typography>
+                    <Typography sx={styles.enterKeyText}>
+                      Enter this secret key instead:
+                    </Typography>
+                    <Typography sx={styles.secretKey}>
+                      JBSW Y3DP EHPK 3PXP
+                    </Typography>
+                    <Button
+                      startIcon={<ContentCopyIcon />}
+                      onClick={handleCopyCode}
+                      sx={styles.copyButton}
+                    >
+                      Copy Code
+                    </Button>
+                  </Box>
+                </Box>
+              )}
+
+              {step.number === 2 && (
+                <Box sx={styles.verificationSection}>
+                  <Typography sx={styles.verificationLabel}>
+                    Enter verification code
+                  </Typography>
+                  <Box sx={styles.codeInputContainer}>
+                    {verificationCode.map((digit, index) => (
+                      <Box
+                        key={index}
+                        component="input"
+                        type="text"
+                        maxLength={1}
+                        value={digit}
+                        onChange={(e) => {
+                          const newCode = [...verificationCode];
+                          newCode[index] = e.target.value;
+                          setVerificationCode(newCode);
+                        }}
+                        sx={styles.codeInput}
+                      />
+                    ))}
+                  </Box>
+                </Box>
+              )}
+
+              {step.number === 3 && (
+                <Box sx={styles.labelSection}>
+                  <TextField
+                    fullWidth
+                    placeholder="Enter a label for this authenticator"
+                    sx={styles.labelInput}
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={isDefault}
+                        onChange={(e) => setIsDefault(e.target.checked)}
+                        sx={styles.checkbox}
+                      />
+                    }
+                    label="Make it default method"
+                    sx={styles.checkboxLabel}
+                  />
+                </Box>
+              )}
             </Box>
           ))}
-
-          {/* QR Code and Secret Key Section */}
-          <Box sx={styles.qrSection}>
-            <Box sx={styles.qrContainer}>
-              {/* QR Code will go here */}
-            </Box>
-
-            <Box sx={styles.secretKeyContainer}>
-              <Typography sx={styles.cantSeeText}>
-                Can't See QR Code?
-              </Typography>
-              <Typography sx={styles.enterKeyText}>
-                Enter this secret key instead:
-              </Typography>
-              <Box sx={styles.secretKeyBox}>
-                <Typography sx={styles.secretKey}>
-                  JBSW Y3DP EHPK 3PXP
-                </Typography>
-                <Button
-                  startIcon={<ContentCopyIcon />}
-                  onClick={handleCopyCode}
-                  sx={styles.copyButton}
-                >
-                  Copy Code
-                </Button>
-              </Box>
-            </Box>
-          </Box>
         </Box>
       }
       actions={
         <>
-          <Button onClick={onClose}>Cancel</Button>
-          <Button variant="contained" onClick={onClose}>
+          <Button onClick={onClose} sx={styles.cancelButton}>
+            Cancel
+          </Button>
+          <Button variant="contained" onClick={onClose} sx={styles.verifyButton}>
             Verify
           </Button>
         </>

@@ -41,41 +41,23 @@ export const styles = {
   descriptionContainer: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px'
+    gap: '8px',
+    marginBottom: '12px'
   },
   stepDescription: {
-    fontSize: '14px',
-    lineHeight: '20px',
+    fontSize: '18px',
+    lineHeight: '22px',
     color: '#6B7280'
   },
   requiredText: {
     fontSize: '14px',
     lineHeight: '20px',
-    color: '#204464'
+    color: '#204464',
+    textDecoration: 'underline'
   },
   qrContainer: {
-    width: '200px',
-    height: '200px',
-    backgroundColor: '#F9FAFB',
-    border: '1px solid #E5E7EB',
-    borderRadius: '8px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    marginTop: '24px'
-  },
-  qrSection: {
-    display: 'flex',
-    gap: '24px',
-    backgroundColor: '#F9FAFB',
-    padding: '24px',
-    borderRadius: '8px',
-    marginTop: '24px'
-  },
-  qrContainer: {
-    width: '160px',
-    height: '160px',
+    width: '194px',
+    height: '194px',
     backgroundColor: '#FFFFFF',
     border: '1px solid #E5E7EB',
     borderRadius: '8px',
@@ -84,11 +66,19 @@ export const styles = {
     justifyContent: 'center',
     flexShrink: 0
   },
+  qrSection: {
+    display: 'flex',
+    gap: '24px',
+    backgroundColor: '#F9FAFB',
+    padding: '10px',
+    borderRadius: '8px'
+  },
   secretKeyContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: '8px',
-    flex: 1
+    flex: 1,
+    justifyContent: 'center'
   },
   cantSeeText: {
     fontSize: '16px',
@@ -101,21 +91,16 @@ export const styles = {
     lineHeight: '20px',
     color: '#6B7280'
   },
-  secretKeyBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px',
-    backgroundColor: '#FFFFFF',
-    border: '1px solid #E5E7EB',
-    borderRadius: '6px',
-    padding: '12px'
-  },
   secretKey: {
     fontSize: '14px',
     lineHeight: '20px',
     color: '#111827',
     fontFamily: 'monospace',
-    letterSpacing: '0.1em'
+    letterSpacing: '0.1em',
+    border: '1px solid #E5E7EB',
+    borderRadius: '6px',
+    padding: '8px 12px',
+    backgroundColor: 'transparent'
   },
   copyButton: {
     fontSize: '14px',
@@ -123,8 +108,89 @@ export const styles = {
     color: '#204464',
     padding: '4px 8px',
     alignSelf: 'flex-start',
+    backgroundColor: '#FFFFFF',
+    border: '1px solid #E5E7EB',
+    borderRadius: '6px',
     '&:hover': {
-      backgroundColor: 'rgba(32, 68, 100, 0.04)'
+      backgroundColor: '#FFFFFF',
+      borderColor: '#204464'
+    }
+  },
+  verificationSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px'
+  },
+  verificationLabel: {
+    fontSize: '18px',
+    lineHeight: '22px',
+    color: '#6B7280'
+  },
+  codeInputContainer: {
+    display: 'flex',
+    gap: '8px'
+  },
+  codeInput: {
+    width: '40px',
+    height: '40px',
+    borderRadius: '8px',
+    border: '1px solid #E5E7EB',
+    textAlign: 'center',
+    fontSize: '18px',
+    '&:focus': {
+      outline: 'none',
+      borderColor: '#204464'
+    }
+  },
+  labelSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px'
+  },
+  labelInput: {
+    '& .MuiOutlinedInput-root': {
+      height: '48px',
+      width: '480px',
+      fontSize: '18px',
+      lineHeight: '44px',
+      '& fieldset': {
+        borderColor: '#E5E7EB'
+      },
+      '&:hover fieldset': {
+        borderColor: '#E5E7EB'
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#204464'
+      }
+    }
+  },
+  checkbox: {
+    color: '#204464',
+    '&.Mui-checked': {
+      color: '#204464'
+    }
+  },
+  checkboxLabel: {
+    '& .MuiTypography-root': {
+      fontSize: '14px',
+      lineHeight: '20px',
+      color: '#6B7280'
+    }
+  },
+  cancelButton: {
+    height: '40px',
+    fontSize: '14px',
+    lineHeight: '17px',
+    textTransform: 'none'
+  },
+  verifyButton: {
+    height: '40px',
+    fontSize: '14px',
+    lineHeight: '17px',
+    backgroundColor: '#204464',
+    textTransform: 'none',
+    '&:hover': {
+      backgroundColor: '#1a3850'
     }
   }
 }; 
