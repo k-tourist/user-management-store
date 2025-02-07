@@ -1,10 +1,17 @@
 import { Box, Typography, Button, TextField, Checkbox, FormControlLabel } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { CustomDialog } from '../../../../../components/dialog/CustomDialog';
+import { 
+  validateEmail, 
+  handleVerificationCodeChange, 
+  handleVerificationCodeKeyDown,
+  maskEmail 
+} from '../../../../../common/utils';
 import { styles } from './styles';
 
 export const AddEmailVerificationModal = ({ open, onClose }) => {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [isDefault, setIsDefault] = useState(false);
   const [verificationSent, setVerificationSent] = useState(false);
   const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', '']);
@@ -23,7 +30,18 @@ export const AddEmailVerificationModal = ({ open, onClose }) => {
     return () => clearInterval(interval);
   }, [timerActive, timer]);
 
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    setEmailError(validateEmail(newEmail));
+  };
+
   const handleSendCode = () => {
+    const error = validateEmail(email);
+    if (error) {
+      setEmailError(error);
+      return;
+    }
     setVerificationSent(true);
     setTimerActive(true);
   };
@@ -31,11 +49,6 @@ export const AddEmailVerificationModal = ({ open, onClose }) => {
   const handleResendCode = () => {
     setTimer(30);
     setTimerActive(true);
-  };
-
-  const maskEmail = (email) => {
-    const [name, domain] = email.split('@');
-    return `${name}@***${domain.slice(domain.lastIndexOf('.'))}`;
   };
 
   return (
@@ -55,7 +68,9 @@ export const AddEmailVerificationModal = ({ open, onClose }) => {
                 fullWidth
                 placeholder="Enter your email address"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
+                error={!!emailError}
+                helperText={emailError}
                 sx={styles.emailInput}
               />
 
@@ -106,11 +121,9 @@ export const AddEmailVerificationModal = ({ open, onClose }) => {
                       type="text"
                       maxLength={1}
                       value={digit}
-                      onChange={(e) => {
-                        const newCode = [...verificationCode];
-                        newCode[index] = e.target.value;
-                        setVerificationCode(newCode);
-                      }}
+                      data-index={index}
+                      onChange={(e) => handleVerificationCodeChange(index, e.target.value, verificationCode, setVerificationCode)}
+                      onKeyDown={(e) => handleVerificationCodeKeyDown(index, e)}
                       sx={styles.codeInput}
                     />
                   ))}
@@ -145,6 +158,7 @@ export const AddEmailVerificationModal = ({ open, onClose }) => {
             variant="contained"
             onClick={verificationSent ? onClose : handleSendCode}
             sx={styles.verifyButton}
+            disabled={!verificationSent && !!emailError}
           >
             {verificationSent ? 'Verify' : 'Send Verification Code'}
           </Button>
