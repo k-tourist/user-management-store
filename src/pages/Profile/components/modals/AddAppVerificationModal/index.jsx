@@ -2,6 +2,7 @@ import { Box, Typography, Button, TextField, Checkbox, FormControlLabel } from '
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { useState } from 'react';
 import { CustomDialog } from '../../../../../components/dialog/CustomDialog';
+import { handleVerificationCodeChange, handleVerificationCodeKeyDown } from '../../../../../common/utils';
 import { styles } from './styles';
 
 export const AddAppVerificationModal = ({ open, onClose }) => {
@@ -104,11 +105,9 @@ export const AddAppVerificationModal = ({ open, onClose }) => {
                         type="text"
                         maxLength={1}
                         value={digit}
-                        onChange={(e) => {
-                          const newCode = [...verificationCode];
-                          newCode[index] = e.target.value;
-                          setVerificationCode(newCode);
-                        }}
+                        data-index={index}
+                        onChange={(e) => handleVerificationCodeChange(index, e.target.value, verificationCode, setVerificationCode)}
+                        onKeyDown={(e) => handleVerificationCodeKeyDown(index, e)}
                         sx={styles.codeInput}
                       />
                     ))}
