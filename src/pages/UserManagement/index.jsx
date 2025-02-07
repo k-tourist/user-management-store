@@ -1,15 +1,6 @@
 import {
   Box,
   Typography,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Select,
-  MenuItem,
   Button,
   Dialog,
   DialogTitle,
@@ -22,6 +13,7 @@ import {
   Pagination,
   PaginationItem,
   Tooltip,
+  Popover,
 } from '@mui/material';
 import { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -29,10 +21,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
 import { setShowAlert } from '../../redux/slices/alertSlice';
 import SearchIcon from '@mui/icons-material/Search';
-import Popover from '@mui/material/Popover';
 import { CustomTable } from '../../components/table/CustomTable';
 import { CustomButton } from '../../components/buttons/CustomButton';
 import { CustomSelect } from '../../components/inputs/CustomSelect';
+import { styles } from './styles';
 
 const mockUsers = [
   {
@@ -223,178 +215,58 @@ const UserManagement = () => {
   };
 
   return (
-    <Box sx={{ p: 3, width: '100%' }}>
-      <Typography
-        variant="h4"
-        sx={{
-          fontSize: {
-            xs: '24px',
-            sm: '32px'
-          },
-          lineHeight: {
-            xs: '28px',
-            sm: '36px'
-          },
-          mb: '12px'
-        }}
-      >
+    <Box sx={styles.wrapper}>
+      <Typography sx={styles.title}>
         User Management
       </Typography>
 
       <Typography
         variant="body1"
         color="text.secondary"
-        sx={{
-          fontSize: {
-            xs: '16px',
-            sm: '20px'
-          },
-          lineHeight: {
-            xs: '20px',
-            sm: '22px'
-          },
-          maxWidth: '710px',
-          mb: '48px'
-        }}
+        sx={styles.description}
       >
         Manage roles, subscriptions and access with ease. Track logins, assign roles and securely impersonate users for support.
       </Typography>
 
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          maxWidth: '1040px',
-          mb: '20px',
-          gap: '12px'
-        }}
-      >
+      <Box sx={styles.actionContainer}>
         <TextField
           placeholder="Search"
-          sx={{
-            maxWidth: {
-              xs: 'calc(100% - 109px)',
-              sm: '417px'
-            },
-            '& .MuiOutlinedInput-root': {
-              height: { xs: '36px', sm: '40px' },
-              backgroundColor: '#F9FAFB',
-              '& fieldset': {
-                borderColor: '#E5E7EB',
-              },
-              '&:hover fieldset': {
-                borderColor: '#E5E7EB',
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: '#E5E7EB',
-                borderWidth: '1px',
-              },
-              '&.Mui-focused': {
-                backgroundColor: '#F9FAFB',
-              }
-            },
-            '& .MuiOutlinedInput-input': {
-              padding: { xs: '6px 12px', sm: '8px 12px' },
-              fontSize: { xs: '12px', sm: '14px' },
-              lineHeight: { xs: '16px', sm: '20px' },
-              '&::placeholder': {
-                color: '#6B7280',
-                opacity: 1,
-              },
-            },
-          }}
+          sx={styles.searchField}
           InputProps={{
             startAdornment: (
-              <InputAdornment position="start" sx={{ ml: { xs: 0.5, sm: 1 } }}>
-                <SearchIcon sx={{
-                  color: '#6B7280',
-                  fontSize: { xs: '18px', sm: '24px' }
-                }} />
+              <InputAdornment position="start" sx={styles.searchIconContainer}>
+                <SearchIcon sx={styles.searchIcon} />
               </InputAdornment>
             ),
           }}
         />
 
-        <Box sx={{ display: 'flex', gap: '12px' }}>
-          <Select
-            size="small"
-            defaultValue="recent"
-            IconComponent={KeyboardArrowDownIcon}
-            sx={{
-              width: '97px',
-              height: { xs: '36px', sm: '40px' },
-              backgroundColor: '#F9FAFB',
-              '& .MuiSelect-select': {
-                padding: { xs: '6px 12px', sm: '8px 12px' },
-                fontSize: { xs: '12px', sm: '14px' },
-                lineHeight: { xs: '16px', sm: '20px' },
-                display: 'flex',
-                alignItems: 'center',
-              },
-              '& .MuiSelect-icon': {
-                width: { xs: '16px', sm: '20px' },
-                height: { xs: '16px', sm: '20px' },
-                right: { xs: '6px', sm: '8px' },
-                color: '#6B7280'
-              },
-              '& .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#E5E7EB',
-              },
-              '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#E5E7EB',
-              },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: '#E5E7EB',
-                borderWidth: '1px',
-              }
-            }}
-            MenuProps={{
-              PaperProps: {
-                sx: {
-                  '& .MuiMenuItem-root': {
-                    fontSize: '14px',
-                    lineHeight: '20px',
-                    color: '#6B7280',
-                    padding: '8px 12px',
-                  }
-                }
-              }
-            }}
-          >
-            <MenuItem value="recent">Recent</MenuItem>
-            <MenuItem value="name">Name</MenuItem>
-            <MenuItem value="email">Email</MenuItem>
-          </Select>
+        <Box sx={styles.actionButtons}>
+          <CustomSelect
+            value="recent"
+            options={[
+              { value: 'recent', label: 'Recent' },
+              { value: 'name', label: 'Name' },
+              { value: 'email', label: 'Email' }
+            ]}
+          />
 
-          <Button
+          <CustomButton
             variant="outlined"
             endIcon={<FilterIcon />}
             onClick={handleFilterClick}
+            color="primary"
             sx={{
-              height: { xs: '36px', sm: '40px' },
-              minWidth: { xs: '36px', sm: '97px' },
-              padding: { xs: '6px', sm: '8px 12px' },
-              backgroundColor: '#204464',
-              border: '1px solid #204464',
-              color: '#FFFFFF',
-              fontSize: '14px',
-              lineHeight: '20px',
-              textTransform: 'none',
+              minWidth: { xs: '40px', sm: '97px' },
+              padding: { xs: 0, sm: '8px 12px' },
               '& .MuiButton-endIcon': {
                 margin: { xs: 0, sm: '-4px -4px -4px 8px' },
-              },
-              '& .MuiButton-endIcon > *:nth-of-type(1)': {
-                fontSize: { xs: '20px', sm: '24px' },
-              },
-              '&:hover': {
-                backgroundColor: '#1a3850',
-                border: '1px solid #1a3850',
+                justifyContent: { xs: 'center', sm: 'flex-start' }
               }
             }}
           >
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>Filters</Box>
-          </Button>
+          </CustomButton>
 
           <Popover
             open={Boolean(anchorEl)}
@@ -409,50 +281,22 @@ const UserManagement = () => {
               horizontal: 'right',
             }}
             PaperProps={{
-              sx: {
-                width: '185px',
-                mt: '4px',
-                boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)',
-                borderRadius: '12px',
-              }
+              sx: styles.popoverPaper
             }}
           >
-            <Box
-              sx={{
-                height: '44px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                px: '16px',
-                borderBottom: '1px solid #E5E7EB',
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: '16px',
-                  lineHeight: '24px',
-                  fontWeight: 600,
-                  color: '#111827',
-                }}
-              >
+            <Box sx={styles.filterHeader}>
+              <Typography sx={styles.filterTitle}>
                 Filters
               </Typography>
               <IconButton
                 onClick={handleFilterClose}
-                sx={{
-                  p: 0,
-                  color: '#6B7280',
-                  '&:hover': {
-                    backgroundColor: 'transparent',
-                    color: '#111827',
-                  }
-                }}
+                sx={styles.closeButton}
               >
                 <CloseIcon sx={{ fontSize: '20px' }} />
               </IconButton>
             </Box>
 
-            <Box sx={{ p: '8px' }}>
+            <Box sx={styles.filterContent}>
               <Box
                 onClick={() => setShowFilterOptions(!showFilterOptions)}
                 sx={{
@@ -552,17 +396,7 @@ const UserManagement = () => {
         currentUserId={CURRENT_USER_ID}
       />
 
-      <Box
-        sx={{
-          mt: '32px',
-          display: 'flex',
-          justifyContent: 'flex-end',
-          maxWidth: '1040px',
-          '& .MuiPagination-ul': {
-            gap: 0
-          }
-        }}
-      >
+      <Box sx={styles.paginationContainer}>
         <Pagination
           count={10}
           page={page}
@@ -574,49 +408,6 @@ const UserManagement = () => {
                 next: () => 'Next',
               }}
               {...item}
-              sx={{
-                height: { xs: '32px', sm: '47px' },
-                minWidth: item.type === 'page' ? { xs: '32px', sm: '47px' } : 'auto',
-                padding: item.type === 'page' ? '0' : { xs: '0 8px', sm: '0 16px' },
-                border: '1px solid #E5E7EB',
-                borderRadius: '8px',
-                margin: '0',
-                marginRight: '-1px',
-                color: '#6B7280',
-                fontSize: { xs: '12px', sm: '14px' },
-                lineHeight: { xs: '16px', sm: '20px' },
-                '&.Mui-selected': {
-                  backgroundColor: '#F9FAFB',
-                  color: '#204464',
-                  border: '1px solid #204464',
-                  zIndex: 1,
-                  '&:hover': {
-                    backgroundColor: '#F9FAFB',
-                  }
-                },
-                '&:hover': {
-                  backgroundColor: 'transparent',
-                },
-                '&.MuiPaginationItem-previousNext': {
-                  border: '1px solid #E5E7EB',
-                  borderRadius: '8px',
-                  '&:hover': {
-                    backgroundColor: 'transparent',
-                    color: '#204464',
-                  }
-                },
-                '&:first-of-type': {
-                  borderTopRightRadius: 0,
-                  borderBottomRightRadius: 0,
-                },
-                '&:last-of-type': {
-                  borderTopLeftRadius: 0,
-                  borderBottomLeftRadius: 0,
-                },
-                '&:not(:first-of-type):not(:last-of-type)': {
-                  borderRadius: 0,
-                }
-              }}
             />
           )}
         />

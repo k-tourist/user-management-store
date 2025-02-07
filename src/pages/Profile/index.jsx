@@ -1,7 +1,8 @@
 import { Box, Tabs, Tab } from '@mui/material';
 import { useState } from 'react';
-import MyProfile from './MyProfile';
-import SecuritySettings from './SecuritySettings';
+import MyProfile from './components/MyProfile';
+import SecuritySettings from './components/SecuritySettings';
+import { styles } from './styles';
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -11,25 +12,12 @@ const Profile = () => {
   };
 
   return (
-    <Box sx={{ p: 3, width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: '#E5E7EB' }}>
+    <Box sx={styles.wrapper}>
+      <Box sx={styles.tabContainer}>
         <Tabs 
           value={activeTab} 
           onChange={handleTabChange}
-          sx={{
-            '& .MuiTabs-indicator': {
-              backgroundColor: '#204464',
-            },
-            '& .MuiTab-root': {
-              textTransform: 'none',
-              fontSize: '14px',
-              lineHeight: '20px',
-              color: '#6B7280',
-              '&.Mui-selected': {
-                color: '#204464',
-              }
-            }
-          }}
+          sx={styles.tabs}
         >
           <Tab label="My Profile" />
           <Tab label="Security Settings" />

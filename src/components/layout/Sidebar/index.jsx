@@ -5,7 +5,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  ListItemButton,
+  ListItemButton, 
   useTheme,
   useMediaQuery,
 } from '@mui/material';
@@ -14,6 +14,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PeopleIcon from '@mui/icons-material/People';
 import { useHistory, useLocation } from 'react-router-dom';
+import { styles } from './styles';
 
 const menuItems = [
   { text: 'Home', icon: <HomeIcon />, path: '/' },
@@ -37,15 +38,7 @@ const Sidebar = ({ width, open, onClose, variant }) => {
 
   const drawerContent = (
     <>
-      <Box
-        sx={{
-          height: 80,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-        }}
-      >
+      <Box sx={styles.logoContainer}>
         Logo
       </Box>
 
@@ -55,25 +48,14 @@ const Sidebar = ({ width, open, onClose, variant }) => {
             <ListItemButton
               selected={location.pathname === item.path}
               onClick={() => handleItemClick(item.path)}
-              sx={{
-                minHeight: 48,
-                px: 2.5,
-              }}
+              sx={styles.listItemButton}
             >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: 2,
-                  justifyContent: 'center',
-                }}
-              >
+              <ListItemIcon sx={styles.listItemIcon}>
                 {item.icon}
               </ListItemIcon>
               <ListItemText 
                 primary={item.text} 
-                primaryTypographyProps={{
-                  fontSize: { xs: '0.9rem', sm: '1rem' }
-                }}
+                primaryTypographyProps={styles.listItemText}
               />
             </ListItemButton>
           </ListItem>
@@ -87,16 +69,7 @@ const Sidebar = ({ width, open, onClose, variant }) => {
       variant={variant}
       open={open}
       onClose={onClose}
-      sx={{
-        width: width,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: width,
-          boxSizing: 'border-box',
-          borderRight: '1px solid rgba(0, 0, 0, 0.12)',
-          position: 'relative',
-        },
-      }}
+      sx={styles.drawer(width)}
     >
       {drawerContent}
     </Drawer>

@@ -1,9 +1,10 @@
 import { Box } from '@mui/material';
+import { styles } from './styles';
 
 const MyProfile = () => {
   return (
-    <Box>
-      {/* My Profile content will go here */}
+    <Box sx={styles.container}>
+      {/* MyProfile content will go here */}
     </Box>
   );
 };

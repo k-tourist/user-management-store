@@ -1,9 +1,9 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import Sidebar from './Sidebar';
-import Header from './Header';
-import Alert from '../Alert';
+import Sidebar from '../Sidebar';
+import Header from '../Header';
+import Alert from '../../Alert';
+import { styles } from './styles';
 
 const SIDEBAR_WIDTH = 240;
 const HEADER_HEIGHT = 80;
@@ -12,17 +12,16 @@ const MainLayout = ({ children }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [isSidebarOpen, setIsSidebarOpen] = useState(!isMobile);
-  const dispatch = useDispatch();
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Box sx={styles.root}>
       <Alert />
       
-      <Box sx={{ display: 'flex', flex: 1 }}>
+      <Box sx={styles.contentContainer}>
         <Sidebar 
           width={SIDEBAR_WIDTH} 
           open={isSidebarOpen} 
@@ -30,27 +29,14 @@ const MainLayout = ({ children }) => {
           variant={isMobile ? 'temporary' : 'permanent'}
         />
         
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            width: { xs: '100%', md: `calc(100% - ${SIDEBAR_WIDTH}px)` }
-          }}
-        >
+        <Box sx={styles.mainContent}>
           <Header 
             height={HEADER_HEIGHT} 
             onMenuClick={handleSidebarToggle}
             showMenuIcon={isMobile}
           />
           
-          <Box
-            sx={{
-              flexGrow: 1,
-              p: { xs: 2, sm: 3 },
-            }}
-          >
+          <Box sx={styles.content}>
             {children}
           </Box>
         </Box>
@@ -59,4 +45,4 @@ const MainLayout = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default MainLayout; 
