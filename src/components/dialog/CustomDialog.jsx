@@ -40,14 +40,14 @@ export const CustomDialog = ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        mb: '24px'
       }}>
         <DialogTitle
           sx={{
             fontSize: { xs: '24px', sm: '32px' },
             lineHeight: { xs: '28px', sm: '36px' },
-            p: 0,
-            m: 0
+            fontWeight: '600',
+            p: '0',
+            m: '0'
           }}
         >
           {title}

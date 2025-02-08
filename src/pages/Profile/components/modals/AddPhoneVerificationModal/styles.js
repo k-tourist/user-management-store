@@ -4,50 +4,89 @@ export const styles = {
     flexDirection: 'column'
   },
   description: {
-    fontSize: { xs: '16px', sm: '18px' },
-    lineHeight: { xs: '20px', sm: '22px' },
+    fontSize: '18px',
+    lineHeight: '22px',
     color: '#6B7280',
     marginTop: '16px',
-    marginBottom: { xs: '20px', sm: '26px' }
-  },
-  phoneInput: {
-    '& .MuiOutlinedInput-root': {
-      height: { xs: '40px', sm: '48px' },
-      fontSize: { xs: '16px', sm: '18px' },
-      lineHeight: { xs: '36px', sm: '44px' },
-      '& fieldset': {
-        borderColor: '#E5E7EB'
-      },
-      '&:hover fieldset': {
-        borderColor: '#E5E7EB'
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#204464'
-      }
-    },
     marginBottom: '24px'
+  },
+  phoneInputSection: {
+    marginBottom: '24px',
+    '& .special-label': {
+      display: 'none'
+    }
+  },
+  phoneInputStyle: {
+    width: '480px',
+    height: '48px',
+    fontSize: '16px',
+    paddingLeft: '68px',
+    border: '1px solid #E5E7EB',
+    borderRadius: '8px',
+    '&:focus': {
+      border: '1px solid #204464',
+      boxShadow: 'none'
+    }
+  },
+  phoneInputContainer: {
+    width: '480px',
+    marginLeft: '2px'
+  },
+  phoneInputButton: {
+    width: '60px',
+    border: 'none',
+    borderRight: '1px solid #E5E7EB',
+    borderRadius: '8px 0 0 8px',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: 'transparent'
+    }
+  },
+  phoneInputDropdown: {
+    width: '300px',
+    margin: '0',
+    padding: '0',
+    borderRadius: '8px',
+    border: '1px solid #E5E7EB',
+    boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)'
+  },
+  errorText: {
+    fontSize: '12px',
+    lineHeight: '16px',
+    color: '#DC2626',
+    marginTop: '4px'
+  },
+  radioGroup: {
+    marginLeft: '2px',
+    marginTop: '20px',
+    gap: '15%',
+  },
+  verificationMethodSection: {
+    marginBottom: '24px'
+  },
+
+  stepTitle: {
+    fontSize: '20px',
+    lineHeight: '24px',
+    color: '#111827',
+    fontWeight: 600,
+    marginBottom: '12px'
   },
   labelSection: {
     display: 'flex',
     flexDirection: 'column',
-    gap: { xs: '12px', sm: '16px' }
+    gap: { xs: '4px', sm: '4px' }
   },
   labelHeader: {
     display: 'flex',
     alignItems: 'center',
     gap: '8px'
   },
-  stepTitle: {
-    fontSize: { xs: '18px', sm: '20px' },
-    lineHeight: { xs: '22px', sm: '24px' },
-    color: '#111827',
-    fontWeight: 500
-  },
   optionalText: {
-    fontSize: '14px',
-    lineHeight: '20px',
+    fontSize: '18px',
+    lineHeight: '22px',
     color: '#204464',
-    textDecoration: 'underline'
+    textDecoration: 'underline',
   },
   descriptionContainer: {
     display: 'flex',

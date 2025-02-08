@@ -1,5 +1,7 @@
-import { Box, Typography, Button, TextField, Checkbox, FormControlLabel } from '@mui/material';
+import { Box, Typography, Button, TextField, Checkbox, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import { useState, useEffect } from 'react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/material.css';
 import { CustomDialog } from '../../../../../components/dialog/CustomDialog';
 import { 
   validatePhone, 
@@ -17,6 +19,7 @@ export const AddPhoneVerificationModal = ({ open, onClose }) => {
   const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', '']);
   const [timer, setTimer] = useState(30);
   const [timerActive, setTimerActive] = useState(false);
+  const [verificationMethod, setVerificationMethod] = useState('sms');
 
   useEffect(() => {
     let interval;
@@ -30,10 +33,9 @@ export const AddPhoneVerificationModal = ({ open, onClose }) => {
     return () => clearInterval(interval);
   }, [timerActive, timer]);
 
-  const handlePhoneChange = (e) => {
-    const newPhone = e.target.value;
-    setPhone(newPhone);
-    setPhoneError(validatePhone(newPhone));
+  const handlePhoneChange = (value) => {
+    setPhone(value);
+    setPhoneError(validatePhone(value));
   };
 
   const handleSendCode = () => {
@@ -55,37 +57,73 @@ export const AddPhoneVerificationModal = ({ open, onClose }) => {
     <CustomDialog
       open={open}
       onClose={onClose}
-      title={verificationSent ? "Enter the Verification Code" : "Verify your Phone Number"}
+      title={verificationSent ? "Enter the Verification Code" : "Enter Your Phone Number"}
       content={
         <Box sx={styles.content}>
           {!verificationSent ? (
+
             <>
               <Typography sx={styles.description}>
-                We will send a one-time code to your phone number. Make sure you have access to it
+                Provide your phone number to receive a verification code. This is where we'll send a one-time code to confirm your identity.
               </Typography>
 
-              <TextField
-                fullWidth
-                placeholder="Enter your phone number"
-                value={phone}
-                onChange={handlePhoneChange}
-                error={!!phoneError}
-                helperText={phoneError}
-                sx={styles.phoneInput}
-              />
+              <Box sx={styles.phoneInputSection}>
+                <PhoneInput
+                  country={'us'}
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  inputStyle={styles.phoneInputStyle}
+                  containerStyle={styles.phoneInputContainer}
+                  buttonStyle={styles.phoneInputButton}
+                  dropdownStyle={styles.phoneInputDropdown}
+                  specialLabel=""
+                  isValid={(value) => !validatePhone(value)}
+                />
+                {phoneError && (
+                  <Typography sx={styles.errorText}>{phoneError}</Typography>
+                )}
+              </Box>
+
+              <Box sx={styles.verificationMethodSection}>
+                <Typography sx={styles.stepTitle}>
+                  Receive the Code
+                </Typography>
+                <Typography sx={styles.stepDescription}>
+                  You'll receive a 6-digit code via SMS or voice call. Make sure your phone is nearby.
+                </Typography>
+                <RadioGroup
+                  value={verificationMethod}
+                  onChange={(e) => setVerificationMethod(e.target.value)}
+                  row
+                  sx={styles.radioGroup}
+                >
+                  <FormControlLabel 
+                    value="sms" 
+                    control={<Radio sx={styles.radio} />} 
+                    label="Text Message" 
+                    sx={styles.radioLabel}
+                  />
+                  <FormControlLabel 
+                    value="call" 
+                    control={<Radio sx={styles.radio} />} 
+                    label="Phone Call" 
+                    sx={styles.radioLabel}
+                  />
+                </RadioGroup>
+              </Box>
 
               <Box sx={styles.labelSection}>
                 <Box sx={styles.labelHeader}>
                   <Typography sx={styles.stepTitle}>
                     Add a label for this authenticator
                   </Typography>
-                  <Typography sx={styles.optionalText}>
-                    Optional
-                  </Typography>
                 </Box>
                 <Box sx={styles.descriptionContainer}>
                   <Typography sx={styles.stepDescription}>
                     Enter a label to help you recognize this authenticator
+                  </Typography>
+                  <Typography sx={styles.optionalText}>
+                    Optional
                   </Typography>
                 </Box>
                 <TextField
