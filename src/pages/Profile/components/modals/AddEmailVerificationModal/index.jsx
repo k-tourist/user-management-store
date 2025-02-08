@@ -9,7 +9,7 @@ import {
 } from '../../../../../common/utils';
 import { styles } from './styles';
 
-export const AddEmailVerificationModal = ({ open, onClose }) => {
+export const AddEmailVerificationModal = ({ open, onClose, isNew = false}) => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [isDefault, setIsDefault] = useState(false);
@@ -55,7 +55,7 @@ export const AddEmailVerificationModal = ({ open, onClose }) => {
     <CustomDialog
       open={open}
       onClose={onClose}
-      title={verificationSent ? "Enter the Verification Code" : "Verify your Email Address"}
+      title={verificationSent ? "Enter the Verification Code" : isNew ? "Verify your Email Address" : "Add Another Email Address"}
       content={
         <Box sx={styles.content}>
           {!verificationSent ? (

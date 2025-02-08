@@ -11,7 +11,7 @@ import {
 } from '../../../../../common/utils';
 import { styles } from './styles';
 
-export const AddPhoneVerificationModal = ({ open, onClose }) => {
+export const AddPhoneVerificationModal = ({ open, onClose, isNew = false }) => {
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [isDefault, setIsDefault] = useState(false);
@@ -57,7 +57,7 @@ export const AddPhoneVerificationModal = ({ open, onClose }) => {
     <CustomDialog
       open={open}
       onClose={onClose}
-      title={verificationSent ? "Enter the Verification Code" : "Enter Your Phone Number"}
+      title={verificationSent ? "Enter the Verification Code" : isNew ? "Enter Your Phone Number" : "Add Another Phone Number"}
       content={
         <Box sx={styles.content}>
           {!verificationSent ? (
