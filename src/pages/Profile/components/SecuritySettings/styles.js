@@ -172,5 +172,22 @@ export const styles = {
     backgroundColor: 'rgba(5, 130, 5, 0.1)',
     padding: '10px 16px',
     borderRadius: '4px'
+  },
+  menuPaper: {
+    width: '240px',
+    boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)',
+    mt: '4px',
+    '& .MuiList-root': {
+      padding: '8px 0'
+    }
+  },
+  menuItem: {
+    fontSize: '14px',
+    lineHeight: '20px',
+    padding: '10px 16px',
+    height: '41px',
+    '&:hover': {
+      backgroundColor: '#F9FAFB'
+    }
   }
 }; 

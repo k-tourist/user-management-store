@@ -1,4 +1,4 @@
-import { Box, Typography, Switch, IconButton } from '@mui/material';
+import { Box, Typography, Switch, IconButton, Menu, MenuItem } from '@mui/material';
 import { useState } from 'react';
 import CustomAuthList from '../CustomAuthList';
 import { EmailIcon, GuardIcon, MarkIcon, MoreVerticalIcon } from '../../../../components/Icons';
@@ -70,6 +70,19 @@ const phones = [
 
 const SecuritySettings = () => {
   const [mfaEnabled, setMfaEnabled] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
+
+  const handleMenuOpen = (event, id) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedItemId(id);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setSelectedItemId(null);
+  };
+
   return (
     <Box sx={styles.container}>
       <Box sx={styles.mfaContainer}>
@@ -162,12 +175,42 @@ const SecuritySettings = () => {
               {phone.default && 
                 <Typography sx={styles.defaultTextStyle}>Default</Typography>}
             </Box>
-            <IconButton sx={styles.moreButton}>
+            <IconButton 
+              sx={styles.moreButton}
+              onClick={(e) => handleMenuOpen(e, phone.id)}
+            >
               <MoreVerticalIcon />
             </IconButton>
           </Box>
         ))}
       </Box>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        PaperProps={{
+          sx: styles.menuPaper
+        }}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem onClick={handleMenuClose} sx={styles.menuItem}>
+          Make Default
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose} sx={styles.menuItem}>
+          Edit
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose} sx={styles.menuItem}>
+          Delete
+        </MenuItem>
+      </Menu>
     </Box>
   );
 };
