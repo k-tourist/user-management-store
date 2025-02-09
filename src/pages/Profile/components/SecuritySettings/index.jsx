@@ -2,6 +2,10 @@ import { Box, Typography, Switch, IconButton, Menu, MenuItem } from '@mui/materi
 import { useState } from 'react';
 import CustomAuthList from '../CustomAuthList';
 import { EmailIcon, GuardIcon, MarkIcon, MoreVerticalIcon } from '../../../../components/Icons';
+import { EditAppVerificationModal } from '../modals/EditAppVerificationModal';
+import { EditEmailVerificationModal } from '../modals/EditEmailVerificationModal';
+import { EditPhoneVerificationModal } from '../modals/EditPhoneVerificationModal';
+import { DeleteConfirmationModal } from '../modals/DeleteConfirmationModal';
 import { styles } from './styles';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
@@ -11,15 +15,13 @@ const apps = [
     id: 1,
     app: 'Android App',
     label: 'Work',
-    default: true
-
+    default: true,
   },
   {
     id: 2,
     app: 'Iphone App',
     label: 'Personal',
-    default: false
-
+    default: false,
   },
 ]
 
@@ -50,21 +52,25 @@ const phones = [
     id: 1,
     phone: '1234567890',
     label: 'Work',
+    deliveryMethod: 'text',
     default: true
+
   },
   {
     id: 2,
     phone: '447911123456',
     label: 'Personal',
-    default: false
+    default: false,
+    deliveryMethod: 'call'
   },
+
 
   {
     id: 3,
     phone: '1234567890',
     label: 'Other',
-    default: false
-
+    default: false,
+    deliveryMethod: 'call'
   }
 ];
 
@@ -72,15 +78,44 @@ const SecuritySettings = () => {
   const [mfaEnabled, setMfaEnabled] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedItemId, setSelectedItemId] = useState(null);
+  const [selectedItemType, setSelectedItemType] = useState(null);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  const handleMenuOpen = (event, id) => {
+  const handleMenuOpen = (event, id, type, item) => {
     setAnchorEl(event.currentTarget);
     setSelectedItemId(id);
+    setSelectedItemType(type);
+    setSelectedItem(item);
   };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleEditClick = () => {
+    setEditModalOpen(true);
+    setAnchorEl(null);  // Close menu first
+  };
+
+  const handleModalClose = () => {
+    setEditModalOpen(false);
     setSelectedItemId(null);
+    setSelectedItemType(null);
+    setSelectedItem(null);
+  };
+
+  const handleDeleteClick = () => {
+    setDeleteModalOpen(true);
+    setAnchorEl(null);  // Close menu
+  };
+
+  const handleDeleteModalClose = () => {
+    setDeleteModalOpen(false);
+    setSelectedItemId(null);
+    setSelectedItemType(null);
+    setSelectedItem(null);
   };
 
   return (
@@ -114,7 +149,10 @@ const SecuritySettings = () => {
                 </Box>
               </Box>
 
-              <IconButton sx={styles.moreButton}>
+              <IconButton 
+                sx={styles.moreButton}
+                onClick={(e) => handleMenuOpen(e, app.id, 'app', app)}
+              >
                 <MoreVerticalIcon />
               </IconButton>
             </Box>
@@ -138,7 +176,10 @@ const SecuritySettings = () => {
                 <Typography sx={styles.appName}>Home Email</Typography>
               </Box>}
             </Box>
-            <IconButton sx={styles.moreButton}>
+            <IconButton 
+              sx={styles.moreButton}
+              onClick={(e) => handleMenuOpen(e, email.id, 'email', email)}
+            >
               <MoreVerticalIcon />
             </IconButton>
           </Box>
@@ -177,7 +218,7 @@ const SecuritySettings = () => {
             </Box>
             <IconButton 
               sx={styles.moreButton}
-              onClick={(e) => handleMenuOpen(e, phone.id)}
+              onClick={(e) => handleMenuOpen(e, phone.id, 'phone', phone)}
             >
               <MoreVerticalIcon />
             </IconButton>
@@ -204,13 +245,37 @@ const SecuritySettings = () => {
         <MenuItem onClick={handleMenuClose} sx={styles.menuItem}>
           Make Default
         </MenuItem>
-        <MenuItem onClick={handleMenuClose} sx={styles.menuItem}>
+        <MenuItem onClick={handleEditClick} sx={styles.menuItem}>
           Edit
         </MenuItem>
-        <MenuItem onClick={handleMenuClose} sx={styles.menuItem}>
+        <MenuItem onClick={handleDeleteClick} sx={styles.menuItem}>
           Delete
         </MenuItem>
       </Menu>
+
+      {/* Edit Modals */}
+      <EditAppVerificationModal 
+        open={editModalOpen && selectedItemType === 'app'} 
+        onClose={handleModalClose}
+        app={selectedItem}
+      />
+      
+      <EditEmailVerificationModal 
+        open={editModalOpen && selectedItemType === 'email'} 
+        onClose={handleModalClose}
+        email={selectedItem}
+      />
+      
+      <EditPhoneVerificationModal 
+        open={editModalOpen && selectedItemType === 'phone'} 
+        onClose={handleModalClose}
+        phone={selectedItem}
+      />
+
+      <DeleteConfirmationModal 
+        open={deleteModalOpen} 
+        onClose={handleDeleteModalClose}
+      />
     </Box>
   );
 };

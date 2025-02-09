@@ -24,11 +24,10 @@ export const CustomDialog = ({
       PaperProps={{
         sx: {
           width: {
-            xs: '100%',
+            xs: '95%',
             sm: '685px'
           },
           maxWidth: '685px',
-          minHeight: '252px',
           borderRadius: '12px',
           p: { xs: 2, sm: 3 },
           m: { xs: 2, sm: 0 }
