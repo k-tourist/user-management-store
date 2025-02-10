@@ -1,49 +1,81 @@
-import { 
-  AppBar, 
-  Toolbar, 
-  Typography, 
-  IconButton, 
-  Box,
-  useTheme
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Box, Typography, IconButton, Select, MenuItem, Divider, Avatar } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import MonitorIcon from '@mui/icons-material/Monitor';
 import { styles } from './styles';
+import { useState } from 'react';
 
-const Header = ({ height, onMenuClick, showMenuIcon }) => {
-  const theme = useTheme();
+const Header = () => {
+  const username = "Abraham Sabel"; // This should come from your user context/state
+  const [selectedName, setSelectedName] = useState("John Doe");
+  
+  // Function to get initials from name
+  const getInitials = (name) => {
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase();
+  };
+
+  // Assuming avatar URL might come from user data
+  const avatarUrl = null; // Replace with actual avatar URL when available
 
   return (
-    <AppBar sx={styles.appBar}>
-      <Toolbar sx={styles.toolbar}>
-        {showMenuIcon && (
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={onMenuClick}
-            sx={styles.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-        )}
+    <Box sx={styles.header}>
+      <Typography sx={styles.welcomeText}>
+        Welcome {username}!
+      </Typography>
 
-        <Typography sx={styles.title}>
-          Dashboard
-        </Typography>
-        
-        <Box sx={styles.iconContainer}>
-          <IconButton size={theme.breakpoints.down('sm') ? 'small' : 'medium'}>
-            <NotificationsIcon />
+      <Box sx={styles.rightSection}>
+        {/* First Section */}
+        <Box sx={styles.section}>
+          <IconButton 
+            sx={styles.addButton}
+            color="primary"
+            variant="contained"
+          >
+            <AddIcon />
           </IconButton>
-          <IconButton size={theme.breakpoints.down('sm') ? 'small' : 'medium'}>
-            <AccountCircleIcon />
+          <IconButton sx={styles.helpButton}>
+            <HelpOutlineIcon />
           </IconButton>
         </Box>
-      </Toolbar>
-    </AppBar>
-  );
-};
 
-export default Header; 
+        <Divider orientation="vertical" sx={styles.divider} />
+
+        {/* Second Section */}
+        <Box sx={styles.section}>
+          <Select
+            value={selectedName}
+            onChange={(e) => setSelectedName(e.target.value)}
+            sx={styles.select}
+          >
+            <MenuItem value="Abrarham Sabel">Abrarham Sabel</MenuItem>
+          </Select>
+        </Box>
+
+        <Divider orientation="vertical" sx={styles.divider} />
+
+        {/* Third Section */}
+        <Box sx={styles.section}>
+          <Box sx={styles.trialTag}>
+            <MonitorIcon sx={styles.monitorIcon} />
+            <Typography sx={styles.trialText}>
+              Trial ends in 21 days
+            </Typography>
+          </Box>
+          <Avatar 
+            src={avatarUrl}
+            alt={username}
+            sx={styles.avatar}
+          >
+            {getInitials(username)}
+          </Avatar>
+        </Box>
+      </Box>
+    </Box>
+  );
+}; 
+
+export default Header;
