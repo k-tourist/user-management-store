@@ -96,7 +96,7 @@ const SecuritySettings = () => {
 
   const handleEditClick = () => {
     setEditModalOpen(true);
-    setAnchorEl(null);  // Close menu first
+    setAnchorEl(null);
   };
 
   const handleModalClose = () => {
@@ -108,7 +108,7 @@ const SecuritySettings = () => {
 
   const handleDeleteClick = () => {
     setDeleteModalOpen(true);
-    setAnchorEl(null);  // Close menu
+    setAnchorEl(null);
   };
 
   const handleDeleteModalClose = () => {
@@ -253,7 +253,6 @@ const SecuritySettings = () => {
         </MenuItem>
       </Menu>
 
-      {/* Edit Modals */}
       <EditAppVerificationModal 
         open={editModalOpen && selectedItemType === 'app'} 
         onClose={handleModalClose}
