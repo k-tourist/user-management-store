@@ -72,7 +72,6 @@ export const styles = {
     color: '#6B7280',
     textAlign: 'left',
     paddingLeft: '12px',
-    marginBottom: '24px',
     fontWeight: 500
   }
 }; 

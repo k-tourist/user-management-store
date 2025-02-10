@@ -12,14 +12,13 @@ import {
   Divider
 } from '@mui/material';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import WysiwygIcon from '@mui/icons-material/Wysiwyg';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
-import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
+import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/IntegrationInstructionsOutlined';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -27,14 +26,13 @@ import { styles } from './styles';
 
 const menuItems = [
   { title: 'Dashboard', icon: <DashboardOutlinedIcon /> },
-  { title: 'Create a Check', icon: <NoteAddOutlinedIcon /> },
-  { title: 'My Checks', icon: <DescriptionOutlinedIcon /> },
-  { title: 'Payee List', icon: <PeopleOutlineOutlinedIcon /> },
+  { title: 'Create a Check', icon: <ControlPointIcon /> },
+  { title: 'My Checks', icon: <WysiwygIcon /> },
+  { title: 'Payee List', icon: <FormatListBulletedIcon /> },
   { title: 'Bank Accounts', icon: <AccountBalanceOutlinedIcon /> },
-  { title: 'My Accounts', icon: <PersonOutlineOutlinedIcon /> },
   { title: 'My Tags', icon: <LocalOfferOutlinedIcon /> },
   { title: 'Check Register', icon: <LibraryBooksOutlinedIcon /> },
-  { title: 'All Mails', icon: <MailOutlineOutlinedIcon /> },
+  { title: 'All Mails', icon: <LocalShippingOutlinedIcon /> },
 ];
 
 const receivablesItems = [
