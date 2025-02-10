@@ -8,22 +8,44 @@ import {
   ListItemButton, 
   useTheme,
   useMediaQuery,
+  Typography,
+  Divider
 } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import PeopleIcon from '@mui/icons-material/People';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
+import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
+import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
+import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/IntegrationInstructionsOutlined';
 import { useHistory, useLocation } from 'react-router-dom';
 import { styles } from './styles';
 
 const menuItems = [
-  { text: 'Home', icon: <HomeIcon />, path: '/' },
-  { text: 'Profile', icon: <PersonIcon />, path: '/profile' },
-  { text: 'User Management', icon: <PeopleIcon />, path: '/user-management' },
-  { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
+  { title: 'Dashboard', icon: <DashboardOutlinedIcon /> },
+  { title: 'Create a Check', icon: <NoteAddOutlinedIcon /> },
+  { title: 'My Checks', icon: <DescriptionOutlinedIcon /> },
+  { title: 'Payee List', icon: <PeopleOutlineOutlinedIcon /> },
+  { title: 'Bank Accounts', icon: <AccountBalanceOutlinedIcon /> },
+  { title: 'My Accounts', icon: <PersonOutlineOutlinedIcon /> },
+  { title: 'My Tags', icon: <LocalOfferOutlinedIcon /> },
+  { title: 'Check Register', icon: <LibraryBooksOutlinedIcon /> },
+  { title: 'All Mails', icon: <MailOutlineOutlinedIcon /> },
 ];
 
-const Sidebar = ({ width, open, onClose, variant }) => {
+const receivablesItems = [
+  { title: 'Payment Links', icon: <LinkOutlinedIcon /> },
+];
+
+const integrationItems = [
+  { title: 'Payments', icon: <IntegrationInstructionsOutlinedIcon /> },
+];
+
+const Sidebar = ({ open, onClose, variant }) => {
   const history = useHistory();
   const location = useLocation();
   const theme = useTheme();
@@ -37,31 +59,65 @@ const Sidebar = ({ width, open, onClose, variant }) => {
   };
 
   const drawerContent = (
-    <>
+    <Box sx={styles.sidebar}>
       <Box sx={styles.logoContainer}>
-        Logo
+        <Typography sx={styles.companyName}>
+          SUNCCOS
+        </Typography>
       </Box>
 
-      <List>
+      <List sx={styles.menuList}>
         {menuItems.map((item) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton
-              selected={location.pathname === item.path}
-              onClick={() => handleItemClick(item.path)}
-              sx={styles.listItemButton}
-            >
-              <ListItemIcon sx={styles.listItemIcon}>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText 
-                primary={item.text} 
-                primaryTypographyProps={styles.listItemText}
-              />
-            </ListItemButton>
+          <ListItem key={item.title} sx={styles.menuItem}>
+            <ListItemIcon sx={styles.menuIcon}>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText 
+              primary={item.title} 
+              sx={styles.menuText}
+            />
           </ListItem>
         ))}
       </List>
-    </>
+
+      <Divider sx={styles.divider} />
+
+      <Typography sx={styles.sectionTitle}>
+        Receivables
+      </Typography>
+      <List sx={styles.menuList}>
+        {receivablesItems.map((item) => (
+          <ListItem key={item.title} sx={styles.menuItem}>
+            <ListItemIcon sx={styles.menuIcon}>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText 
+              primary={item.title} 
+              sx={styles.menuText}
+            />
+          </ListItem>
+        ))}
+      </List>
+
+      <Divider sx={styles.divider} />
+
+      <Typography sx={styles.sectionTitle}>
+        Integrations
+      </Typography>
+      <List sx={styles.menuList}>
+        {integrationItems.map((item) => (
+          <ListItem key={item.title} sx={styles.menuItem}>
+            <ListItemIcon sx={styles.menuIcon}>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText 
+              primary={item.title} 
+              sx={styles.menuText}
+            />
+          </ListItem>
+        ))}
+      </List>
+    </Box>
   );
 
   return (
@@ -69,7 +125,7 @@ const Sidebar = ({ width, open, onClose, variant }) => {
       variant={variant}
       open={open}
       onClose={onClose}
-      sx={styles.drawer(width)}
+      sx={styles.drawer}
     >
       {drawerContent}
     </Drawer>
