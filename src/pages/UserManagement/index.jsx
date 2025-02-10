@@ -299,28 +299,9 @@ const UserManagement = () => {
             <Box sx={styles.filterContent}>
               <Box
                 onClick={() => setShowFilterOptions(!showFilterOptions)}
-                sx={{
-                  height: '40px',
-                  backgroundColor: '#F9FAFB',
-                  border: '1px solid #E5E7EB',
-                  borderRadius: '6px',
-                  padding: '8px 12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    borderColor: '#E5E7EB',
-                  }
-                }}
+                sx={styles.filterOption}
               >
-                <Typography
-                  sx={{
-                    fontSize: '14px',
-                    lineHeight: '20px',
-                    color: '#6B7280',
-                  }}
-                >
+                <Typography sx={styles.filterOptionText}>
                   {selectedFilter === 'active' ? 'Active' :
                     selectedFilter === 'no_subscription' ? 'No Subscription' :
                       selectedFilter === 'trial_expiring' ? 'Trial Expiring' :
@@ -328,25 +309,14 @@ const UserManagement = () => {
                 </Typography>
                 <KeyboardArrowDownIcon
                   sx={{
-                    width: '20px',
-                    height: '20px',
-                    color: '#6B7280',
-                    transform: showFilterOptions ? 'rotate(180deg)' : 'none',
-                    transition: 'transform 0.2s'
+                    ...styles.filterArrow,
+                    transform: showFilterOptions ? 'rotate(180deg)' : 'none'
                   }}
                 />
               </Box>
 
               {showFilterOptions && (
-                <Box
-                  sx={{
-                    mt: '4px',
-                    backgroundColor: '#fff',
-                    borderRadius: '6px',
-                    boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.05), 0px 10px 15px -3px rgba(0, 0, 0, 0.10)',
-                    zIndex: 1,
-                  }}
-                >
+                <Box sx={styles.filterOptionsContainer}>
                   {[
                     { value: 'active', label: 'Active' },
                     { value: 'no_subscription', label: 'No Subscription' },
@@ -360,15 +330,8 @@ const UserManagement = () => {
                         setShowFilterOptions(false);
                       }}
                       sx={{
-                        padding: '8px 12px',
-                        fontSize: '14px',
-                        lineHeight: '20px',
-                        cursor: 'pointer',
-                        color: selectedFilter === option.value ? '#9CA3AF' : '#111827',
-                        backgroundColor: 'transparent',
-                        '&:hover': {
-                          backgroundColor: '#F9FAFB',
-                        }
+                        ...styles.filterOptionItem,
+                        color: selectedFilter === option.value ? '#9CA3AF' : '#111827'
                       }}
                     >
                       {option.label}
@@ -408,8 +371,10 @@ const UserManagement = () => {
                 next: () => 'Next',
               }}
               {...item}
+              sx={styles.paginationItem}
             />
           )}
+          sx={styles.pagination}
         />
       </Box>
 
@@ -417,74 +382,22 @@ const UserManagement = () => {
         open={openDialog}
         onClose={() => setOpenDialog(false)}
         PaperProps={{
-          sx: {
-            width: {
-              xs: '100%',
-              sm: '685px'
-            },
-            maxWidth: '685px',
-            minHeight: '252px',
-            borderRadius: '12px',
-            p: { xs: 2, sm: 3 },
-            m: { xs: 2, sm: 0 }
-          }
+          sx: styles.dialog
         }}
       >
-        <Box sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          mb: '24px'
-        }}>
-          <DialogTitle
-            sx={{
-              fontSize: {
-                xs: '24px',
-                sm: '32px'
-              },
-              lineHeight: {
-                xs: '28px',
-                sm: '36px'
-              },
-              p: 0,
-              m: 0
-            }}
-          >
+        <Box sx={styles.dialogHeader}>
+          <DialogTitle sx={styles.dialogTitle}>
             Confirm Role Change
           </DialogTitle>
           <IconButton
             onClick={() => setOpenDialog(false)}
-            sx={{
-              p: 0,
-              color: '#204464',
-              '& .MuiSvgIcon-root': {
-                width: {
-                  xs: '20px',
-                  sm: '24px'
-                },
-                height: {
-                  xs: '20px',
-                  sm: '24px'
-                }
-              }
-            }}
+            sx={styles.dialogCloseButton}
           >
             <CloseIcon />
           </IconButton>
         </Box>
         <DialogContent sx={{ p: 0 }}>
-          <Typography
-            sx={{
-              fontSize: {
-                xs: '14px',
-                sm: '18px'
-              },
-              lineHeight: {
-                xs: '20px',
-                sm: '24px'
-              },
-            }}
-          >
+          <Typography sx={styles.dialogContent}>
             You are about to change the role of{' '}
             <Box component="span" sx={{ fontWeight: 700 }}>
               {selectedUser?.name}
@@ -496,44 +409,18 @@ const UserManagement = () => {
             . This action will update their access permissions immediately. Are you sure you want to proceed?
           </Typography>
         </DialogContent>
-        <DialogActions
-          sx={{
-            p: 0,
-            mt: '32px',
-            gap: '12px'
-          }}
-        >
+        <DialogActions sx={styles.dialogActions}>
           <Button
             onClick={handleCancelRoleChange}
             variant="outlined"
-            sx={{
-              fontSize: '14px',
-              lineHeight: '20px',
-              height: '40px',
-              width: '100px',
-              color: '#204464',
-              border: 'none',
-              '&:hover': {
-                border: 'none',
-                backgroundColor: 'rgba(0, 0, 0, 0.04)'
-              }
-            }}
+            sx={styles.cancelButton}
           >
             Cancel
           </Button>
           <Button
             onClick={handleConfirmRoleChange}
             variant="contained"
-            sx={{
-              fontSize: '14px',
-              lineHeight: '20px',
-              height: '40px',
-              width: '100px',
-              backgroundColor: '#204464',
-              '&:hover': {
-                backgroundColor: '#1a3850'
-              }
-            }}
+            sx={styles.confirmButton}
           >
             Confirm
           </Button>
