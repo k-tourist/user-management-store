@@ -6,10 +6,9 @@ import { styles } from './styles';
 import { useState } from 'react';
 
 const Header = () => {
-  const username = "Abraham Sabel"; // This should come from your user context/state
-  const [selectedName, setSelectedName] = useState("John Doe");
-  
-  // Function to get initials from name
+  const username = "Abraham Sabel";
+  const [selectedName, setSelectedName] = useState("Abrarham Sabel");
+
   const getInitials = (name) => {
     return name
       .split(' ')
@@ -18,8 +17,7 @@ const Header = () => {
       .toUpperCase();
   };
 
-  // Assuming avatar URL might come from user data
-  const avatarUrl = null; // Replace with actual avatar URL when available
+  const avatarUrl = null;
 
   return (
     <Box sx={styles.header}>
@@ -28,10 +26,10 @@ const Header = () => {
       </Typography>
 
       <Box sx={styles.rightSection}>
-        {/* First Section */}
         <Box sx={styles.section}>
           <IconButton 
             sx={styles.addButton}
+
             color="primary"
             variant="contained"
           >
@@ -44,10 +42,10 @@ const Header = () => {
 
         <Divider orientation="vertical" sx={styles.divider} />
 
-        {/* Second Section */}
         <Box sx={styles.section}>
           <Select
             value={selectedName}
+
             onChange={(e) => setSelectedName(e.target.value)}
             sx={styles.select}
           >
@@ -57,9 +55,9 @@ const Header = () => {
 
         <Divider orientation="vertical" sx={styles.divider} />
 
-        {/* Third Section */}
         <Box sx={styles.section}>
           <Box sx={styles.trialTag}>
+
             <MonitorIcon sx={styles.monitorIcon} />
             <Typography sx={styles.trialText}>
               Trial ends in 21 days
