@@ -2,7 +2,6 @@ export const styles = {
   content: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '24px',
     padding: '40px 24px 51px 24px'
   },
   section: {
@@ -78,11 +77,14 @@ export const styles = {
     }
   },
   divider: {
-    borderColor: '#E5E7EB'
+    borderColor: '#E5E7EB',
+    margin: '24px 0'
   },
   deliveryGroup: {
-    gap: '32px'
+    gap: '32px',
+    display: 'flex',
   },
+
   radio: {
     color: '#D1D5DB',
     '&.Mui-checked': {

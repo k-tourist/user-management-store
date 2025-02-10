@@ -47,7 +47,7 @@ const phones = [
 
     {
         id: 3,
-        phone: '1234567890',
+        phone: '1234567894',
         default: false
     }
 ];
@@ -123,18 +123,19 @@ export const VerificationModal = ({ open, onClose }) => {
 
     const renderMethodSelection = () => (
         <Box sx={styles.content}>
-            <Box sx={styles.section}>
-                <Typography sx={styles.sectionTitle}>
-                    Authenticator App Codes
-                </Typography>
-                <RadioGroup
-                    value={selectedMethod}
-                    onChange={(e) => setSelectedMethod(e.target.value)}
-                >
+
+            <RadioGroup
+                value={selectedMethod}
+                onChange={(e) => setSelectedMethod(e.target.value)}
+            >
+                <Box sx={styles.section}>
+                    <Typography sx={styles.sectionTitle}>
+                        Authenticator App Codes
+                    </Typography>
                     <Box sx={styles.appListContainer}>
                         {apps.map((app) => (<FormControlLabel
                             key={app.id}
-                            value="email"
+                            value={app.app}
                             control={<Radio sx={styles.radio} />}
                             label={
                                 <Box sx={styles.appInfo}>
@@ -147,23 +148,19 @@ export const VerificationModal = ({ open, onClose }) => {
                             }
                         />))}
                     </Box>
-                </RadioGroup>
-            </Box>
+                </Box>
 
-            <Divider sx={styles.divider} />
-            <Box sx={styles.section}>
-                <Typography sx={styles.sectionTitle}>
-                    Email Verification
-                </Typography>
-                <RadioGroup
-                    value={selectedMethod}
-                    onChange={(e) => setSelectedMethod(e.target.value)}
-                >
+                <Divider sx={styles.divider} />
+                <Box sx={styles.section}>
+                    <Typography sx={styles.sectionTitle}>
+                        Email Verification
+                    </Typography>
                     <Box sx={styles.emailListContainer}>
                         {emails.map((email) => (<FormControlLabel
                             key={email.id}
-                            value="email"
+                            value={email.email}
                             control={<Radio sx={styles.radio} />}
+
                             label={
                                 <Box sx={styles.methodLabel}>
                                     <EmailIcon />
@@ -176,27 +173,21 @@ export const VerificationModal = ({ open, onClose }) => {
                             }
                         />))}
                     </Box>
-                </RadioGroup>
-            </Box>
+                </Box>
 
+                <Divider sx={styles.divider} />
 
-
-            <Divider sx={styles.divider} />
-
-            <Box sx={styles.section}>
-                <Typography sx={styles.sectionTitle}>
-                    Phone Verification
-                </Typography>
-                <RadioGroup
-                    value={selectedMethod}
-                    onChange={(e) => setSelectedMethod(e.target.value)}
-                >
+                <Box sx={styles.section}>
+                    <Typography sx={styles.sectionTitle}>
+                        Phone Verification
+                    </Typography>
                     <Box sx={styles.phoneListContainer}>
                         {phones.map((phone) => (<FormControlLabel
-                            value="phone"
+                            value={phone.phone}
                             key={phone.id}
                             control={<Radio sx={styles.radio} />}
                             label={
+
                                 <Box sx={styles.phoneInfo}>
                                     <Box sx={styles.phoneFlag}>
                                         <PhoneInput
@@ -224,30 +215,33 @@ export const VerificationModal = ({ open, onClose }) => {
 
                         />))}
                     </Box>
-                </RadioGroup>
-
+                </Box>
+            </RadioGroup>
+            <Box sx={styles.section}>
                 <Typography sx={styles.sectionTitle}>
                     Delivery Method
                 </Typography>
+
                 <Typography sx={styles.setionDescription}>
                     You'll receive a digit code via SMS or voice call. Make sure your phone is nearby.
                 </Typography>
+
                 <RadioGroup
-                    row
                     value={deliveryMethod}
                     onChange={(e) => setDeliveryMethod(e.target.value)}
-                    sx={styles.deliveryGroup}
                 >
-                    <FormControlLabel
-                        value="sms"
-                        control={<Radio sx={styles.radio} />}
-                        label="Text Message"
-                    />
-                    <FormControlLabel
-                        value="call"
-                        control={<Radio sx={styles.radio} />}
-                        label="Phone Call"
-                    />
+                    <Box sx={styles.deliveryGroup}>
+                        <FormControlLabel
+                            value="sms"
+                            control={<Radio sx={styles.radio} />}
+                            label="Text Message"
+                        />
+                        <FormControlLabel
+                            value="call"
+                            control={<Radio sx={styles.radio} />}
+                            label="Phone Call"
+                        />
+                    </Box>
                 </RadioGroup>
             </Box>
         </Box>
