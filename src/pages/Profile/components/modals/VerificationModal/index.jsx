@@ -122,6 +122,7 @@ export const VerificationModal = ({ open, onClose }) => {
         }
     }, [step]);
 
+    /** this is mock verification code */
     useEffect(() => {
         if (verificationCode.every(code => code !== '')) {
             if (verificationCode[5] !== '$') {
