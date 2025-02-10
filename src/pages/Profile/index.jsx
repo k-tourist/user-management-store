@@ -1,5 +1,6 @@
-import { Box, Tabs, Tab } from '@mui/material';
+import { Box, Tabs, Tab, IconButton } from '@mui/material';
 import { useState } from 'react';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import MyProfile from './components/MyProfile';
 import SecuritySettings from './components/SecuritySettings';
 import { styles } from './styles';
@@ -22,6 +23,9 @@ const Profile = () => {
           <Tab label="My Profile" />
           <Tab label="Security Settings" />
         </Tabs>
+        <IconButton sx={styles.helpButton}>
+          <HelpOutlineIcon />
+        </IconButton>
       </Box>
 
       {activeTab === 0 ? <MyProfile /> : <SecuritySettings />}

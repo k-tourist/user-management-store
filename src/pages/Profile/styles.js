@@ -5,8 +5,12 @@ export const styles = {
   },
   tabContainer: {
     borderBottom: 1, 
-    borderColor: '#E5E7EB'
+    borderColor: '#E5E7EB',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
+
   tabs: {
     '& .MuiTabs-indicator': {
       backgroundColor: '#204464',
@@ -19,6 +23,14 @@ export const styles = {
       '&.Mui-selected': {
         color: '#204464',
       }
+    }
+  },
+  helpButton: {
+    padding: 0,
+    '& .MuiSvgIcon-root': {
+      width: '24px',
+      height: '24px',
+      color: '#6B7280'
     }
   }
 }; 
