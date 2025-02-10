@@ -7,10 +7,9 @@ import {
     RadioGroup,
     FormControlLabel,
     Divider,
-    IconButton
 } from '@mui/material';
 import { CustomDialog } from '../../../../../components/dialog/CustomDialog';
-import { GuardIcon, EmailIcon, MarkIcon, MoreVerticalIcon } from '../../../../../components/Icons';
+import { GuardIcon, EmailIcon, MarkIcon } from '../../../../../components/Icons';
 import { maskEmail, maskPhone } from '../../../../../common/utils';
 import { styles } from './styles';
 import PhoneInput from 'react-phone-input-2';
@@ -134,6 +133,7 @@ export const VerificationModal = ({ open, onClose }) => {
                 >
                     <Box sx={styles.appListContainer}>
                         {apps.map((app) => (<FormControlLabel
+                            key={app.id}
                             value="email"
                             control={<Radio sx={styles.radio} />}
                             label={
@@ -161,6 +161,7 @@ export const VerificationModal = ({ open, onClose }) => {
                 >
                     <Box sx={styles.emailListContainer}>
                         {emails.map((email) => (<FormControlLabel
+                            key={email.id}
                             value="email"
                             control={<Radio sx={styles.radio} />}
                             label={
@@ -193,6 +194,7 @@ export const VerificationModal = ({ open, onClose }) => {
                     <Box sx={styles.phoneListContainer}>
                         {phones.map((phone) => (<FormControlLabel
                             value="phone"
+                            key={phone.id}
                             control={<Radio sx={styles.radio} />}
                             label={
                                 <Box sx={styles.phoneInfo}>

@@ -10,7 +10,6 @@ export const styles = {
     }
   },
   sidebar: {
-    width: '240px',
     height: '100vh',
     backgroundColor: '#fff',
     padding: '24px 16px',
