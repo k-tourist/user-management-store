@@ -1,0 +1,18 @@
+.auth-code-container {
+  display: flex;
+  gap: 8px;
+}
+
+.auth-code-input {
+  width: 40px !important;
+  height: 40px !important;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.auth-code-input:focus {
+  outline: none;
+  border-color: #204464;
+} 
