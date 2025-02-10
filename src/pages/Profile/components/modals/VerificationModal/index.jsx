@@ -77,6 +77,7 @@ export const VerificationModal = ({ open, onClose }) => {
     const [deliveryMethod, setDeliveryMethod] = useState('sms');
     const [timer, setTimer] = useState(30);
     const [timerActive, setTimerActive] = useState(false);
+    const [error, setError] = useState('');
 
     const handleContinue = () => {
         setStep(2);
@@ -121,8 +122,21 @@ export const VerificationModal = ({ open, onClose }) => {
         }
     }, [step]);
 
+    useEffect(() => {
+        if (verificationCode.every(code => code !== '')) {
+            if (verificationCode[5] !== '$') {
+                setError('Invalid code');
+            }
+        } else {
+            setError('');
+        }
+    }, [verificationCode]);
+
+
+
     const renderMethodSelection = () => (
         <Box sx={styles.content}>
+
 
             <RadioGroup
                 value={selectedMethod}
@@ -265,12 +279,14 @@ export const VerificationModal = ({ open, onClose }) => {
                             data-index={index}
                             onChange={(e) => handleVerificationCodeChange(index, e.target.value, verificationCode, setVerificationCode)}
                             onKeyDown={(e) => handleVerificationCodeKeyDown(index, e)}
-                            sx={styles.codeInput}
+                            sx={{ ...styles.codeInput, borderColor: error ? '#B42318 !important' : '#E5E7EB' }}
                         />
                     ))}
                 </Box>
 
+                {<Typography sx={styles.error}>{error || ''}</Typography>}
                 <Box sx={styles.resendSection}>
+
                     {timerActive ? (
                         <>
                             <Typography sx={styles.timer}>{timer}s</Typography>
@@ -290,6 +306,7 @@ export const VerificationModal = ({ open, onClose }) => {
             </Box>
         </>
     );
+
 
     return (
         <CustomDialog

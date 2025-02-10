@@ -171,7 +171,6 @@ export const styles = {
   codeInputContainer: {
     display: 'flex',
     gap: '16px',
-    marginBottom: '32px'
   },
   codeInput: {
     width: '40px',
@@ -239,5 +238,12 @@ export const styles = {
     '&:hover': {
       backgroundColor: '#1a3850'
     }
+  },
+  error: {
+    color: '#B42318',
+    fontSize: '14px',
+    lineHeight: '20px',
+    marginTop: '8px',
+    marginBottom: '32px'
   }
 }; 
