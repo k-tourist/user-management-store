@@ -6,12 +6,70 @@ import {
     Radio,
     RadioGroup,
     FormControlLabel,
-    Divider
+    Divider,
+    IconButton
 } from '@mui/material';
 import { CustomDialog } from '../../../../../components/dialog/CustomDialog';
-import { GuardIcon, EmailIcon } from '../../../../../components/Icons';
-import { maskPhone } from '../../../../../common/utils';
+import { GuardIcon, EmailIcon, MarkIcon, MoreVerticalIcon } from '../../../../../components/Icons';
+import { maskEmail, maskPhone } from '../../../../../common/utils';
 import { styles } from './styles';
+import PhoneInput from 'react-phone-input-2';
+
+const emails = [
+    {
+        id: 1,
+        email: 'test@example.com',
+        default: true
+    },
+    {
+        id: 2,
+        email: 'test2@example.com',
+        default: false
+    },
+    {
+        id: 3,
+        email: 'test3@example.com',
+        default: false
+    }
+
+];
+
+const phones = [
+    {
+        id: 1,
+        phone: '1234567890',
+        default: true
+    },
+    {
+        id: 2,
+        phone: '4442342342',
+        default: false
+    },
+
+    {
+        id: 3,
+        phone: '1234567890',
+        default: false
+    }
+];
+
+const apps = [
+    {
+        id: 1,
+        app: 'Android App',
+    },
+
+    {
+        id: 2,
+        app: '  Android App',
+    },
+
+    {
+        id: 3,
+        app: 'iphone App',
+    },
+];
+
 
 export const VerificationModal = ({ open, onClose }) => {
     const [step, setStep] = useState(1);
@@ -64,8 +122,6 @@ export const VerificationModal = ({ open, onClose }) => {
         }
     }, [step]);
 
-
-
     const renderMethodSelection = () => (
         <Box sx={styles.content}>
             <Box sx={styles.section}>
@@ -76,16 +132,21 @@ export const VerificationModal = ({ open, onClose }) => {
                     value={selectedMethod}
                     onChange={(e) => setSelectedMethod(e.target.value)}
                 >
-                    <FormControlLabel
-                        value="app"
-                        control={<Radio sx={styles.radio} />}
-                        label={
-                            <Box sx={styles.methodLabel}>
-                                <GuardIcon />
-                                <Typography>Google Authenticator</Typography>
-                            </Box>
-                        }
-                    />
+                    <Box sx={styles.appListContainer}>
+                        {apps.map((app) => (<FormControlLabel
+                            value="email"
+                            control={<Radio sx={styles.radio} />}
+                            label={
+                                <Box sx={styles.appInfo}>
+                                    <GuardIcon />
+                                    <Box sx={styles.appTextContainer}>
+                                        <MarkIcon />
+                                        <Typography sx={styles.appName}>{app.app}</Typography>
+                                    </Box>
+                                </Box>
+                            }
+                        />))}
+                    </Box>
                 </RadioGroup>
             </Box>
 
@@ -98,18 +159,26 @@ export const VerificationModal = ({ open, onClose }) => {
                     value={selectedMethod}
                     onChange={(e) => setSelectedMethod(e.target.value)}
                 >
-                    <FormControlLabel
-                        value="email"
-                        control={<Radio sx={styles.radio} />}
-                        label={
-                            <Box sx={styles.methodLabel}>
-                                <EmailIcon />
-                                <Typography>test@example.com</Typography>
-                            </Box>
-                        }
-                    />
+                    <Box sx={styles.emailListContainer}>
+                        {emails.map((email) => (<FormControlLabel
+                            value="email"
+                            control={<Radio sx={styles.radio} />}
+                            label={
+                                <Box sx={styles.methodLabel}>
+                                    <EmailIcon />
+                                    <Typography>{maskEmail(email.email)}</Typography>
+                                    {email.default && <Box sx={styles.appTextContainer}>
+                                        <MarkIcon />
+                                        <Typography sx={styles.appName}>Home Email</Typography>
+                                    </Box>}
+                                </Box>
+                            }
+                        />))}
+                    </Box>
                 </RadioGroup>
             </Box>
+
+
 
             <Divider sx={styles.divider} />
 
@@ -121,21 +190,44 @@ export const VerificationModal = ({ open, onClose }) => {
                     value={selectedMethod}
                     onChange={(e) => setSelectedMethod(e.target.value)}
                 >
-                    <FormControlLabel
-                        value="phone"
-                        control={<Radio sx={styles.radio} />}
-                        label={
-                            <Box sx={styles.methodLabel}>
-                                <Typography>+92 ****562</Typography>
-                            </Box>
-                        }
-                    />
+                    <Box sx={styles.phoneListContainer}>
+                        {phones.map((phone) => (<FormControlLabel
+                            value="phone"
+                            control={<Radio sx={styles.radio} />}
+                            label={
+                                <Box sx={styles.phoneInfo}>
+                                    <Box sx={styles.phoneFlag}>
+                                        <PhoneInput
+                                            country={'uk'}
+                                            value={phone.phone}
+                                            disabled
+                                            enableSearch={false}
+                                            containerStyle={styles.flagContainer}
+                                            inputStyle={styles.flagInput}
+                                            buttonStyle={styles.flagButton}
+                                            disableDropdown
+                                            placeholder=""
+                                            specialLabel=""
+                                            preferredCountries={['us']}
+                                        />
+                                    </Box>
+                                    <Typography sx={styles.phoneNumber}>+{maskPhone(phone.phone)}</Typography>
+                                    {phone.default && <Box sx={styles.appTextContainer}>
+                                        <MarkIcon />
+                                        <Typography sx={styles.appName}>Official Number</Typography>
+                                    </Box>}
+
+                                </Box>
+                            }
+
+                        />))}
+                    </Box>
                 </RadioGroup>
 
                 <Typography sx={styles.sectionTitle}>
                     Delivery Method
                 </Typography>
-                <Typography sx={styles.description}>
+                <Typography sx={styles.setionDescription}>
                     You'll receive a digit code via SMS or voice call. Make sure your phone is nearby.
                 </Typography>
                 <RadioGroup

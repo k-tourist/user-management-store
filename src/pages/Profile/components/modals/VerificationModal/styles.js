@@ -3,18 +3,64 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '24px',
-    padding: '0 24px'
+    padding: '40px 24px 51px 24px'
   },
   section: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '12px'
   },
+
   sectionTitle: {
-    fontSize: '16px',
+    fontSize: '20px',
     lineHeight: '24px',
     fontWeight: 600,
+    marginBottom: '18px',
     color: '#111827'
+  },
+  appListContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  emailListContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    columnGap: '24px'
+  },
+  phoneListContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    columnGap: '24px',
+    marginBottom: '24px'
+  },
+
+
+  appInfo: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px'
+  },
+
+  appTextContainer: {
+    display: 'flex',
+    gap: '4px',
+    alignItems: 'center',
+    border: '1px solid #204464',
+    borderRadius: '4px',
+    padding: '7px 8px'
+  },
+
+  appName: {
+    fontSize: '10px',
+    lineHeight: '10px',
+    color: '#204464',
+    fontWeight: 500
+  },
+  setionDescription: {
+    marginTop: 0,
+    marginBottom: '16px',
+    fontSize: '18px',
+    lineHeight: '22px',
+    color: '#6B7280'
   },
   description: {
     fontSize: '18px',
@@ -26,10 +72,12 @@ export const styles = {
   methodLabel: {
     display: 'flex',
     alignItems: 'center',
-    gap: '12px'
+    gap: '8px',
+    width: {
+      xs: '100%',
+    }
   },
   divider: {
-    margin: '24px 0',
     borderColor: '#E5E7EB'
   },
   deliveryGroup: {
@@ -40,6 +88,76 @@ export const styles = {
     '&.Mui-checked': {
       color: '#204464'
     }
+  },
+  phoneFlag: {
+    width: '24px',
+    height: '24px',
+    '& .special-label': {
+      display: 'none'
+    },
+    '& .selected-flag': {
+      width: '24px',
+      height: '24px',
+      padding: 0,
+      backgroundColor: 'transparent !important'
+    },
+    '& .flag': {
+      transform: 'scale(0.75)'
+    },
+    '& input': {
+      fontSize: '20px',
+      lineHeight: '24px',
+      color: '#6B7280'
+    }
+  },
+  phoneInfo: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px'
+  },
+  flagContainer: {
+    width: '24px',
+    height: '24px'
+  },
+
+  flagInput: {
+    width: '24px',
+    height: '24px',
+    display: 'none',
+    border: 'none',
+    pointerEvents: 'none',
+    background: 'transparent',
+    padding: '0',
+    paddingLeft: '30px',
+    margin: '0',
+    fontSize: '20px',
+    lineHeight: '24px',
+    color: '#6B7280'
+  },
+  flagButton: {
+    border: 'none',
+    backgroundColor: 'transparent',
+    padding: '0',
+    margin: '0',
+    width: '24px',
+    height: '24px',
+    '&:hover': {
+      backgroundColor: 'transparent'
+    }
+  },
+  phoneNumber: {
+    fontSize: '16px',
+    lineHeight: '20px',
+    color: '#6B7280',
+  },
+
+  defaultTextStyle: {
+    fontSize: '12px',
+    lineHeight: '16px',
+    color: '#058205',
+    backgroundColor: 'rgba(5, 130, 5, 0.1)',
+    padding: '10px 16px',
+    borderRadius: '4px'
   },
   verificationSection: {
     display: 'flex',

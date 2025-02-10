@@ -62,7 +62,7 @@ export const styles = {
 
   appName: {
     fontSize: '10px',
-    lineHeight: '16px',
+    lineHeight: '10px',
     color: '#204464',
     fontWeight: 500
   },
