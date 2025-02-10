@@ -5,7 +5,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  ListItemButton, 
+  ListItemButton,
   useTheme,
   useMediaQuery,
   Typography,
@@ -21,6 +21,7 @@ import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import WebAssetOutlinedIcon from '@mui/icons-material/WebAssetOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
 import { useHistory, useLocation } from 'react-router-dom';
 import { styles } from './styles';
 
@@ -43,11 +44,17 @@ const integrationItems = [
   { title: 'Payments', icon: <MonetizationOnOutlinedIcon /> },
 ];
 
+const adminItems = [
+  { title: 'User Management', icon: <PeopleOutlineOutlinedIcon />, url: '/user-management' },
+];
+
+
 const Sidebar = ({ open, onClose, variant }) => {
   const history = useHistory();
   const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isAdmin = true;
 
   const handleItemClick = (path) => {
     history.push(path);
@@ -70,8 +77,8 @@ const Sidebar = ({ open, onClose, variant }) => {
             <ListItemIcon sx={styles.menuIcon}>
               {item.icon}
             </ListItemIcon>
-            <ListItemText 
-              primary={item.title} 
+            <ListItemText
+              primary={item.title}
               sx={styles.menuText}
             />
           </ListItem>
@@ -89,8 +96,8 @@ const Sidebar = ({ open, onClose, variant }) => {
             <ListItemIcon sx={styles.menuIcon}>
               {item.icon}
             </ListItemIcon>
-            <ListItemText 
-              primary={item.title} 
+            <ListItemText
+              primary={item.title}
               sx={styles.menuText}
             />
           </ListItem>
@@ -108,15 +115,36 @@ const Sidebar = ({ open, onClose, variant }) => {
             <ListItemIcon sx={styles.menuIcon}>
               {item.icon}
             </ListItemIcon>
-            <ListItemText 
-              primary={item.title} 
+            <ListItemText
+              primary={item.title}
               sx={styles.menuText}
             />
           </ListItem>
         ))}
       </List>
+
+      {isAdmin && <>
+        <Divider sx={styles.divider} />
+        <Typography sx={styles.sectionTitle}>
+          Admin
+        </Typography>
+        <List sx={styles.menuList}>
+          {adminItems.map((item) => (
+            <ListItem key={item.title} sx={styles.menuItem} onClick={() => handleItemClick(item.url)}>
+              <ListItemIcon sx={styles.menuIcon}>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={item.title}
+                sx={styles.menuText}
+              />
+            </ListItem>
+          ))}
+        </List>
+      </>}
     </Box>
   );
+
 
   return (
     <Drawer

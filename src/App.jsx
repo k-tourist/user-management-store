@@ -15,7 +15,7 @@ function App() {
       <Router>
         <MainLayout>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Profile} />
             <Route path="/profile" component={Profile} />
             <Route path="/settings" component={Settings} />
             <Route path="/user-management" component={UserManagement} />

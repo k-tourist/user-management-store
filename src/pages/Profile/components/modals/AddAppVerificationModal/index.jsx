@@ -64,11 +64,9 @@ export const AddAppVerificationModal = ({ open, onClose }) => {
                 )}
               </Box>
               
-              {/* QR Code section under Step 1 */}
               {step.number === 1 && (
                 <Box sx={styles.qrSection}>
                   <Box sx={styles.qrContainer}>
-                    {/* QR Code will go here */}
                   </Box>
 
                   <Box sx={styles.secretKeyContainer}>
