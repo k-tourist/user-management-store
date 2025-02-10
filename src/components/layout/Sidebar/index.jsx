@@ -19,8 +19,8 @@ import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlin
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
-import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
-import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/IntegrationInstructionsOutlined';
+import WebAssetOutlinedIcon from '@mui/icons-material/WebAssetOutlined';
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import { useHistory, useLocation } from 'react-router-dom';
 import { styles } from './styles';
 
@@ -36,11 +36,11 @@ const menuItems = [
 ];
 
 const receivablesItems = [
-  { title: 'Payment Links', icon: <LinkOutlinedIcon /> },
+  { title: 'Payment Links', icon: <WebAssetOutlinedIcon /> },
 ];
 
 const integrationItems = [
-  { title: 'Payments', icon: <IntegrationInstructionsOutlinedIcon /> },
+  { title: 'Payments', icon: <MonetizationOnOutlinedIcon /> },
 ];
 
 const Sidebar = ({ open, onClose, variant }) => {
