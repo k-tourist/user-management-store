@@ -17,8 +17,8 @@ export const styles = {
     mb: '12px'
   },
   title: {
-    fontSize: '30px',
-    lineHeight: '36px',
+    fontSize: {xs: '24px', sm: '30px'},
+    lineHeight: {xs: '28px', sm: '36px'},
     fontWeight: 600,
     color: '#111827',
     p: 0,

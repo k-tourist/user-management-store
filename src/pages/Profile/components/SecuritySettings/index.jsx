@@ -1,4 +1,4 @@
-import { Box, Typography, Switch, IconButton, Menu, MenuItem } from '@mui/material';
+import { Box, Typography, Switch, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 import CustomAuthList from '../CustomAuthList';
 import { EmailIcon, GuardIcon, MarkIcon, MoreVerticalIcon } from '../../../../components/Icons';
@@ -82,7 +82,8 @@ const SecuritySettings = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
+  const isPhone = useMediaQuery('(max-width: 724px)');
+  
   const handleMenuOpen = (event, id, type, item) => {
     setAnchorEl(event.currentTarget);
     setSelectedItemId(id);
@@ -211,7 +212,7 @@ const SecuritySettings = () => {
               </Box>
               {phone.default && <Box sx={styles.appTextContainer}>
                 <MarkIcon />
-                <Typography sx={styles.appName}>Official Number</Typography>
+                <Typography sx={styles.appName}>{isPhone ? 'official' : 'Official Number'}</Typography>
               </Box>}
               {phone.default && 
                 <Typography sx={styles.defaultTextStyle}>Default</Typography>}

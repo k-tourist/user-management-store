@@ -101,7 +101,7 @@ export const styles = {
   emailInfo: {
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
+    gap: {xs: '2px', sm: '12px'},
     '& > .react-tel-input': {
       marginRight: '4px'
     }
@@ -112,7 +112,7 @@ export const styles = {
     color: '#6B7280'
   },
   phoneFlag: {
-    width: '200px',
+    width: { xs: '160px', sm: '200px' },
     height: '24px',
     '& .special-label': {
       display: 'none'
@@ -133,11 +133,11 @@ export const styles = {
     }
   },
   flagContainer: {
-    width: '200px',
+    width: { xs: '160px', sm: '200px' },
     height: '24px'
   },
   flagInput: {
-    width: '200px',
+    width: { sm: '100px', md: '200px' },
     height: '24px',
     border: 'none',
     pointerEvents: 'none',
@@ -166,11 +166,11 @@ export const styles = {
     color: '#6B7280'
   },
   defaultTextStyle: {
-    fontSize: '12px',
-    lineHeight: '16px',
+    fontSize: {xs: '10px', sm: '12px'},
+    lineHeight: {xs: '14px', sm: '16px'},
     color: '#058205',
     backgroundColor: 'rgba(5, 130, 5, 0.1)',
-    padding: '10px 16px',
+    padding: {xs: '10px 4px', md: '10px 16px'},
     borderRadius: '4px'
   },
   menuPaper: {

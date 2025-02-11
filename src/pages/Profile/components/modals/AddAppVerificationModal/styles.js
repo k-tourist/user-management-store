@@ -71,7 +71,7 @@ export const styles = {
   },
   qrSection: {
     display: 'flex',
-    flexDirection: { xs: 'column', sm: 'row' },
+    flexDirection: 'row',
     gap: { xs: '16px', sm: '24px' },
     backgroundColor: '#F9FAFB',
     padding: { xs: '6px', sm: '6px' },

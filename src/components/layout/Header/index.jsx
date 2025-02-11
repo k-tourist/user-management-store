@@ -1,13 +1,19 @@
-import { Box, Typography, IconButton, Select, MenuItem, Divider, Avatar } from '@mui/material';
+import { Box, Typography, IconButton, Select, MenuItem, Divider, Avatar, useMediaQuery, useTheme } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import MonitorIcon from '@mui/icons-material/Monitor';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { styles } from './styles';
 import { useState } from 'react';
 
 const Header = () => {
   const username = "Abraham Sabel";
+  const theme = useTheme();
   const [selectedName, setSelectedName] = useState("Abrarham Sabel");
+  const isSmall = useMediaQuery('(max-width: 1072px)');
+  const isXSmall = useMediaQuery('(max-width: 724px)');
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
 
   const getInitials = (name) => {
     return name
@@ -21,13 +27,18 @@ const Header = () => {
 
   return (
     <Box sx={styles.header}>
-      <Typography sx={styles.welcomeText}>
-        Welcome {username}!
-      </Typography>
+      <Box sx={styles.leftSection}>
+        {isMobile && <MenuOutlinedIcon sx={styles.menuIcon} />}
+        {!isXSmall && <Typography sx={styles.welcomeText}>
+          Welcome {username}!
+        </Typography>}
+      </Box>
+
+
 
       <Box sx={styles.rightSection}>
         <Box sx={styles.section}>
-          <IconButton 
+          <IconButton
             sx={styles.addButton}
 
             color="primary"
@@ -39,19 +50,21 @@ const Header = () => {
             <HelpOutlineIcon />
           </IconButton>
         </Box>
+        {!isXSmall && <>
+          <Divider orientation="vertical" sx={styles.divider} />
 
-        <Divider orientation="vertical" sx={styles.divider} />
+          <Box sx={styles.section}>
+            <Select
+              value={selectedName}
 
-        <Box sx={styles.section}>
-          <Select
-            value={selectedName}
+              onChange={(e) => setSelectedName(e.target.value)}
+              sx={styles.select}
+            >
+              <MenuItem value="Abrarham Sabel">Abrarham Sabel</MenuItem>
+            </Select>
+          </Box>
+        </>}
 
-            onChange={(e) => setSelectedName(e.target.value)}
-            sx={styles.select}
-          >
-            <MenuItem value="Abrarham Sabel">Abrarham Sabel</MenuItem>
-          </Select>
-        </Box>
 
         <Divider orientation="vertical" sx={styles.divider} />
 
@@ -59,11 +72,12 @@ const Header = () => {
           <Box sx={styles.trialTag}>
 
             <MonitorIcon sx={styles.monitorIcon} />
-            <Typography sx={styles.trialText}>
+            {!isSmall && <Typography sx={styles.trialText}>
               Trial ends in 21 days
-            </Typography>
+            </Typography>}
           </Box>
-          <Avatar 
+
+          <Avatar
             src={avatarUrl}
             alt={username}
             sx={styles.avatar}
@@ -74,6 +88,6 @@ const Header = () => {
       </Box>
     </Box>
   );
-}; 
+};
 
 export default Header;

@@ -9,9 +9,15 @@ export const styles = {
   toolbar: {
     height: '100%'
   },
+  leftSection: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '16px'
+  },
   menuButton: {
     mr: 2
   },
+
   title: {
     flexGrow: 1,
     fontSize: { xs: '1rem', sm: '1.25rem' }

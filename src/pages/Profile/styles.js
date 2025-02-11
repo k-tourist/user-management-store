@@ -1,6 +1,6 @@
 export const styles = {
   wrapper: {
-    p: 3, 
+    p: 2,
     width: '100%'
   },
   tabContainer: {

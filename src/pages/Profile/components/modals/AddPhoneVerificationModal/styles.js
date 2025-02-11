@@ -4,8 +4,8 @@ export const styles = {
     flexDirection: 'column'
   },
   description: {
-    fontSize: '18px',
-    lineHeight: '22px',
+    fontSize: {xs: '16px', sm: '18px'},
+    lineHeight: {xs: '20px', sm: '22px'},
     color: '#6B7280',
     marginTop: '16px',
     marginBottom: '24px'
@@ -17,7 +17,7 @@ export const styles = {
     }
   },
   phoneInputStyle: {
-    width: '480px',
+    width: {sm: '320px', md: '480px'},
     height: '48px',
     fontSize: '16px',
     paddingLeft: '68px',
@@ -29,11 +29,12 @@ export const styles = {
     }
   },
   phoneInputContainer: {
-    width: '480px',
-    marginLeft: '2px'
+    maxWidth: '360px',
+    marginLeft: '2px',
+    marginRight: 'auto',
   },
   phoneInputButton: {
-    width: '60px',
+    marginRight: 'auto',
     border: 'none',
     borderRight: '1px solid #E5E7EB',
     borderRadius: '8px 0 0 8px',
@@ -83,8 +84,8 @@ export const styles = {
     gap: '8px'
   },
   optionalText: {
-    fontSize: '18px',
-    lineHeight: '22px',
+    fontSize: {xs: '16px', sm: '18px'},
+    lineHeight: {xs: '20px', sm: '22px'},
     color: '#204464',
     textDecoration: 'underline',
   },
