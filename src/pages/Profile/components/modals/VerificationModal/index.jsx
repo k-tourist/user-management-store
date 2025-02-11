@@ -133,12 +133,8 @@ export const VerificationModal = ({ open, onClose }) => {
         }
     }, [verificationCode]);
 
-
-
     const renderMethodSelection = () => (
         <Box sx={styles.content}>
-
-
             <RadioGroup
                 value={selectedMethod}
                 onChange={(e) => setSelectedMethod(e.target.value)}
