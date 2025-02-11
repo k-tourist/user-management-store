@@ -5,9 +5,6 @@ import Header from '../Header';
 import Alert from '../../Alert';
 import { styles } from './styles';
 
-const SIDEBAR_WIDTH = 240;
-const HEADER_HEIGHT = 80;
-
 const MainLayout = ({ children }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -23,15 +20,13 @@ const MainLayout = ({ children }) => {
       
       <Box sx={styles.contentContainer}>
         <Sidebar 
-          width={SIDEBAR_WIDTH} 
           open={isSidebarOpen} 
           onClose={() => setIsSidebarOpen(false)}
           variant={isMobile ? 'temporary' : 'permanent'}
         />
         
         <Box sx={styles.mainContent}>
-          <Header 
-            height={HEADER_HEIGHT} 
+          <Header
             onMenuClick={handleSidebarToggle}
             showMenuIcon={isMobile}
           />

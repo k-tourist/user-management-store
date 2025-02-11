@@ -15,7 +15,7 @@ export const styles = {
     gap: '16px'
   },
   menuButton: {
-    mr: 2
+    cursor: 'pointer'
   },
 
   title: {

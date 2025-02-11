@@ -6,14 +6,12 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { styles } from './styles';
 import { useState } from 'react';
 
-const Header = () => {
+const Header = ({ onMenuClick, showMenuIcon }) => {
   const username = "Abraham Sabel";
   const theme = useTheme();
   const [selectedName, setSelectedName] = useState("Abrarham Sabel");
   const isSmall = useMediaQuery('(max-width: 1072px)');
   const isXSmall = useMediaQuery('(max-width: 724px)');
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
 
   const getInitials = (name) => {
     return name
@@ -28,7 +26,7 @@ const Header = () => {
   return (
     <Box sx={styles.header}>
       <Box sx={styles.leftSection}>
-        {isMobile && <MenuOutlinedIcon sx={styles.menuIcon} />}
+        {showMenuIcon && <IconButton onClick={onMenuClick}  sx={styles.menuButton}><MenuOutlinedIcon /></IconButton>}
         {!isXSmall && <Typography sx={styles.welcomeText}>
           Welcome {username}!
         </Typography>}
