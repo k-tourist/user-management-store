@@ -1,6 +1,6 @@
 export const styles = {
   select: {
-    height: { xs: '36px', sm: '40px' },
+    height: { xs: '32px', sm: '36px' },
     backgroundColor: '#F9FAFB',
     '& .MuiSelect-select': {
       padding: { xs: '6px 12px', sm: '8px 12px' },

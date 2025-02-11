@@ -2,7 +2,7 @@ export const styles = {
   button: {
     fontSize: '14px',
     lineHeight: '20px',
-    height: { xs: '36px', sm: '40px' },
+    height: { xs: '32px', sm: '36px' },
     textTransform: 'none'
   },
   primaryVariant: {
@@ -24,7 +24,7 @@ export const styles = {
     }
   },
   smallSize: {
-    height: '31px',
+    height: '28px',
     fontSize: '12px',
     lineHeight: '14.5px',
     padding: '4px 8px',

@@ -1,7 +1,7 @@
 export const styles = {
   container: {
     width: '100%',
-    height: { xs: '48px', sm: '56px' },
+    height: { xs: '40px', sm: '48px' },
     backgroundColor: '#204464',
     display: 'flex',
     alignItems: 'center',
@@ -18,7 +18,7 @@ export const styles = {
     position: 'absolute',
     right: { xs: '8px', sm: '16px' },
     width: { xs: '44px', sm: '54px' },
-    height: { xs: '24px', sm: '27px' },
+    height: { xs: '20px', sm: '24px' },
     backgroundColor: '#E5E7EB',
     color: '#000000',
     fontSize: { xs: '11px', sm: '12px' },

@@ -10,18 +10,20 @@ export const styles = {
     flexDirection: 'column'
   },
   title: {
-    fontSize: '30px',
-    lineHeight: '36px',
+    fontSize: '20px',
+    lineHeight: '24px',
     fontWeight: 600,
     color: '#111827',
-    mb: 1
+    mb: 0.5
   },
+
   description: {
-    fontSize: '18px',
-    lineHeight: '22px',
+    fontSize: '16px',
+    lineHeight: '20px',
     color: '#6B7280',
     maxWidth: '580px'
   },
+
   addButton: {
     height: '40px',
     color: '#6B7280',

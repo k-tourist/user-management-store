@@ -21,7 +21,7 @@ export const styles = {
     gap: { xs: 0.5, sm: 1 }
   },
   header: {
-    height: '72px',
+    height: '60px',
     backgroundColor: '#fff',
     borderBottom: '1px solid #E5E7EB',
     padding: '0 32px',
@@ -45,30 +45,34 @@ export const styles = {
     gap: '16px'
   },
   addButton: {
-    width: '40px',
-    height: '40px',
+    width: '32px',
+    height: '32px',
     backgroundColor: '#204464',
     borderRadius: '8px',
     color: '#fff',
     '&:hover': {
+
       backgroundColor: '#1a3850'
     }
   },
   helpButton: {
     padding: 0,
     '& .MuiSvgIcon-root': {
-      width: '24px',
-      height: '24px',
+      width: '20px',
+      height: '20px',
       color: '#6B7280'
     }
+
   },
   divider: {
-    height: '40px'
+    height: '32px'
   },
+
   select: {
-    height: '40px',
+    height: '32px',
     minWidth: '120px',
     '& .MuiOutlinedInput-root': {
+
       '& fieldset': {
         borderColor: '#E5E7EB'
       },
@@ -81,10 +85,11 @@ export const styles = {
     }
   },
   trialTag: {
-    height: '40px',
+    height: '32px',
     backgroundColor: '#FFF3E0',
     borderRadius: '20px',
     padding: '0 16px',
+
     display: 'flex',
     alignItems: 'center',
     gap: '8px'
@@ -101,11 +106,12 @@ export const styles = {
   },
 
   avatar: {
-    width: '40px',
-    height: '40px',
+    width: '32px',
+    height: '32px',
     backgroundColor: '#204464',
     fontSize: '16px',
     fontWeight: 500,
     color: '#fff'
+
   }
 }; 

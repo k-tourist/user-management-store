@@ -12,7 +12,7 @@ export const styles = {
   sidebar: {
     height: '100vh',
     backgroundColor: '#fff',
-    padding: '24px 16px',
+    padding: '20px 16px',
     display: 'flex',
     flexDirection: 'column'
   },
@@ -20,7 +20,7 @@ export const styles = {
     display: 'flex',
     alignItems: 'center',
     gap: '12px',
-    marginBottom: '40px',
+    marginBottom: '32px',
     paddingLeft: '12px'
   },
   logo: {
@@ -39,7 +39,7 @@ export const styles = {
   menuItem: {
     height: '50px',
     borderRadius: '6px',
-    padding: '12px 20px',
+    padding: '8px 20px',
     cursor: 'pointer',
     display: 'flex',
     gap: '24px',
@@ -62,7 +62,7 @@ export const styles = {
     }
   },
   divider: {
-    margin: '24px 0',
+    margin: '16px 0',
     borderColor: '#E5E7EB'
   },
   sectionTitle: {

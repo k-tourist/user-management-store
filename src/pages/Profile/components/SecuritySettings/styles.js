@@ -6,7 +6,7 @@ export const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    mb: 3
+    mb: 1
   },
   mfaTitle: {
     fontSize: '16px',
@@ -95,7 +95,7 @@ export const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     height: '24px',
-    marginY: '16px',
+    marginY: '12px',
     alignItems: 'center'
   },
   emailInfo: {
@@ -107,8 +107,8 @@ export const styles = {
     }
   },
   emailName: {
-    fontSize: '20px',
-    lineHeight: '24px',
+    fontSize: '16px',
+    lineHeight: '20px',
     color: '#6B7280'
   },
   phoneFlag: {
@@ -145,8 +145,8 @@ export const styles = {
     padding: '0',
     paddingLeft: '30px',
     margin: '0',
-    fontSize: '20px',
-    lineHeight: '24px',
+    fontSize: '16px',
+    lineHeight: '20px',
     color: '#6B7280'
   },
   flagButton: {
@@ -161,8 +161,8 @@ export const styles = {
     }
   },
   phoneNumber: {
-    fontSize: '20px',
-    lineHeight: '24px',
+    fontSize: '16px',
+    lineHeight: '20px',
     color: '#6B7280'
   },
   defaultTextStyle: {

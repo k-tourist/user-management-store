@@ -16,6 +16,6 @@ export const styles = {
   },
   content: {
     flexGrow: 1,
-    p: { xs: 2, sm: 3 }
+    px: { xs: 2, sm: 3 }
   }
 }; 

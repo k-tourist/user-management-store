@@ -5,7 +5,7 @@ export const styles = {
       sm: '685px'
     },
     maxWidth: '685px',
-    minHeight: '252px',
+    // minHeight: '252px',
     borderRadius: '12px',
     p: { xs: 2, sm: 3 },
     m: { xs: 2, sm: 0 }
@@ -14,7 +14,7 @@ export const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    mb: '24px'
+    mb: '12px'
   },
   title: {
     fontSize: '30px',
@@ -37,7 +37,7 @@ export const styles = {
   },
   actions: {
     p: 0,
-    mt: '32px',
+    mt: '24px',
     gap: '12px'
   }
 }; 
