@@ -5,17 +5,17 @@ export const styles = {
   },
   description: {
     fontSize: { xs: '16px', sm: '18px' },
-    lineHeight: { xs: '20px', sm: '22px' },
+    lineHeight: { xs: '18px', sm: '20px' },
     color: '#6B7280',
-    marginTop: '16px',
-    marginBottom: { xs: '20px', sm: '26px' }
+    marginTop: '10px',
+    marginBottom: { xs: '12px', sm: '16px' }
   },
   stepContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: { xs: '6px', sm: '8px' },
     '& + &': {
-      marginTop: { xs: '12px', sm: '16px' }
+      marginTop: { xs: '10px', sm: '12px' }
     }
   },
   stepHeader: {
@@ -29,12 +29,12 @@ export const styles = {
     borderRadius: '16px',
     padding: { xs: '2px 8px', sm: '4px 12px' },
     fontSize: { xs: '12px', sm: '14px' },
-    lineHeight: { xs: '16px', sm: '20px' },
+    lineHeight: { xs: '14px', sm: '16px' },
     color: '#204464'
   },
   stepTitle: {
-    fontSize: { xs: '18px', sm: '20px' },
-    lineHeight: { xs: '22px', sm: '24px' },
+    fontSize: { xs: '14px', sm: '18px' },
+    lineHeight: { xs: '18px', sm: '20px' },
     color: '#111827',
     fontWeight: 500
   },
@@ -42,18 +42,20 @@ export const styles = {
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
-    marginBottom: '12px'
+    marginBottom: '8px'
   },
   stepDescription: {
-    fontSize: { xs: '16px', sm: '18px' },
-    lineHeight: { xs: '20px', sm: '22px' },
+    fontSize: { xs: '14px', sm: '16px' },
+    lineHeight: { xs: '18px', sm: '20px' },
     color: '#6B7280'
   },
+
   requiredText: {
-    fontSize: '14px',
-    lineHeight: '20px',
+    fontSize: '12px',
+    lineHeight: '16px',
     color: '#204464',
     textDecoration: 'underline'
+
   },
   qrContainer: {
     width: { xs: '160px', sm: '194px' },
@@ -72,7 +74,7 @@ export const styles = {
     flexDirection: { xs: 'column', sm: 'row' },
     gap: { xs: '16px', sm: '24px' },
     backgroundColor: '#F9FAFB',
-    padding: { xs: '8px', sm: '10px' },
+    padding: { xs: '6px', sm: '6px' },
     borderRadius: '8px'
   },
   secretKeyContainer: {
@@ -83,11 +85,12 @@ export const styles = {
     justifyContent: 'center'
   },
   cantSeeText: {
-    fontSize: { xs: '14px', sm: '16px' },
-    lineHeight: { xs: '20px', sm: '24px' },
+    fontSize: { xs: '12px', sm: '14px' },
+    lineHeight: { xs: '16px', sm: '20px' },
     fontWeight: 500,
     color: '#111827'
   },
+
   enterKeyText: {
     fontSize: { xs: '12px', sm: '14px' },
     lineHeight: { xs: '16px', sm: '20px' },
@@ -101,18 +104,19 @@ export const styles = {
     letterSpacing: '0.1em',
     border: '1px solid #E5E7EB',
     borderRadius: '6px',
-    padding: { xs: '6px 10px', sm: '8px 12px' },
+    padding: { xs: '2px 10px', sm: '4px 12px' },
     backgroundColor: 'transparent'
   },
   copyButton: {
-    fontSize: '14px',
-    lineHeight: '20px',
+    fontSize: '12px',
+    lineHeight: '16px',
     color: '#204464',
-    padding: '4px 8px',
+    padding: '2px 8px',
     alignSelf: 'flex-start',
     backgroundColor: '#FFFFFF',
     border: '1px solid #E5E7EB',
     borderRadius: '6px',
+
     '&:hover': {
       backgroundColor: '#FFFFFF',
       borderColor: '#204464'
@@ -124,10 +128,11 @@ export const styles = {
     gap: { xs: '8px', sm: '12px' }
   },
   verificationLabel: {
-    fontSize: '18px',
-    lineHeight: '22px',
+    fontSize: '14px',
+    lineHeight: '18px',
     color: '#6B7280'
   },
+
   codeInputContainer: {
     display: 'flex',
     gap: { xs: '6px', sm: '8px' }
@@ -151,10 +156,11 @@ export const styles = {
   },
   labelInput: {
     '& .MuiOutlinedInput-root': {
-      height: { xs: '40px', sm: '48px' },
+      height: { xs: '32px', sm: '36px' },
       width: { xs: '100%', sm: '480px' },
-      fontSize: { xs: '16px', sm: '18px' },
-      lineHeight: { xs: '36px', sm: '44px' },
+      fontSize: { xs: '12px', sm: '16px' },
+      lineHeight: { xs: '16px', sm: '20px' },
+
       '& fieldset': {
         borderColor: '#E5E7EB'
       },
@@ -186,7 +192,7 @@ export const styles = {
     textTransform: 'none'
   },
   verifyButton: {
-    height: '40px',
+    height: '30px',
     fontSize: '14px',
     lineHeight: '17px',
     backgroundColor: '#204464',
