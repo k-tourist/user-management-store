@@ -1,0 +1,5 @@
+{
+    "routes": {
+      "/checkTemplate.html": { "status": 200 }
+    }
+  }
