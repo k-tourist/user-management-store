@@ -1,21 +1,11 @@
-import { Box, Typography, Button } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import { Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import { AddAppVerificationModal } from '../modals/AddAppVerificationModal';
 import { AddEmailVerificationModal } from '../modals/AddEmailVerificationModal';
 import { AddPhoneVerificationModal } from '../modals/AddPhoneVerificationModal';
 import { styles } from './styles';
 
-const CustomAuthList = ({ title, description, type }) => {
-  const [openDialog, setOpenDialog] = useState(false);
-
-  const handleOpenDialog = () => {
-    setOpenDialog(true);
-  };
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
+const CustomAuthList = ({ title, description, type, openDialog, handleCloseDialog }) => {
 
   const renderModal = () => {
     switch (type) {
@@ -41,14 +31,6 @@ const CustomAuthList = ({ title, description, type }) => {
             {description}
           </Typography>
         </Box>
-        <Button
-          variant="outlined"
-          startIcon={<AddIcon />}
-          sx={styles.addButton}
-          onClick={handleOpenDialog}
-        >
-          Add
-        </Button>
       </Box>
 
       {renderModal()}

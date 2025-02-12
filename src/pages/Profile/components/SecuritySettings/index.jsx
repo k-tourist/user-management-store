@@ -1,7 +1,8 @@
-import { Box, Typography, Switch, IconButton, Menu, MenuItem, useMediaQuery } from '@mui/material';
+import { Box, Typography, Switch, IconButton, Menu, MenuItem, useMediaQuery, Button } from '@mui/material';
 import { useState } from 'react';
 import CustomAuthList from '../CustomAuthList';
 import { EmailIcon, GuardIcon, MarkIcon, MoreVerticalIcon } from '../../../../components/Icons';
+import AddIcon from '@mui/icons-material/Add';
 import { EditAppVerificationModal } from '../modals/EditAppVerificationModal';
 import { EditEmailVerificationModal } from '../modals/EditEmailVerificationModal';
 import { EditPhoneVerificationModal } from '../modals/EditPhoneVerificationModal';
@@ -9,6 +10,7 @@ import { DeleteConfirmationModal } from '../modals/DeleteConfirmationModal';
 import { styles } from './styles';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
+import { SelectAddVerificationMethodModal } from '../modals/SelectAddVerificationMethodModal';
 
 const apps = [
   {
@@ -82,8 +84,26 @@ const SecuritySettings = () => {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const isPhone = useMediaQuery('(max-width: 724px)');
-  
+  const [selectedMethod, setSelectedMethod] = useState(null);
+
+  const handleCloseVerificationMethod = () => {
+    setSelectedMethod(null);
+  }
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleSelectAddVerificationMethod = (method) => {
+    setSelectedMethod(method);
+  }
+
   const handleMenuOpen = (event, id, type, item) => {
     setAnchorEl(event.currentTarget);
     setSelectedItemId(id);
@@ -125,11 +145,22 @@ const SecuritySettings = () => {
         <Typography sx={styles.mfaTitle}>
           Multi-Factor Authentication
         </Typography>
-        <Switch
-          checked={mfaEnabled}
-          onChange={(e) => setMfaEnabled(e.target.checked)}
-          sx={styles.switch}
-        />
+        <Box sx={styles.rightSection}>
+          <Switch
+            checked={mfaEnabled}
+            onChange={(e) => setMfaEnabled(e.target.checked)}
+            sx={styles.switch}
+          />
+
+          <Button
+            variant="outlined"
+            startIcon={<AddIcon />}
+            sx={styles.addButton}
+            onClick={handleOpenDialog}
+          >
+            Add
+          </Button>
+        </Box>
       </Box>
 
       <Box sx={styles.authListContainer}>
@@ -137,6 +168,8 @@ const SecuritySettings = () => {
           type="app"
           title="Authenticator App Codes"
           description="Verify one-time codes generated in your preferred third-party authenticator app."
+          openDialog={selectedMethod === 'app'}
+          handleCloseDialog={handleCloseVerificationMethod}
         />
 
         <Box sx={styles.appListContainer}>
@@ -150,7 +183,7 @@ const SecuritySettings = () => {
                 </Box>
               </Box>
 
-              <IconButton 
+              <IconButton
                 sx={styles.moreButton}
                 onClick={(e) => handleMenuOpen(e, app.id, 'app', app)}
               >
@@ -166,6 +199,8 @@ const SecuritySettings = () => {
           type="email"
           title="Email Verification"
           description="Verify one-time codes sent to your registered email address."
+          openDialog={selectedMethod === 'email'}
+          handleCloseDialog={handleCloseVerificationMethod}
         />
         {emails.map((email) => (
           <Box key={email.id} sx={styles.emailRow}>
@@ -177,7 +212,7 @@ const SecuritySettings = () => {
                 <Typography sx={styles.appName}>Home Email</Typography>
               </Box>}
             </Box>
-            <IconButton 
+            <IconButton
               sx={styles.moreButton}
               onClick={(e) => handleMenuOpen(e, email.id, 'email', email)}
             >
@@ -191,6 +226,8 @@ const SecuritySettings = () => {
           type="phone"
           title="Phone Verification"
           description="Verify one-time codes sent to your mobile number."
+          openDialog={selectedMethod === 'phone'}
+          handleCloseDialog={handleCloseVerificationMethod}
         />
         {phones.map((phone) => (
           <Box key={phone.id} sx={styles.emailRow}>
@@ -214,10 +251,10 @@ const SecuritySettings = () => {
                 <MarkIcon />
                 <Typography sx={styles.appName}>{isPhone ? 'official' : 'Official Number'}</Typography>
               </Box>}
-              {phone.default && 
+              {phone.default &&
                 <Typography sx={styles.defaultTextStyle}>Default</Typography>}
             </Box>
-            <IconButton 
+            <IconButton
               sx={styles.moreButton}
               onClick={(e) => handleMenuOpen(e, phone.id, 'phone', phone)}
             >
@@ -254,30 +291,36 @@ const SecuritySettings = () => {
         </MenuItem>
       </Menu>
 
-      <EditAppVerificationModal 
-        open={editModalOpen && selectedItemType === 'app'} 
+      <EditAppVerificationModal
+        open={editModalOpen && selectedItemType === 'app'}
         onClose={handleModalClose}
         app={selectedItem}
       />
-      
-      <EditEmailVerificationModal 
-        open={editModalOpen && selectedItemType === 'email'} 
+
+      <EditEmailVerificationModal
+        open={editModalOpen && selectedItemType === 'email'}
         onClose={handleModalClose}
         email={selectedItem}
       />
-      
-      <EditPhoneVerificationModal 
-        open={editModalOpen && selectedItemType === 'phone'} 
+
+      <EditPhoneVerificationModal
+        open={editModalOpen && selectedItemType === 'phone'}
         onClose={handleModalClose}
         phone={selectedItem}
       />
 
-      <DeleteConfirmationModal 
-        open={deleteModalOpen} 
+      <DeleteConfirmationModal
+        open={deleteModalOpen}
         onClose={handleDeleteModalClose}
+      />
+
+      <SelectAddVerificationMethodModal
+        open={openDialog}
+        onClose={handleCloseDialog}
+        onClickNext={handleSelectAddVerificationMethod}
       />
     </Box>
   );
 };
 
-export default SecuritySettings; 
+export default SecuritySettings;

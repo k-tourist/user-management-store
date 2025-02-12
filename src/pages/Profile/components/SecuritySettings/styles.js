@@ -14,6 +14,11 @@ export const styles = {
     fontWeight: 600,
     color: '#111827'
   },
+  rightSection: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px'
+  },
   switch: {
     '& .MuiSwitch-switchBase.Mui-checked': {
       color: '#204464',
@@ -187,6 +192,18 @@ export const styles = {
     padding: '10px 16px',
     height: '41px',
     '&:hover': {
+      backgroundColor: '#F9FAFB'
+    }
+  },
+  addButton: {
+    height: '40px',
+    color: '#6B7280',
+    border: '1px solid #E5E7EB',
+    textTransform: 'none',
+    fontSize: '14px',
+    lineHeight: '20px',
+    '&:hover': {
+      border: '1px solid #E5E7EB',
       backgroundColor: '#F9FAFB'
     }
   }

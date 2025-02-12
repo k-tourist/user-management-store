@@ -1,7 +1,7 @@
 export const styles = {
   container: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     py: 3
   },
@@ -23,17 +23,4 @@ export const styles = {
     color: '#6B7280',
     maxWidth: '580px'
   },
-
-  addButton: {
-    height: '40px',
-    color: '#6B7280',
-    border: '1px solid #E5E7EB',
-    textTransform: 'none',
-    fontSize: '14px',
-    lineHeight: '20px',
-    '&:hover': {
-      border: '1px solid #E5E7EB',
-      backgroundColor: '#F9FAFB'
-    }
-  }
 }; 
