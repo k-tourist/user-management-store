@@ -40,6 +40,7 @@
             width: 8.5in;
             height: 3.5in;
             border: var(--border-width) solid transparent;
+            border-bottom-color: gray;
             padding: 0.292in 0.625in 0.292in 0.431in;
             position: relative;
             display: flex;
@@ -152,8 +153,20 @@
             line-height: var(--font-small);
         }
 
+        .bottom-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .address {
+            width: 1.3in;
+            margin-left: 1.083in;
+            font-size: var(--font-small);
+            line-height: var(--line-height-small);
+        }
+
         .memo {
-            margin-top: 0.43in;
+            margin-top: 0.8in;
             display: flex;
             margin-bottom: auto;
         }
@@ -180,7 +193,7 @@
         }
 
         .signature-underline {
-            margin-top: 0.56in;
+            margin-top: 1.1in;
             width: 2.6in;
             border: var(--border-width) solid black;
         }
@@ -193,7 +206,7 @@
         }
 
         .routing {
-            margin-top: 0.05in;
+            margin-top: 0.35in;
             padding-left: 0.725in;
             font-size: 0.16667in;
             font-family: 'GnuMICR', monospace;
@@ -256,9 +269,14 @@
         </div>
 
         <div class="d-flex">
-            <div class="memo">
-                <div class="memo-caption">MEMO</div>
-                <div class="memo-underline">Payment</div>
+            <div class="bottom-left">
+                <div class="address">
+                    123 MS Unit 304 New York NY 10001
+                </div>
+                <div class="memo">
+                    <div class="memo-caption">MEMO</div>
+                    <div class="memo-underline">Payment</div>
+                </div>
             </div>
             <div class="signature">
                 <div class="signature-underline"></div>
