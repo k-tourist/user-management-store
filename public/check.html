@@ -38,10 +38,15 @@
 
         .check-container {
             width: 8.5in;
+            height: 11in;
+        }
+
+        .section-one {
+            width: 8.5in;
             height: 3.5in;
             border: var(--border-width) solid transparent;
             border-bottom-color: gray;
-            padding: 0.292in 0.625in 0.292in 0.431in;
+            padding: 0.3in 0.625in 0.2in 0.4in;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -49,41 +54,41 @@
             background-repeat: no-repeat;
         }
 
-        .check-header {
+        .section-one .check-header {
             justify-content: space-between;
             align-items: center;
             margin-right: 0.347in;
-            margin-left: 1.083in;
+            margin-left: 1.0in;
         }
 
-        .bank-name,
-        .check-number {
+        .section-one .bank-name,
+        .section-one .check-number {
             font-size: var(--font-medium);
             font-weight: 600;
         }
 
-        .bank-info {
+        .section-one .bank-info {
             display: flex;
         }
 
-        .bank-addr {
+        .section-one .bank-addr {
             width: 2.569in;
             font-size: var(--font-small);
             line-height: var(--line-height-small);
         }
 
-        .key-bank {
+        .section-one .key-bank {
             margin-top: 0.056in;
             font-size: var(--font-small);
             line-height: var(--font-small);
         }
 
-        .city {
+        .section-one .city {
             font-size: var(--font-small);
             line-height: var(--font-small);
         }
 
-        .date {
+        .section-one .date {
             display: flex;
             margin-right: 0.111in;
             justify-content: flex-end;
@@ -92,20 +97,20 @@
             gap: 0.056in;
         }
 
-        .date-underline {
+        .section-one .date-underline {
             width: 0.903in;
             font-size: var(--font-small);
             border-bottom: var(--border-width) solid black;
         }
 
-        .pay-info {
+        .section-one .pay-info {
             display: flex;
             flex-direction: column;
             padding: 0.222in 0.097in 0 0.069in;
             margin-bottom: 0.1in;
         }
 
-        .pay-to {
+        .section-one .pay-to {
             display: flex;
             gap: 0.028in;
             font-size: var(--font-small);
@@ -113,7 +118,7 @@
             margin-bottom: 0.167in;
         }
 
-        .pay-to-underline {
+        .section-one .pay-to-underline {
             width: 3.889in;
             padding: 0 0.1in;
             font-size: var(--font-small);
@@ -121,7 +126,7 @@
             border-bottom: var(--border-width) solid black;
         }
 
-        .pay-amount {
+        .section-one .pay-amount {
             display: flex;
             align-items: center;
             gap: 0.042in;
@@ -129,7 +134,7 @@
             line-height: 0.361in;
         }
 
-        .pay-amount-input {
+        .section-one .pay-amount-input {
             border: 0.028in solid black;
             width: 1.194in;
             height: 0.333in;
@@ -137,7 +142,7 @@
             margin-right: -0.028in;
         }
 
-        .dollar-underline {
+        .section-one .dollar-underline {
             width: 5.972in;
             padding: 0 0.1in;
             font-size: var(--font-small);
@@ -147,37 +152,36 @@
             margin-right: 0.028in;
         }
 
-        .dollar {
+        .section-one .dollar {
             margin-top: 0.056in;
             font-size: var(--font-small);
             line-height: var(--font-small);
         }
 
-        .bottom-left {
+        .section-one .bottom-left {
             margin-top: 0.15in;
             display: flex;
             flex-direction: column;
         }
 
-        .address {
-            width: 1.3in;
-            margin-left: 1.083in;
+        .section-one .address {
+            margin-left: 1.0in;
             font-size: var(--font-small);
             line-height: var(--line-height-small);
         }
 
-        .memo {
+        .section-one .memo {
             margin-top: 0.25in;
             display: flex;
             margin-bottom: auto;
         }
 
-        .memo-caption {
+        .section-one .memo-caption {
             font-size: var(--font-small);
             margin-right: 0.028in;
         }
 
-        .memo-underline {
+        .section-one .memo-underline {
             width: 2.5in;
             padding: 0 0.1in;
             font-size: var(--font-small);
@@ -185,7 +189,7 @@
             border-bottom: var(--border-width) solid black;
         }
 
-        .signature {
+        .section-one .signature {
             display: flex;
             flex-direction: column;
             gap: 0.028in;
@@ -193,20 +197,20 @@
             margin-left: auto;
         }
 
-        .signature-underline {
+        .section-one .signature-underline {
             margin-top: 0.9in;
             width: 2.6in;
             border: var(--border-width) solid black;
         }
 
-        .signature-caption {
+        .section-one .signature-caption {
             font-size: var(--font-small);
             line-height: var(--line-height-small);
             margin-left: auto;
             margin-right: auto;
         }
 
-        .routing {
+        .section-one .routing {
             margin-top: 0.2in;
             padding-left: 0.2in;
             text-align: center;
@@ -214,6 +218,186 @@
             font-family: 'GnuMICR', monospace;
         }
 
+        .section-two {
+            width: 8.5in;
+            height: 3.5in;
+            border: var(--border-width) solid transparent;
+            border-bottom-color: gray;
+            padding: 0.3in 0.1in 1.0in 1.4in;
+            position: relative;
+            display: flex;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-size: var(--font-small);
+            line-height: var(--line-height-small);
+        }
+
+        .section-two .address {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 0;
+        }
+
+        .section-two .pay-captions {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 1.0in;
+            margin-left: auto;
+            gap: 0.5in;
+        }
+
+        .section-two .pay-data {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 1.28in;
+            gap: 0.5in;
+        }
+
+        .section-two .check-captions {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 1.28in;
+            gap: 0.02in;
+        }
+
+        .section-two .check-data {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 0.7in;
+            gap: 0.02in;
+        }
+        
+        .section-three {
+            width: 8.5in;
+            height: 4.0in;
+            border: var(--border-width) solid transparent;
+            border-bottom-color: gray;
+            padding: 0.8in 0.1in 1.0in 1.4in;
+            position: relative;
+            display: flex;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-size: var(--font-small);
+            line-height: var(--line-height-small);
+        }
+
+        .section-three .address {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 0;
+        }
+
+        .section-three .pay-captions {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 1.0in;
+            margin-left: auto;
+            gap: 0.5in;
+        }
+
+        .section-three .pay-data {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            width: 1.28in;
+            gap: 0.5in;
+        }
+
+        .section-three .check-captions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.02in;
+            width: 1.28in;
+        }
+
+        .section-three .check-data {
+            display: flex;
+            flex-direction: column;
+            gap: 0.02in;
+            width: 0.7in;
+        }
+        /* .section-three {
+            width: 8.5in;
+            height: 4in;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 0.1in 0.12in 0.3in 0.12in;
+            display: flex;
+            font-size: var(--font-small);
+            line-height: var(--line-height-small);
+        }
+
+        .section-three .left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 1.28in;
+            font-size: var(--font-medium);
+            font-weight: 600;
+            line-height: var(--line-height-small);
+        }
+
+        .section-three .right {
+            width: 0.85in;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: var(--line-height-small);
+            font-size: var(--font-medium);
+            line-height: var(--line-height-small);
+            font-weight: 600;
+        }
+
+        .section-three .middle {
+            padding-bottom: 1in;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .section-three .date {}
+
+        .section-three .memo {}
+
+        .section-three .memo-caption {}
+
+        .section-three .memo-data {}
+
+        .section-three .check-number {
+            text-align: right;
+        }
+
+        .section-three .amount {
+            text-align: right;
+        }
+
+        .section-three .name {
+            padding-bottom: 0.4in;
+            text-align: right;
+            font-size: var(--font-medium);
+            font-weight: 600;
+            line-height: var(--line-height-small);
+        }
+
+        .section-three .pay-to {
+            display: flex;
+        }
+
+        .section-three .pay-from {
+            display: flex;
+        }
+
+        .section-three .pay-to-caption, .section-three .pay-from-caption {
+            width: 2.0in;
+        } */
 
         @font-face {
             font-family: 'GnuMICR';
@@ -233,59 +417,232 @@
 
 <body>
     <div class="check-container">
-        <div class="check-header">
-            <div class="d-flex justify-between">
-                <div class="bank-name">Rebuild Associates Inc</div>
-                <div class="check-number">1037</div>
+        <div class="section-one">
+            <div class="check-header">
+                <div class="d-flex justify-between">
+                    <div class="bank-name">Kovetz AI Yad</div>
+                    <div class="check-number">1037</div>
+                </div>
+                <div class="bank-info">
+                    <div class="bank-addr">69 brookeside ave</div>
+                    <div class="key-bank">KEY BANK</div>
+                </div>
+                <div class="city">Plggotts, Saint George Parish 52984</div>
             </div>
-            <div class="bank-info">
-                <div class="bank-addr">123 MS Unit 304</div>
-                <div class="key-bank">KEY BANK</div>
+
+            <div class="date">
+                <div>DATE</div>
+                <div class="date-underline">Feb 4, 2025</div>
             </div>
-            <div class="city">New York NY 10001</div>
-        </div>
 
-        <div class="date">
-            <div>DATE</div>
-            <div class="date-underline">Feb 4, 2025</div>
-        </div>
-
-        <div class="pay-info">
-            <div class="d-flex justify-between">
-                <div class="pay-to">
-                    <div>PAY TO THE<br>ORDER OF</div>
-                    <div class="pay-to-underline">
-                        <br>
-                        Sample Check
+            <div class="pay-info">
+                <div class="d-flex justify-between">
+                    <div class="pay-to">
+                        <div>PAY TO THE<br>ORDER OF</div>
+                        <div class="pay-to-underline">
+                            <br>
+                            Sample Check
+                        </div>
+                    </div>
+                    <div class="pay-amount">
+                        <div>$</div>
+                        <input class="pay-amount-input" value="609.00" />
                     </div>
                 </div>
-                <div class="pay-amount">
-                    <div>$</div>
-                    <input class="pay-amount-input" value="609.00" />
+                <div class="d-flex">
+                    <div class="dollar-underline">six hundred and nine & 00/100</div>
+                    <div class="dollar">DOLLARS</div>
                 </div>
             </div>
+
             <div class="d-flex">
-                <div class="dollar-underline">six hundred and nine & 00/100</div>
-                <div class="dollar">DOLLARS</div>
+                <div class="bottom-left">
+                    <div class="address">
+                        <div class="address1">
+                            69 brookeside ave
+                        </div>
+                        <div class="address2">
+                            Plggotts, Saint George Parish 52984
+                        </div>
+                    </div>
+                    <div class="memo">
+                        <div class="memo-caption">MEMO</div>
+                        <div class="memo-underline">Payment</div>
+                    </div>
+                </div>
+                <div class="signature">
+                    <div class="signature-underline"></div>
+                </div>
+            </div>
+
+            <div class="routing">C1037C&nbsp;A021000021A&nbsp;4324567532985C</div>
+        </div>
+        <div class="section-two">
+            <!-- <div class="section-two-container">
+                <div class="top">
+                    <div class="bank">
+                        Kovetz AI Yad
+                    </div>
+                    <div class="address">
+                        69 brookeside ave
+                    </div>
+                    <div class="addres2">
+                        Plggotts, Saint George Parish 52984
+                    </div>
+                </div>
+                <div class="name">
+                    Abraham Sabel
+                </div>
+            </div> -->
+
+            <div class="address">
+                <div class="address1">
+                    69 brookeside ave
+                </div>
+                <div class="address2">
+                    Plggotts, Saint George Parish 52984
+                </div>
+            </div>
+            <div class="pay-captions">
+                <div class="pay-to">
+                    Pay To
+                </div>
+                <div class="pay-from">
+                    Pay From
+                </div>
+            </div>
+            <div class="pay-data">
+                <div class="pay-to">
+                    Abraham Sabel
+                </div>
+                <div class="pay-from">
+                    Kovetz Al Yad
+                </div>
+            </div>
+            <div class="check-captions">
+                <div class="check-number">
+                    Check No.
+                </div>
+                <div class="date">
+                    Date.
+                </div>
+                <div class="check-memo">
+                    Check Memo.
+                </div>
+                <div class="check-amount">
+                    Check Amount.
+                </div>
+            </div>
+            <div class="check-data">
+                <div class="check-number">
+                    1037
+                </div>
+                <div class="date">
+                    2/12/2025
+                </div>
+                <div class="check-memo">
+                    Payment
+                </div>
+                <div class="check-amount">
+                    250.00
+                </div>
             </div>
         </div>
 
-        <div class="d-flex">
-            <div class="bottom-left">
-                <div class="address">
-                    123 MS Unit 304 New York NY 10001
+        <div class="section-three">
+            <div class="address">
+                <div class="address1">
+                    69 brookeside ave
+                </div>
+                <div class="address2">
+                    Plggotts, Saint George Parish 52984
+                </div>
+            </div>
+            <div class="pay-captions">
+                <div class="pay-to">
+                    Pay To
+                </div>
+                <div class="pay-from">
+                    Pay From
+                </div>
+            </div>
+            <div class="pay-data">
+                <div class="pay-to">
+                    Abraham Sabel
+                </div>
+                <div class="pay-from">
+                    Kovetz Al Yad
+                </div>
+            </div>
+            <div class="check-captions">
+                <div class="check-number">
+                    Check No.
+                </div>
+                <div class="date">
+                    Date.
+                </div>
+                <div class="check-memo">
+                    Check Memo.
+                </div>
+                <div class="check-amount">
+                    Check Amount.
+                </div>
+            </div>
+            <div class="check-data">
+                <div class="check-number">
+                    1037
+                </div>
+                <div class="date">
+                    2/12/2025
+                </div>
+                <div class="check-memo">
+                    Payment
+                </div>
+                <div class="check-amount">
+                    250.00
+                </div>
+            </div>
+        </div>
+        <!-- <div class="section-three">
+            <div class="left">
+                <div class="date">
+                    2/12/2025
                 </div>
                 <div class="memo">
-                    <div class="memo-caption">MEMO</div>
-                    <div class="memo-underline">Payment</div>
+                    <div class="memo-caption">
+                        memo:
+                    </div>
+                    <div class="bank1">
+                        Kovetz AI Yad
+                    </div>
                 </div>
             </div>
-            <div class="signature">
-                <div class="signature-underline"></div>
+            <div class="middle">
+                <div class="name">
+                    Abraham Sabel
+                </div>
+                
+                <div class="pay-from">
+                    <div class="pay-from-caption">Pay From</div>
+                    <div class="pay-from-data">
+                        <div class="bank2">Kovetz Al Yad</div>
+                        <div class="address1">69 brookeside ave,</div>
+                        <div class="address2">Plggotts, Saint George Parish 52984</div>
+                        <div class="address3"></div>
+                    </div>
+                </div>
+                <div class="pay-to">
+                    <div class="pay-to-caption">
+                        Pay To
+                    </div>
+                    <div class="pay-to-name">Abraham Sabel</div>
+                </div>
             </div>
-        </div>
-
-        <div class="routing">C1037C&nbsp;A02384A&nbsp;C4AC324567532985C</div>
+            <div class="right">
+                <div class="check-number">1037</div>
+                <div class="amount">250.00</div>
+            </div>
+        </div> -->
     </div>
 </body>
 
