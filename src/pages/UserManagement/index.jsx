@@ -65,7 +65,7 @@ const mockUsers = [
   },
 ];
 
-const roles = ['User', 'Admin', 'Super Admin'];
+const roles = ['User', 'Super Admin'];
 
 const CURRENT_USER_ID = 2; // Making the second user as current user
 
