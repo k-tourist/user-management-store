@@ -33,7 +33,7 @@ export const styles = {
     }
   },
   content: {
-    p: 0
+    p: 1, //some small dialogs has scroll if 0
   },
   actions: {
     p: 0,

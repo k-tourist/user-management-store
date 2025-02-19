@@ -1,8 +1,11 @@
 export const styles = {
   container: {
-    mt: 3
+    mt: 2,
+    p: 2,
+    border: '1px solid #E5E7EB',
+    borderRadius: '8px',
   },
-  mfaContainer: {
+  mfaHeaderContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -13,6 +16,12 @@ export const styles = {
     lineHeight: '24px',
     fontWeight: 600,
     color: '#111827'
+  },
+  mfaDescription: {
+    fontSize: '14px',
+    lineHeight: '18px',
+    color: '#000',
+    opacity: '0.6'
   },
   rightSection: {
     display: 'flex',
@@ -200,8 +209,9 @@ export const styles = {
     color: '#6B7280',
     border: '1px solid #E5E7EB',
     textTransform: 'none',
-    fontSize: '14px',
-    lineHeight: '20px',
+    fontSize: '12px',
+    lineHeight: '16px',
+    fontWeight: 600,
     '&:hover': {
       border: '1px solid #E5E7EB',
       backgroundColor: '#F9FAFB'
