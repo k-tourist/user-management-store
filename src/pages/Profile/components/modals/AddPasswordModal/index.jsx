@@ -145,6 +145,8 @@ export const AddPasswordModal = ({ open, onClose, isNew = false }) => {
                       </InputAdornment>
                     ),
                   }}
+                  error={currentPassword === newPassword}
+                  helperText={currentPassword && currentPassword === newPassword ? "The new password must be different from the old password." : ""}
                 />
 
                 <Typography sx={styles.stepTitle}>
