@@ -206,14 +206,14 @@ export const styles = {
   },
   addButton: {
     height: '40px',
-    color: '#6B7280',
-    border: '1px solid #E5E7EB',
+    color: 'rgb(32, 32, 32)',
+    border: '1px solid rgb(32, 32, 32)',
     textTransform: 'none',
     fontSize: '12px',
     lineHeight: '16px',
     fontWeight: 600,
     '&:hover': {
-      border: '1px solid #E5E7EB',
+      border: '1px solid rgb(12, 12, 12)',
       backgroundColor: '#F9FAFB'
     }
   }

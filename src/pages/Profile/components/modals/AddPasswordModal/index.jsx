@@ -91,7 +91,7 @@ export const AddPasswordModal = ({ open, onClose, isNew = false }) => {
     <CustomDialog
       open={open}
       onClose={onClose}
-      title={!isEmailVerified ? "Verify Your Email" : isNew ? "Set Your Password" : "Change Your Password"}
+      title={!isEmailVerified ? "Verify Your Email" : (isNew ? "Set Your Password" : "Change Your Password")}
       content={
         <Box sx={styles.content}>
           {isEmailVerified ? (
@@ -111,7 +111,7 @@ export const AddPasswordModal = ({ open, onClose, isNew = false }) => {
                     type={showCurrentPassword ? "text" : "password"} // Toggle password visibility
                     value={currentPassword}
                     onChange={handleCurrentPasswordChange}
-                    sx={{...styles.passwordInput}}
+                    sx={{ ...styles.passwordInput }}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -131,7 +131,7 @@ export const AddPasswordModal = ({ open, onClose, isNew = false }) => {
                 </Typography>
                 <TextField
                   fullWidth
-                  placeholder="Enter your password"
+                  placeholder="Enter New password"
                   type={showPassword ? "text" : "password"} // Toggle password visibility
                   value={newPassword}
                   onChange={handleNewPasswordChange}
@@ -145,7 +145,7 @@ export const AddPasswordModal = ({ open, onClose, isNew = false }) => {
                       </InputAdornment>
                     ),
                   }}
-                  error={currentPassword === newPassword}
+                  error={currentPassword && currentPassword === newPassword}
                   helperText={currentPassword && currentPassword === newPassword ? "The new password must be different from the old password." : ""}
                 />
 
@@ -233,7 +233,7 @@ export const AddPasswordModal = ({ open, onClose, isNew = false }) => {
             sx={styles.verifyButton}
             disabled={!isEmailVerified && !!emailError}
           >
-            {isEmailVerified ? 'Verify' : 'Send Verification Code'}
+            {isEmailVerified ? (isNew ? 'Save Password' : 'Change Password') : 'Send Verification Code'}
           </Button>
         </>
       }

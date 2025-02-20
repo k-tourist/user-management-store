@@ -90,6 +90,8 @@ const SecuritySettings = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [showAddPasswordModal, setShowAddPasswordModal] = useState(false);
 
+  const isNew = true;
+
   const handleCloseVerificationMethod = () => {
     setSelectedMethod(null);
   }
@@ -154,7 +156,7 @@ const SecuritySettings = () => {
               sx={styles.addButton}
               onClick={() => setShowAddPasswordModal(true)}
             >
-              Change Your Password
+              {isNew ? 'Create Password' : 'Change Password'}
             </Button>
           </Box>
         </Box>
@@ -344,7 +346,7 @@ const SecuritySettings = () => {
           onClose={handleCloseDialog}
           onClickNext={handleSelectAddVerificationMethod}
         />
-        <AddPasswordModal open={showAddPasswordModal} onClose={() => setShowAddPasswordModal(false)} isNew={false} />
+        <AddPasswordModal open={showAddPasswordModal} onClose={() => setShowAddPasswordModal(false)} isNew={isNew} />
       </Box>
     </>
   );
