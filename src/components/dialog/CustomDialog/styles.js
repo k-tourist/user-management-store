@@ -20,7 +20,10 @@ export const styles = {
     fontSize: {xs: '24px', sm: '30px'},
     lineHeight: {xs: '28px', sm: '36px'},
     fontWeight: 600,
-    color: '#111827',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '5px',
+    color: '#000000DE',
     p: 0,
     m: 0
   },

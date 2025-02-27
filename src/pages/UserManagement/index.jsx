@@ -138,7 +138,8 @@ const UserManagement = () => {
     setAnchorEl(null);
   };
 
-  const renderCell = (row, column, isCurrentUser) => {
+  const renderCell = (row, column) => {
+    const isCurrentUser = (row.id === CURRENT_USER_ID);
     switch (column.id) {
       case 'role':
         return (
@@ -154,7 +155,7 @@ const UserManagement = () => {
         );
       case 'actions':
         return (
-          <Tooltip 
+          <Tooltip
             title={isCurrentUser ? "You cannot demote yourself from Super Admin" : ""}
             placement="bottom"
             arrow
@@ -356,7 +357,6 @@ const UserManagement = () => {
         ]}
         data={users}
         renderCell={renderCell}
-        currentUserId={CURRENT_USER_ID}
       />
 
       <Box sx={styles.paginationContainer}>

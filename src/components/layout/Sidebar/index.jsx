@@ -28,7 +28,7 @@ import { styles } from './styles';
 const menuItems = [
   { title: 'Dashboard', icon: <DashboardOutlinedIcon /> },
   { title: 'Create a Check', icon: <ControlPointIcon /> },
-  { title: 'My Checks', icon: <WysiwygIcon /> },
+  { title: 'My Checks', icon: <WysiwygIcon />, url: '/my-checks' },
   { title: 'Payee List', icon: <FormatListBulletedIcon /> },
   { title: 'Bank Accounts', icon: <AccountBalanceOutlinedIcon /> },
   { title: 'My Tags', icon: <LocalOfferOutlinedIcon /> },
@@ -73,7 +73,7 @@ const Sidebar = ({ open, onClose, variant }) => {
 
       <List sx={styles.menuList}>
         {menuItems.map((item) => (
-          <ListItem key={item.title} sx={styles.menuItem}>
+          <ListItem key={item.title} sx={styles.menuItem} onClick={() => handleItemClick(item.url)}>
             <ListItemIcon sx={styles.menuIcon}>
               {item.icon}
             </ListItemIcon>

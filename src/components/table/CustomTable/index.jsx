@@ -8,15 +8,15 @@ import {
 } from '@mui/material';
 import { styles } from './styles';
 
-export const CustomTable = ({ columns, data, renderCell, currentUserId }) => {
+export const CustomTable = ({ columns, data, renderCell, renderHeaderCell, isCenteredCells = false }) => {
   return (
     <TableContainer sx={styles.container}>
       <Table>
         <TableHead>
           <TableRow sx={styles.headerRow}>
             {columns.map((column) => (
-              <TableCell key={column.id} width={column.width}>
-                {column.label}
+              <TableCell key={`table-header-${column.id}`} width={column.width} align={isCenteredCells ? 'center' : 'left'}>
+                {renderHeaderCell ? renderHeaderCell(column) : column.label}
               </TableCell>
             ))}
           </TableRow>
@@ -28,8 +28,8 @@ export const CustomTable = ({ columns, data, renderCell, currentUserId }) => {
               sx={styles.bodyRow}
             >
               {columns.map((column) => (
-                <TableCell key={`${row.id}-${column.id}`}>
-                  {renderCell ? renderCell(row, column, row.id === currentUserId) : row[column.id]}
+                <TableCell key={`${row.id}-${column.id}`} align={isCenteredCells ? 'center' : 'left'}>
+                  {renderCell ? renderCell(row, column) : row[column.id]}
                 </TableCell>
               ))}
             </TableRow>
