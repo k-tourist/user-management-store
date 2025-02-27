@@ -18,7 +18,7 @@ export const styles = {
   description: {
     fontSize: '16px',
     lineHeight: '20px',
-    color: '#000000'
+    color: '#000000CD'
   },
   input: {
     '& .MuiOutlinedInput-root': {

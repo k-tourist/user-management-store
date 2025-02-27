@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { styles } from './styles';
 
-export const CustomTable = ({ columns, data, renderCell, renderHeaderCell, isCenteredCells = false }) => {
+export const CustomTable = ({ columns, data, renderCell, renderHeaderCell, isCenteredCells = false}) => {
   return (
     <TableContainer sx={styles.container}>
       <Table>
@@ -25,7 +25,7 @@ export const CustomTable = ({ columns, data, renderCell, renderHeaderCell, isCen
           {data.map((row) => (
             <TableRow
               key={row.id}
-              sx={styles.bodyRow}
+              sx={{...styles.bodyRow, backgroundColor: ~row.id ? 'transparent' : '#F9FAFB'}}
             >
               {columns.map((column) => (
                 <TableCell key={`${row.id}-${column.id}`} align={isCenteredCells ? 'center' : 'left'}>
