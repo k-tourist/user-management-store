@@ -151,11 +151,11 @@ const MyChecks = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'Mailed':
-        return '#B31F0D';
+      case 'Printed':
+        return '#EF6C00';
       case 'Submitted':
         return '#058205';
-      case 'Printed':
+      case 'Mailed':
         return '#204464';
       default:
         return theme.palette.text.primary;
