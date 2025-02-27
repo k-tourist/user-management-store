@@ -33,7 +33,7 @@ const menuItems = [
   { title: 'Bank Accounts', icon: <AccountBalanceOutlinedIcon /> },
   { title: 'My Tags', icon: <LocalOfferOutlinedIcon /> },
   { title: 'Check Register', icon: <LibraryBooksOutlinedIcon /> },
-  { title: 'All Mails', icon: <LocalShippingOutlinedIcon /> },
+  { title: 'All Mails', icon: <LocalShippingOutlinedIcon />, url: '/all-mails' },
 ];
 
 const receivablesItems = [
