@@ -131,6 +131,17 @@ export const SendMailModal = ({ open, onClose, checks, onConfirm }) => {
   };
 
   const renderCell = (row, column) => {
+    if (row.no < 0) {
+      //this is total amount
+      if (column.id === 'amount') {
+        return <Typography sx={{ color: '#204464', fontWeight: '600' }}>${row.amount}</Typography>;
+      } else if (column.id === 'issuedDate') {
+        return <Box sx={{ width: '100%', display: 'flex', flex: '1', paddingLeft: '180px' }}>Total: </Box>;
+      }
+      else {
+        return null;
+      }
+    }
     switch (column.id) {
       case "selected":
         return (
@@ -184,33 +195,21 @@ export const SendMailModal = ({ open, onClose, checks, onConfirm }) => {
                 : `You have selected ${checks.length} checks for mailing.`}
             </Typography>
             <CustomTable
-              columns={
-                !step
-                  ? [
-                      { id: "selected", label: "", width: "40px" },
-                      { id: "no", label: "Check No.", width: "60px" },
-                      { id: "payeeName", label: "Payee Name", width: "120px" },
-                      {
-                        id: "mailedDate",
-                        label: "Mailed Date",
-                        width: "100px",
-                      },
-                      { id: "status", label: "Status", width: "70px" },
-                      { id: "amount", label: "Amount", width: "60px" },
-                    ]
-                  : [
-                      { id: "selected", label: "", width: "40px" },
-                      { id: "no", label: "Check No.", width: "60px" },
-                      { id: "payeeName", label: "Payee Name", width: "120px" },
-                      {
-                        id: "issuedDate",
-                        label: "Issued Date",
-                        width: "100px",
-                      },
-                      { id: "amount", label: "Amount", width: "60px" },
-                    ]
+              columns={!step ? [
+                { id: 'selected', label: '', width: '40px' },
+                { id: 'no', label: 'Check No.', width: '60px' },
+                { id: 'payeeName', label: 'Payee Name', width: '120px' },
+                { id: 'mailedDate', label: 'Mailed Date', width: '100px' },
+                { id: 'status', label: 'Status', width: '70px' },
+                { id: 'amount', label: 'Amount', width: '60px' },
+              ] : [
+                { id: 'selected', label: '', width: '40px' },
+                { id: 'no', label: 'Check No.', width: '60px' },
+                { id: 'payeeName', label: 'Payee Name', width: '120px' },
+                { id: 'issuedDate', label: 'Issued Date', width: '100px' },
+                { id: 'amount', label: 'Amount', width: '80px' }]
               }
-              data={totalChecks}
+              data={!step ? totalChecks : [...totalChecks, { id: -1, no: -1, amount: selectedChecks.reduce((acc, c) => acc + parseFloat(c.amount.replace('$', '')), 0).toFixed(2) }]}
               renderCell={renderCell}
               renderHeaderCell={renderHeaderCell}
               isCenteredCells={true}
@@ -219,6 +218,7 @@ export const SendMailModal = ({ open, onClose, checks, onConfirm }) => {
               {!step
                 ? "*  If you proceed, an additional mailing charge will be applied to your invoice."
                 : "* Mailing charges apply only when checks are mailed. The cost will be reflected in your next invoice."}
+
             </Typography>
           </Box>
         </Box>
