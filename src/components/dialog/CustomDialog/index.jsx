@@ -12,6 +12,7 @@ import { styles } from './styles';
 export const CustomDialog = ({
   open,
   onClose,
+  modalIcon,
   title,
   content,
   actions,
@@ -28,7 +29,7 @@ export const CustomDialog = ({
     >
       <Box sx={styles.header}>
         <DialogTitle sx={styles.title}>
-          {title}
+          {modalIcon ? modalIcon : null} {title}
         </DialogTitle>
         <IconButton
           onClick={onClose}

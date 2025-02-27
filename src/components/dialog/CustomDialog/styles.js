@@ -20,7 +20,10 @@ export const styles = {
     fontSize: {xs: '24px', sm: '30px'},
     lineHeight: {xs: '28px', sm: '36px'},
     fontWeight: 600,
-    color: '#111827',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '5px',
+    color: '#000000DE',
     p: 0,
     m: 0
   },
@@ -33,7 +36,7 @@ export const styles = {
     }
   },
   content: {
-    p: 0
+    p: 1, //some small dialogs has scroll if 0
   },
   actions: {
     p: 0,
