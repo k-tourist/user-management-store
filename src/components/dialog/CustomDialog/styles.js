@@ -2,9 +2,10 @@ export const styles = {
   paper: {
     width: {
       xs: '100%',
-      sm: '685px'
+      sm: '685px',
+      md: '765px'
     },
-    maxWidth: '685px',
+    maxWidth: '785px',
     // minHeight: '252px',
     borderRadius: '12px',
     p: { xs: 2, sm: 3 },

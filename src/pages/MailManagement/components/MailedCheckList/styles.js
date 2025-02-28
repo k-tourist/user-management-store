@@ -24,7 +24,7 @@ export const styles = {
       xs: '20px',
       sm: '22px'
     },
-    maxWidth: '710px',
+    maxWidth: '800px',
     mb: '48px'
   },
   actionContainer: {
@@ -82,24 +82,25 @@ export const styles = {
   },
   actionButtons: {
     display: 'flex',
-    gap: '12px'
+    gap: '12px',
+    marginLeft: 'auto',
   },
-  actionCancelButton: {
-    color: '#B31F0D',
-    border: '1px solid #B31F0D',
-    backgroundColor: '#B31F0D0D',
+  actionButton: {
+    color: '#000000CE',
+    border: '1px solid #0000005A',
+    backgroundColor: '#0000000D',
     svg: {
-      stroke: '#B31F0D',
+      stroke: '#000000',
     },
     '&:hover' : {
-      backgroundColor: '#B31F0D1A',
-      borderColor: '#B31F0D',
+      backgroundColor: '#0000001A',
+      borderColor: '#000000',
     },
     '&:disabled' : {
-      color: '#B31F0D1A',
+      color: '#0000001A',
       svg: {
-        color: '#B31F0D1A',
-        stroke: '#B31F0D1A',
+        color: '#0000001A',
+        stroke: '#0000001A',
       }
     }
   },
@@ -111,6 +112,14 @@ export const styles = {
     '& .MuiPagination-ul': {
       gap: 0
     }
+  },
+  filterContainer: {
+    minWidth: { xs: "40px", sm: "97px" },
+    padding: { xs: 0, sm: "8px 12px" },
+    "& .MuiButton-endIcon": {
+      margin: { xs: 0, sm: "-4px -4px -4px 8px" },
+      justifyContent: { xs: "center", sm: "flex-start" },
+    },
   },
   popoverPaper: {
     width: '343px',
@@ -294,6 +303,62 @@ export const styles = {
   pagination: {
     '& .MuiPagination-ul': {
       gap: 0
+    }
+  },
+  tabContainer: {
+    width: '100%',
+    maxWidth: '1040px',
+    borderBottom: '1px solid #777777',
+    mb: 3
+  },
+  tabs: {
+    width: 'auto', // Changed from 100% to auto to not force full width
+    minHeight: 'unset',
+    '& .MuiTabs-indicator': {
+      backgroundColor: 'transparent'
+    },
+    '& .MuiTabs-flexContainer': {
+      gap: '24px', // Space between tabs
+      justifyContent: 'flex-start' // Align tabs to the left
+    },
+    '& .MuiTab-root': {
+      textTransform: 'none',
+      fontSize: {sm: '14px', xs: '12px'},
+      lineHeight: {sm: '20px', xs: '16px'},
+      padding: {sm: '10px 20px', xs: '4px 8px'}, // 20px padding on sides
+      minWidth: 'unset',
+      minHeight: 'unset',
+      borderBottom: '2px solid transparent',
+      '&.tab-all': {
+        color: '#777777',
+        '&.Mui-selected': {
+          borderBottom: '2px solid #777777'
+        }
+      },
+      '&.tab-submitted': {
+        color: '#058205',
+        '&.Mui-selected': {
+          borderBottom: '2px solid #058205'
+        }
+      },
+      '&.tab-processing': {
+        color: '#EF6C00',
+        '&.Mui-selected': {
+          borderBottom: '2px solid #EF6C00'
+        }
+      },
+      '&.tab-mailed': {
+        color: '#204464',
+        '&.Mui-selected': {
+          borderBottom: '2px solid #204464'
+        }
+      },
+      '&.tab-cancelled': {
+        color: '#F03D3E',
+        '&.Mui-selected': {
+          borderBottom: '2px solid #F03D3E'
+        }
+      }
     }
   }
 }; 

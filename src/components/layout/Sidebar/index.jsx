@@ -5,11 +5,10 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  ListItemButton,
-  useTheme,
-  useMediaQuery,
   Typography,
-  Divider
+  Divider,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
@@ -22,7 +21,7 @@ import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined
 import WebAssetOutlinedIcon from '@mui/icons-material/WebAssetOutlined';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { styles } from './styles';
 
 const menuItems = [
@@ -46,12 +45,11 @@ const integrationItems = [
 
 const adminItems = [
   { title: 'User Management', icon: <PeopleOutlineOutlinedIcon />, url: '/user-management' },
+  { title: 'Mail Management', icon: <PeopleOutlineOutlinedIcon />, url: '/mail-management' },
 ];
-
 
 const Sidebar = ({ open, onClose, variant }) => {
   const history = useHistory();
-  const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const isAdmin = true;
