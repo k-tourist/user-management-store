@@ -2,17 +2,11 @@ import {
   Box,
   Typography,
   Button,
-  TextField,
-  Step,
-  Checkbox,
   useTheme,
 } from "@mui/material";
-import { useEffect, useState } from "react";
 import { CustomDialog } from "../../../../../components/dialog/CustomDialog";
 import { styles } from "./styles";
 
-import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import { CustomTable } from "../../../../../components/table/CustomTable";
 import { CustomButton } from "../../../../../components/buttons/CustomButton";
 

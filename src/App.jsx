@@ -6,8 +6,8 @@ import UserManagement from './pages/UserManagement';
 import Profile from './pages/Profile';
 import MyChecks from './pages/MyChecks';
 import AllMails from './pages/AllMails';
+import MailManagement from './pages/MailManagement';
 
-const Home = () => <div>Home Page</div>;
 const Settings = () => <div>Settings Page</div>;
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
             <Route path="/user-management" component={UserManagement} />
             <Route path="/my-checks" component={MyChecks} />
             <Route path="/all-mails" component={AllMails} />
+            <Route path="/mail-management" component={MailManagement} />
           </Switch>
         </MainLayout>
       </Router>

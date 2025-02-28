@@ -1,35 +1,18 @@
 import {
   Box,
   Typography,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   useTheme,
-  IconButton,
   TextField,
   InputAdornment,
   Pagination,
   PaginationItem,
   Tooltip,
-  Popover,
-  useMediaQuery,
   Checkbox,
 } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setShowAlert } from "../../redux/slices/alertSlice";
 import { CustomTable } from "../../components/table/CustomTable";
 import { CustomButton } from "../../components/buttons/CustomButton";
-import { CustomSelect } from "../../components/inputs/CustomSelect";
 //Mui-icons
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
-import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
-import CloseIcon from "@mui/icons-material/Close";
-import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 //CustomIcons
 import { MailboxIcon } from "../../components/Icons";
@@ -91,17 +74,13 @@ const mockChecks = [
 
 const AllMails = () => {
   const theme = useTheme();
+  const [openDialog, setOpenDialog] = useState(false);
+  const [page, setPage] = useState(1);
   const [checks, setChecks] = useState(mockChecks);
   const [selectedChecks, setSelectedChecks] = useState([]);
   const [isCheckedAll, setIsCheckedAll] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
-  const [page, setPage] = useState(1);
 
-  const dispatch = useDispatch();
-
-  // Update isCheckedAll when selectedChecks changes
   useEffect(() => {
-    // Only update if we have checks to compare against
     if (checks.length > 0) {
       setIsCheckedAll(selectedChecks.length === checks.length);
     }
@@ -112,28 +91,22 @@ const AllMails = () => {
     setIsCheckedAll(checked);
 
     if (checked) {
-      // Select all check objects
       setSelectedChecks(checks);
     } else {
-      // Deselect all checks
       setSelectedChecks([]);
     }
   };
 
   const handleSelectCheck = (checkId) => {
     setSelectedChecks((prev) => {
-      // Find the check object
       const check = checks.find((c) => c.id === checkId);
-      // Check if the item is already selected
       const isSelected = prev.some(
         (selectedCheck) => selectedCheck.id === checkId
       );
 
       if (isSelected) {
-        // Remove the item if already selected
         return prev.filter((selectedCheck) => selectedCheck.id !== checkId);
       } else {
-        // Add the check object if not selected
         return [...prev, check];
       }
     });

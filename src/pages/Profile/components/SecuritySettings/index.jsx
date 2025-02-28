@@ -80,7 +80,6 @@ const phones = [
 const SecuritySettings = () => {
   const [mfaEnabled, setMfaEnabled] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedItemId, setSelectedItemId] = useState(null);
   const [selectedItemType, setSelectedItemType] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -110,7 +109,6 @@ const SecuritySettings = () => {
 
   const handleMenuOpen = (event, id, type, item) => {
     setAnchorEl(event.currentTarget);
-    setSelectedItemId(id);
     setSelectedItemType(type);
     setSelectedItem(item);
   };
@@ -126,7 +124,6 @@ const SecuritySettings = () => {
 
   const handleModalClose = () => {
     setEditModalOpen(false);
-    setSelectedItemId(null);
     setSelectedItemType(null);
     setSelectedItem(null);
   };
@@ -138,7 +135,6 @@ const SecuritySettings = () => {
 
   const handleDeleteModalClose = () => {
     setDeleteModalOpen(false);
-    setSelectedItemId(null);
     setSelectedItemType(null);
     setSelectedItem(null);
   };

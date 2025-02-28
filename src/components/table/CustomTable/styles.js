@@ -23,19 +23,23 @@ export const styles = {
     '& .MuiTableCell-head': {
       fontWeight: 600,
       whiteSpace: 'nowrap',
-      padding: '0 16px',
+      padding: '0',
       backgroundColor: '#F9FAFB',
     }
   },
   bodyRow: {
     height: '63px',
+    cursor: 'pointer',
     '& .MuiTableCell-body': {
-      padding: '0 16px',
+      // padding: '0 12px',
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       fontSize: '12px',
       lineHeight: '14.5px'
+    },
+    '&:hover': {
+      backgroundColor: '#F9FAFB',
     }
   }
 }; 

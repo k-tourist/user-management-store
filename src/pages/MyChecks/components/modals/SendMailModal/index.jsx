@@ -2,8 +2,6 @@ import {
   Box,
   Typography,
   Button,
-  TextField,
-  Step,
   Checkbox,
   useTheme,
 } from "@mui/material";
@@ -22,17 +20,14 @@ export const SendMailModal = ({ open, onClose, checks, onConfirm }) => {
   const [isCheckedAll, setIsCheckedAll] = useState(true);
   const [selectedChecks, setSelectedChecks] = useState(checks);
   const [totalChecks, setTotalChecks] = useState([]);
-  // const alreadyMailedChecks = checks.map((c) => c.status === 'Mailed');
 
   const handleSelectAll = (event) => {
     const checked = event.target.checked;
     setIsCheckedAll(checked);
 
     if (checked) {
-      // Select all check objects
       setSelectedChecks(totalChecks);
     } else {
-      // Deselect all checks
       setSelectedChecks([]);
     }
   };
@@ -40,18 +35,14 @@ export const SendMailModal = ({ open, onClose, checks, onConfirm }) => {
   const handleSelectCheck = (checkId) => {
     if (!totalChecks) return;
     setSelectedChecks((prev) => {
-      // Find the check object
       const check = totalChecks.find((c) => c.id === checkId);
-      // Check if the item is already selected
       const isSelected = prev.some(
         (selectedCheck) => selectedCheck.id === checkId
       );
 
       if (isSelected) {
-        // Remove the item if already selected
         return prev.filter((selectedCheck) => selectedCheck.id !== checkId);
       } else {
-        // Add the check object if not selected
         return [...prev, check];
       }
     });
@@ -59,9 +50,7 @@ export const SendMailModal = ({ open, onClose, checks, onConfirm }) => {
 
   useEffect(() => {
     if (!totalChecks) return;
-    // Only update if we have checks to compare against
-    console.log("a==>", selectedChecks, checks, isCheckedAll, totalChecks);
-    if (checks.length > 0) {
+    if (totalChecks.length > 0) {
       setIsCheckedAll(selectedChecks.length === totalChecks.length);
     }
   }, [selectedChecks, totalChecks]);
@@ -81,7 +70,7 @@ export const SendMailModal = ({ open, onClose, checks, onConfirm }) => {
     if (open) {
       setSelectedChecks(totalChecks);
     }
-  }, [open]);
+  }, [open, totalChecks]);
 
   const handleNext = () => {
     // Handle save logic here

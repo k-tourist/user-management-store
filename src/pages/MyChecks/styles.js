@@ -12,6 +12,7 @@ export const styles = {
         xs: '28px',
         sm: '36px'
       },
+      fontWeight: 600,
       mb: '12px'
     },
     description: {
